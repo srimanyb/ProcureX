@@ -98,26 +98,6 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-.top-gov-bar {
-  background-color: var(--secondary);
-  color: #FFFFFF;
-  padding: 0.35rem 1.5rem;
-  font-size: 0.82rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.top-gov-bar a {
-  color: #E2E8F0;
-  text-decoration: none;
-  margin-left: 1rem;
-}
-
-.top-gov-bar a:hover {
-  text-decoration: underline;
-}
-
 .nav-container {
   display: flex;
   justify-content: space-between;
@@ -429,43 +409,6 @@ body {
   margin-top: 0.35rem;
 }
 
-/* ==========================================================================
-   Banner & Demo Alerts
-   ========================================================================== */
-.demo-banner {
-  background: linear-gradient(90deg, #FEF3C7 0%, #FDE68A 100%);
-  border-bottom: 1px solid #FCD34D;
-  padding: 0.6rem 1rem;
-  font-size: 0.88rem;
-  color: #78350F;
-  text-align: center;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.demo-banner strong {
-  color: #92400E;
-}
-
-.demo-btn-link {
-  background: #B45309;
-  color: white;
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.8rem;
-  cursor: pointer;
-  border: none;
-}
-
-.demo-btn-link:hover {
-  background: #92400E;
-}
 
 /* ==========================================================================
    Hero Section (Landing Page)
