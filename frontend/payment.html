@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Status & History – ProcureX</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .payment-receipt-card {
+      background: #FFFFFF;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 2.25rem;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 2.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="top-gov-bar">
+    <div>🇮🇳 Public Financial Management System (PFMS) • Direct Benefit Transfer (DBT) Integration</div>
+    <div><a href="dashboard.html">Dashboard</a></div>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🌾</div>
+        <div class="brand-text">
+          <h1>ProcureX</h1>
+          <span>Smart Agricultural Procurement</span>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" id="mobileNavToggle" aria-label="Toggle navigation">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="booking.html">Book Slot</a></li>
+        <li><a href="queue.html">Live Queue</a></li>
+        <li><a href="procurement.html">Procurement</a></li>
+        <li><a href="payment.html" class="active">Payment</a></li>
+      </ul>
+
+      <div class="nav-actions" id="navAuthContainer"></div>
+    </div>
+  </header>
+
+  <div class="container" style="padding-top: 2.5rem; padding-bottom: 4rem;">
+    <div style="margin-bottom: 2rem;">
+      <span class="badge badge-green" style="margin-bottom: 0.5rem;">Govt MSP Settlement Portal</span>
+      <h2 style="font-size: 2.2rem; font-weight: 800; color: var(--secondary);">Payment Status & History</h2>
+      <p style="color: var(--text-muted); font-size: 1.05rem;">
+        Direct DBT credit tracking with transparent rate calculations and complete past transaction history.
+      </p>
+    </div>
+
+    <!-- Active Procurement Payment Voucher Card -->
+    <div class="payment-receipt-card">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--border); padding-bottom: 1.25rem; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <span class="badge badge-green" style="margin-bottom: 0.35rem;">Procurement Completed</span>
+          <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--secondary);">DBT Payment Advice Slip</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem;">Transaction ID: <strong id="payTxnId" style="color:var(--primary-dark);">PX-PAY-10245</strong></p>
+        </div>
+        <div>
+          <span class="badge badge-yellow" style="font-size: 1.05rem; padding: 0.5rem 1.25rem;" id="payStatusBadge">
+            🟡 Processing
+          </span>
+        </div>
+      </div>
+
+      <!-- Financial Breakdown -->
+      <div class="grid-4" style="margin-bottom: 1.75rem;">
+        <div style="background: var(--bg-main); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Commodity</div>
+          <div style="font-size: 1.2rem; font-weight: 800; color: var(--secondary);" id="payCommodity">Rice (Paddy)</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">Common Grade</div>
+        </div>
+
+        <div style="background: var(--bg-main); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Weighed Quantity</div>
+          <div style="font-size: 1.2rem; font-weight: 800; color: var(--secondary);" id="payQuantity">42.5 Quintals</div>
+          <div style="font-size: 0.78rem; color: var(--primary);">Net Certified Weight</div>
+        </div>
+
+        <div style="background: var(--bg-main); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Govt MSP Rate</div>
+          <div style="font-size: 1.2rem; font-weight: 800; color: var(--secondary);" id="payRate">₹2,320 / Qtl</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">Cabinet Approved 2026-27</div>
+        </div>
+
+        <div style="background: #F0FDF4; padding: 1.25rem; border-radius: var(--radius-md); border: 1.5px solid var(--primary-light);">
+          <div style="font-size: 0.8rem; color: var(--primary-dark); text-transform: uppercase; font-weight: 700;">Total Procurement Value</div>
+          <div style="font-size: 1.6rem; font-weight: 900; color: var(--primary);" id="payTotalAmount">₹98,600</div>
+          <div style="font-size: 0.78rem; color: var(--primary-dark);">DBT Bank Credit</div>
+        </div>
+      </div>
+
+      <!-- Account & Settlement info -->
+      <div style="background: var(--bg-main); border-radius: var(--radius-md); padding: 1.25rem; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <div style="font-size: 0.95rem; font-weight: 700; color: var(--secondary);">
+            Beneficiary: Ramesh Kumar (FARM1024)
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);" id="payAccountInfo">
+            Aadhaar Linked Bank: State Bank of India •••• 4921 • Mode: PFMS DBT
+          </div>
+        </div>
+        <div style="text-align: right;">
+          <div style="font-size: 0.82rem; color: var(--text-muted);">Settlement Timeline:</div>
+          <strong style="color: var(--secondary); font-size: 0.95rem;" id="payExpectedDate">Within 24 to 48 Hours</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Past Payment History Table -->
+    <div class="card" style="padding: 0; overflow: hidden;">
+      <div style="padding: 1.25rem 1.5rem; background: var(--bg-main); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--secondary);">Previous Procurement Payment History</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Verified DBT payouts credited to your Aadhaar-linked account.</p>
+        </div>
+        <span class="badge badge-green">3 Past Payouts Recorded</span>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="queue-list-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Booking ID</th>
+              <th>Commodity</th>
+              <th>Quantity</th>
+              <th>Settled Amount</th>
+              <th>Status</th>
+              <th style="text-align: right;">PFMS UTR Reference</th>
+            </tr>
+          </thead>
+          <tbody id="paymentHistoryTableBody">
+            <!-- Populated dynamically via payment.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>© 2026 ProcureX – Smart Agricultural Procurement Platform. SIH 2026.</div>
+        <div>PFMS Real-time Reconciliation Protocol</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/payment.js"></script>
+</body>
+</html>

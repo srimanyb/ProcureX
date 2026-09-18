@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login – ProcureX Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .login-container {
+      max-width: 480px;
+      margin: 3.5rem auto;
+      padding: 0 1rem;
+    }
+    .login-tabs {
+      display: flex;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 2rem;
+    }
+    .login-tab-btn {
+      flex: 1;
+      text-align: center;
+      padding: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-size: 1rem;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s ease;
+    }
+    .login-tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="top-gov-bar">
+    <div>🇮🇳 Ministry of Agriculture & Farmers Welfare • SIH 2026</div>
+    <div><a href="index.html">Back to Home</a></div>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🌾</div>
+        <div class="brand-text">
+          <h1>ProcureX</h1>
+          <span>Smart Agricultural Procurement</span>
+        </div>
+      </a>
+      <div class="nav-actions">
+        <a href="register.html" class="btn btn-outline-primary btn-sm">Farmer Registration</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="login-container">
+    <!-- 1-Click Demo Login Box -->
+    <div class="card" style="background: #FEF3C7; border-color: #FCD34D; margin-bottom: 1.5rem; text-align: center;">
+      <div style="font-weight: 800; color: #92400E; margin-bottom: 0.35rem; font-size: 1.05rem;">
+        ⚡ Instant SIH Demo Login
+      </div>
+      <p style="font-size: 0.88rem; color: #78350F; margin-bottom: 0.85rem;">
+        One-click access with pre-configured live booking data
+      </p>
+      <div style="display: flex; gap: 0.5rem; flex-direction: column;">
+        <button onclick="loginAsDemoFarmer()" class="btn btn-primary btn-block">
+          👤 Log In as Demo Farmer (Ramesh Kumar)
+        </button>
+        <button onclick="loginAsDemoCentre()" class="btn btn-secondary btn-block">
+          🏢 Log In as Centre Staff (Central Procurement)
+        </button>
+      </div>
+    </div>
+
+    <!-- Login Form Card -->
+    <div class="card">
+      <div class="login-tabs">
+        <button class="login-tab-btn active" id="farmerTabBtn" onclick="switchLoginTab('farmer')">Farmer Login</button>
+        <button class="login-tab-btn" id="centreTabBtn" onclick="switchLoginTab('centre')">Centre Staff Login</button>
+      </div>
+
+      <!-- Farmer Form -->
+      <form id="farmerLoginForm">
+        <div class="form-group">
+          <label class="form-label" for="farmerIdentifier">Mobile Number or Farmer ID</label>
+          <input type="text" id="farmerIdentifier" class="form-control" placeholder="e.g. 9876543210 or FARM1024" required>
+          <div class="form-help">Demo ID: <code>FARM1024</code> or Mobile: <code>9876543210</code></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 1.5rem;">
+          Log In to Farmer Portal 🚜
+        </button>
+
+        <div style="text-align: center; margin-top: 1.5rem; font-size: 0.95rem; color: var(--text-muted);">
+          New farmer? <a href="register.html" style="color: var(--primary); font-weight: 700; text-decoration: none;">Register for procurement here</a>
+        </div>
+      </form>
+
+      <!-- Centre Staff Form -->
+      <form id="centreLoginForm" style="display: none;">
+        <div class="form-group">
+          <label class="form-label">Procurement Centre</label>
+          <select class="form-control" id="centreSelect">
+            <option value="CPC-01">Central Procurement Centre (APMC Yard) - Amravati</option>
+            <option value="CPC-02">Sub-Mandi Procurement Depot - Chandur</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Staff Officer ID</label>
+          <input type="text" class="form-control" id="staffId" value="STAFF-AMR-09" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password / PIN</label>
+          <input type="password" class="form-control" id="staffPassword" value="demo123" required>
+        </div>
+
+        <button type="submit" class="btn btn-secondary btn-block btn-lg" style="margin-top: 1.5rem;">
+          Log In to Centre Dashboard 🏢
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    function switchLoginTab(tab) {
+      const farmerTab = document.getElementById('farmerTabBtn');
+      const centreTab = document.getElementById('centreTabBtn');
+      const farmerForm = document.getElementById('farmerLoginForm');
+      const centreForm = document.getElementById('centreLoginForm');
+
+      if (tab === 'centre') {
+        centreTab.classList.add('active');
+        farmerTab.classList.remove('active');
+        centreForm.style.display = 'block';
+        farmerForm.style.display = 'none';
+      } else {
+        farmerTab.classList.add('active');
+        centreTab.classList.remove('active');
+        farmerForm.style.display = 'block';
+        centreForm.style.display = 'none';
+      }
+    }
+
+    // Check query params for default tab
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('tab') === 'centre') {
+      switchLoginTab('centre');
+    }
+
+    // Handle Farmer Login Form
+    document.getElementById('farmerLoginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const identifier = document.getElementById('farmerIdentifier').value.trim();
+      try {
+        const res = await fetch(`${API_BASE}/farmers/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ identifier })
+        });
+        const data = await res.json();
+        if (data.success) {
+          Session.setUser(data.farmer);
+          Session.setRole('farmer');
+          if (data.activeBookingId) Session.setActiveBookingId(data.activeBookingId);
+          showToast('Success', `Welcome back, ${data.farmer.name}!`, 'success');
+          setTimeout(() => { window.location.href = 'dashboard.html'; }, 500);
+        } else {
+          showToast('Login Failed', data.message, 'warning');
+        }
+      } catch (err) {
+        showToast('Error', 'Unable to reach backend server', 'warning');
+      }
+    });
+
+    // Handle Centre Login Form
+    document.getElementById('centreLoginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      loginAsDemoCentre();
+    });
+  </script>
+</body>
+</html>

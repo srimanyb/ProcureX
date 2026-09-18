@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProcureX – Smart Agricultural Procurement Platform | SIH 2026</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top Government & SIH Banner -->
+  <div class="top-gov-bar">
+    <div>🇮🇳 Digital India • Ministry of Agriculture & Farmers Welfare • SIH 2026 Problem ID: SIH26032</div>
+    <div>
+      <a href="javascript:void(0)" onclick="loginAsDemoFarmer()">Demo Farmer Login</a>
+      <a href="javascript:void(0)" onclick="loginAsDemoCentre()">Demo Centre Login</a>
+      <a href="javascript:void(0)" onclick="resetDemoData()">Reset Data</a>
+    </div>
+  </div>
+
+  <!-- Demo Notice Banner -->
+  <div class="demo-banner">
+    <span>💡 <strong>SIH 2026 Prototype Mode:</strong> Explore with pre-loaded demo credentials</span>
+    <button class="demo-btn-link" onclick="loginAsDemoFarmer()">👤 Demo Farmer (Ramesh Kumar)</button>
+    <button class="demo-btn-link" onclick="loginAsDemoCentre()">🏢 Demo Centre Staff</button>
+  </div>
+
+  <!-- Main Navigation -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🌾</div>
+        <div class="brand-text">
+          <h1>ProcureX</h1>
+          <span>Smart Agricultural Procurement</span>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" id="mobileNavToggle" aria-label="Toggle navigation">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="booking.html">Book Slot</a></li>
+        <li><a href="queue.html">Live Queue</a></li>
+        <li><a href="procurement.html">Procurement Status</a></li>
+      </ul>
+
+      <div class="nav-actions" id="navAuthContainer">
+        <!-- Injected dynamically via main.js -->
+        <a href="login.html" class="btn btn-outline-primary btn-sm">Farmer Login</a>
+        <a href="login.html?tab=centre" class="btn btn-secondary btn-sm">Centre Login</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>🌾 Smart India Hackathon 2026</span>
+          <span style="color:var(--text-light)">•</span>
+          <span>Zero Waiting Time Initiative</span>
+        </div>
+
+        <h1 class="hero-title">
+          Your Procurement.
+          <span class="text-highlight">Your Slot. Your Time.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Book your procurement slot, know your queue position, and track your procurement status without unnecessary waiting at the mandi.
+        </p>
+
+        <div class="hero-actions">
+          <a href="booking.html" class="btn btn-primary btn-lg">Book a Slot 🚜</a>
+          <a href="queue.html" class="btn btn-outline btn-lg">Track Status 🔍</a>
+        </div>
+
+        <!-- Mini Stats pill -->
+        <div style="display: flex; gap: 2rem; margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1.5rem;">
+          <div>
+            <div style="font-size: 1.5rem; font-weight: 800; color: var(--secondary);">85%</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Queue Delay Reduction</div>
+          </div>
+          <div>
+            <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary);">100%</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Transparent MSP Status</div>
+          </div>
+          <div>
+            <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent);">Direct DBT</div>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">Aadhaar Bank Credit</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card (Snapshot) -->
+      <div class="hero-visual">
+        <div class="hero-card-visual">
+          <span class="badge badge-green live-badge-top">
+            <span class="pulse-dot"></span> Live Centre Operational
+          </span>
+
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem;">
+            <div>
+              <span style="font-size: 0.82rem; font-weight: 700; color: var(--primary); text-transform: uppercase;">Mandi Procurement Gate</span>
+              <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--secondary);">Central Procurement Centre</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">APMC Yard, Badnera Road</p>
+            </div>
+            <span class="badge badge-blue">Booking #PX10245</span>
+          </div>
+
+          <!-- Mini Live Tracker Visual -->
+          <div style="background: var(--bg-main); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.25rem; border: 1px solid var(--border);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem;">
+              <span style="color: var(--text-muted);">Farmer in Staging:</span>
+              <strong style="color: var(--secondary);">Ramesh Kumar (Rice)</strong>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; text-align: center;">
+              <div style="background: white; padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                <div style="font-size: 1.75rem; font-weight: 800; color: var(--primary);">#18</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Your Token No.</div>
+              </div>
+              <div style="background: white; padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border);">
+                <div style="font-size: 1.75rem; font-weight: 800; color: var(--accent);">#11</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Currently Serving</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress Mini Bar -->
+          <div style="margin-bottom: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.35rem; color: var(--text-muted);">
+              <span>Stage: Produce Weighing & Quality</span>
+              <span style="font-weight: 700; color: var(--primary);">70%</span>
+            </div>
+            <div style="height: 8px; background: var(--border); border-radius: 9999px; overflow: hidden;">
+              <div style="width: 70%; height: 100%; background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);"></div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.75rem;">
+            <a href="queue.html" class="btn btn-outline-primary btn-sm btn-block">Open Live Queue</a>
+            <a href="dashboard.html" class="btn btn-primary btn-sm btn-block">View Dashboard</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Problem We Solve -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Addressing Problem Statement SIH26032</div>
+        <h2 class="section-title">The Problem We Solve</h2>
+        <p class="section-desc">Traditional procurement creates uncertainty and hardship for Indian farmers. ProcureX replaces queues with smart digital scheduling.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="problem-card">
+          <div class="problem-icon">⏳</div>
+          <h3 class="problem-title">Long Waiting Times</h3>
+          <p class="problem-text">Farmers often spend unnecessary days and nights waiting in queue outside mandis, leading to transport costs and produce deterioration.</p>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-icon">📅</div>
+          <h3 class="problem-title">Lack of Schedule Information</h3>
+          <p class="problem-text">Without advance slot booking or capacity awareness, farmers arrive without knowing when their crop will actually be inspected and weighed.</p>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-icon">❓</div>
+          <h3 class="problem-title">Procurement Uncertainty</h3>
+          <p class="problem-text">Farmers face zero transparency regarding quality approvals, weight slips, and Direct Benefit Transfer (DBT) payment timelines.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why ProcureX? Section -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Platform Features</div>
+        <h2 class="section-title">Why ProcureX?</h2>
+        <p class="section-desc">A farmer-first digital procurement solution engineered for simplicity, trust, and operational efficiency.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="feature-card">
+          <div class="feature-icon-box">📅</div>
+          <h3 class="feature-title">Digital Slot Booking</h3>
+          <p class="feature-text">Choose a convenient procurement window before visiting the centre. View available dates and avoid overcrowded rush hours.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">📊</div>
+          <h3 class="feature-title">Live Queue Visibility</h3>
+          <p class="feature-text">Know your queue position and centre status in real time. See how many farmers are ahead before loading your produce onto the tractor.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">🔍</div>
+          <h3 class="feature-title">Procurement Tracking</h3>
+          <p class="feature-text">Track your journey through 6 clear stages from booking to physical verification, digital weighment, and bank payment credit.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box">🔔</div>
+          <h3 class="feature-title">Smart Notifications</h3>
+          <p class="feature-text">Receive instant confirmations, reminders when you are next in line, and transparent alerts when DBT payment is deposited.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How ProcureX Works (6 Steps) -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Seamless 6-Step Workflow</div>
+        <h2 class="section-title">How ProcureX Works</h2>
+        <p class="section-desc">Simple enough for elderly farmers, scalable across all government procurement centres.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <div class="step-icon">📝</div>
+          <h4 class="step-title">Register</h4>
+          <p class="step-desc">Enter basic details & Farmer ID.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <div class="step-icon">🌾</div>
+          <h4 class="step-title">Choose Crop</h4>
+          <p class="step-desc">Select Rice, Wheat, Cotton, etc.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <div class="step-icon">📆</div>
+          <h4 class="step-title">Book Slot</h4>
+          <p class="step-desc">Select date & convenient time.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">04</div>
+          <div class="step-icon">🔢</div>
+          <h4 class="step-title">Join Queue</h4>
+          <p class="step-desc">Track live tokens & wait time.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">05</div>
+          <div class="step-icon">⚖️</div>
+          <h4 class="step-title">Procurement</h4>
+          <p class="step-desc">Fast weighment & receipt slip.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">06</div>
+          <div class="step-icon">💰</div>
+          <h4 class="step-title">Track Payment</h4>
+          <p class="step-desc">Direct DBT credit into bank.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Everything in One Place -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="card" style="padding: 3rem; background: linear-gradient(135deg, #0F2850 0%, #1E3A8A 100%); color: white; border: none;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+          <div>
+            <span class="badge" style="background: rgba(255,255,255,0.2); color: white; margin-bottom: 1rem;">Unified Agriculture Portal</span>
+            <h2 style="font-size: 2.3rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem;">Everything in One Place</h2>
+            <p style="color: #CBD5E1; font-size: 1.1rem; line-height: 1.6; margin-bottom: 1.75rem;">
+              From initial slot scheduling to live gate monitoring, digital weighment slips, and PFMS payment reconciliation. ProcureX replaces paper chaos with complete digital transparency.
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <button onclick="loginAsDemoFarmer()" class="btn btn-primary">Try Demo Farmer Dashboard</button>
+              <button onclick="loginAsDemoCentre()" class="btn btn-outline" style="color: white; border-color: rgba(255,255,255,0.4);">Centre Staff Portal</button>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: var(--radius-md); backdrop-filter: blur(8px);">
+              <div style="font-size: 1.75rem; margin-bottom: 0.35rem;">🎫</div>
+              <div style="font-weight: 700; font-size: 1.05rem;">Slot Booking</div>
+              <div style="font-size: 0.85rem; color: #CBD5E1;">Multi-step slot allocation</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: var(--radius-md); backdrop-filter: blur(8px);">
+              <div style="font-size: 1.75rem; margin-bottom: 0.35rem;">📊</div>
+              <div style="font-weight: 700; font-size: 1.05rem;">Live Queue</div>
+              <div style="font-size: 0.85rem; color: #CBD5E1;">Real-time queue tracking</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: var(--radius-md); backdrop-filter: blur(8px);">
+              <div style="font-size: 1.75rem; margin-bottom: 0.35rem;">🔍</div>
+              <div style="font-weight: 700; font-size: 1.05rem;">Procurement</div>
+              <div style="font-size: 0.85rem; color: #CBD5E1;">6-stage lifecycle tracking</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.1); padding: 1.25rem; border-radius: var(--radius-md); backdrop-filter: blur(8px);">
+              <div style="font-size: 1.75rem; margin-bottom: 0.35rem;">💳</div>
+              <div style="font-weight: 700; font-size: 1.05rem;">Payment History</div>
+              <div style="font-size: 0.85rem; color: #CBD5E1;">DBT PFMS ledger trail</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Call to Action -->
+  <section class="section" style="text-align: center;">
+    <div class="container container-narrow">
+      <h2 style="font-size: 2.4rem; font-weight: 800; color: var(--secondary); margin-bottom: 1rem;">
+        Ready to make procurement simpler?
+      </h2>
+      <p style="font-size: 1.15rem; color: var(--text-muted); margin-bottom: 2rem;">
+        Eliminate queue hours, know your time, and sell your harvest with total confidence.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="booking.html" class="btn btn-primary btn-lg">Book Your Procurement Slot 🚜</a>
+        <a href="register.html" class="btn btn-secondary btn-lg">New Farmer Registration 📝</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>🌾 ProcureX</h3>
+          <p>
+            Smart Agricultural Procurement Platform for Smart India Hackathon 2026. Empowering farmers with queue visibility and predictable scheduling.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h4>Farmers</h4>
+          <ul>
+            <li><a href="booking.html">Book Slot</a></li>
+            <li><a href="queue.html">Live Queue</a></li>
+            <li><a href="procurement.html">Procurement Status</a></li>
+            <li><a href="payment.html">Payment Status</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Centres</h4>
+          <ul>
+            <li><a href="centre-dashboard.html">Centre Dashboard</a></li>
+            <li><a href="centre-dashboard.html#queue">Manage Queue</a></li>
+            <li><a href="centre-dashboard.html#analytics">Capacity Analytics</a></li>
+            <li><a href="login.html?tab=centre">Staff Login</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>SIH 2026</h4>
+          <ul>
+            <li><a href="javascript:void(0)">Problem: SIH26032</a></li>
+            <li><a href="javascript:void(0)">Theme: Smart Automation</a></li>
+            <li><a href="javascript:void(0)" onclick="resetDemoData()">Reset Demo Data</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 ProcureX – Smart Agricultural Procurement Platform. Smart India Hackathon 2026.</div>
+        <div>Built with HTML5, CSS3, Vanilla JS, Node.js, Express & MongoDB</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

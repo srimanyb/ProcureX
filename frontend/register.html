@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Registration – ProcureX</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .reg-card {
+      max-width: 640px;
+      margin: 2.5rem auto 4rem;
+      background: #FFFFFF;
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-gov-bar">
+    <div>🇮🇳 Ministry of Agriculture & Farmers Welfare • e-Procurement Portal</div>
+    <div><a href="login.html">Already registered? Log in here</a></div>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🌾</div>
+        <div class="brand-text">
+          <h1>ProcureX</h1>
+          <span>Smart Agricultural Procurement</span>
+        </div>
+      </a>
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline-primary btn-sm">Farmer Login</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="reg-card">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem;">
+        <div>
+          <span class="badge badge-green" style="margin-bottom: 0.5rem;">Farmer Onboarding</span>
+          <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--secondary);">Farmer Registration</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">Enter your farming and crop details to begin digital slot booking.</p>
+        </div>
+        <button type="button" onclick="prefillForm()" class="btn btn-outline btn-sm" title="Autofill for testing">
+          ⚡ Auto-Fill Sample
+        </button>
+      </div>
+
+      <form id="farmerRegForm">
+        <div class="form-group">
+          <label class="form-label" for="regName">Full Name *</label>
+          <input type="text" id="regName" class="form-control" placeholder="e.g. Ramesh Kumar" required>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label" for="regMobile">Mobile Number *</label>
+            <input type="tel" id="regMobile" class="form-control" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+            <div class="form-help">Used for SMS reminders & verification</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="regFarmerId">Farmer ID (Aadhaar / Krishi ID) *</label>
+            <input type="text" id="regFarmerId" class="form-control" placeholder="e.g. FARM1024" required>
+            <div class="form-help">State Agriculture Portal Reference ID</div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label" for="regVillage">Village / Town *</label>
+            <input type="text" id="regVillage" class="form-control" placeholder="e.g. Chandur Railway" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="regDistrict">District *</label>
+            <input type="text" id="regDistrict" class="form-control" placeholder="e.g. Amravati" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="regCentre">Nearest Procurement Centre *</label>
+          <select id="regCentre" class="form-control" required>
+            <option value="Central Procurement Centre (APMC Yard)">Central Procurement Centre (APMC Yard) - Amravati</option>
+            <option value="Chandur Sub-Mandi Procurement Depot">Chandur Sub-Mandi Procurement Depot</option>
+            <option value="Morshi Taluka Procurement Hub">Morshi Taluka Procurement Hub</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="regCommodity">Primary Commodity to Sell *</label>
+          <select id="regCommodity" class="form-control" required>
+            <option value="Rice">Rice / Paddy (MSP: ₹2,320/Qtl)</option>
+            <option value="Wheat">Wheat (MSP: ₹2,275/Qtl)</option>
+            <option value="Maize">Maize (MSP: ₹2,090/Qtl)</option>
+            <option value="Cotton">Cotton (MSP: ₹7,121/Qtl)</option>
+            <option value="Soybean">Soybean (MSP: ₹4,892/Qtl)</option>
+            <option value="Pulses">Pulses / Arhar (MSP: ₹7,550/Qtl)</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 1.5rem;">
+          Complete Registration & Go to Dashboard 🚜
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    function prefillForm() {
+      document.getElementById('regName').value = 'Ramesh Kumar';
+      document.getElementById('regMobile').value = '9876543210';
+      document.getElementById('regFarmerId').value = 'FARM1024';
+      document.getElementById('regVillage').value = 'Chandur Railway';
+      document.getElementById('regDistrict').value = 'Amravati';
+      document.getElementById('regCommodity').value = 'Rice';
+      showToast('Form Filled', 'Loaded sample farmer information', 'info');
+    }
+
+    document.getElementById('farmerRegForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const payload = {
+        name: document.getElementById('regName').value.trim(),
+        mobile: document.getElementById('regMobile').value.trim(),
+        farmerId: document.getElementById('regFarmerId').value.trim(),
+        village: document.getElementById('regVillage').value.trim(),
+        district: document.getElementById('regDistrict').value.trim(),
+        preferredCentre: document.getElementById('regCentre').value,
+        commodity: document.getElementById('regCommodity').value
+      };
+
+      try {
+        const res = await fetch(`${API_BASE}/farmers/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (data.success) {
+          Session.setUser(data.farmer);
+          Session.setRole('farmer');
+          Session.setActiveBookingId('PX10245');
+          showToast('Registration Complete!', 'Welcome to ProcureX. Redirecting...', 'success');
+          setTimeout(() => {
+            window.location.href = 'dashboard.html';
+          }, 800);
+        } else {
+          showToast('Registration Error', data.message, 'warning');
+        }
+      } catch (err) {
+        showToast('Error', 'Unable to reach backend server', 'warning');
+      }
+    });
+  </script>
+</body>
+</html>

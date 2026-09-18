@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Dashboard – ProcureX</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="top-gov-bar">
+    <div>🇮🇳 Digital India • Ministry of Agriculture & Farmers Welfare • e-Procurement Portal</div>
+    <div>
+      <a href="javascript:void(0)" onclick="resetDemoData()">Reset Demo Data</a>
+      <a href="javascript:void(0)" onclick="logout()">Logout</a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🌾</div>
+        <div class="brand-text">
+          <h1>ProcureX</h1>
+          <span>Smart Agricultural Procurement</span>
+        </div>
+      </a>
+
+      <button class="mobile-toggle" id="mobileNavToggle" aria-label="Toggle navigation">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+        <li><a href="booking.html">Book Slot</a></li>
+        <li><a href="queue.html">Live Queue</a></li>
+        <li><a href="procurement.html">Procurement</a></li>
+        <li><a href="payment.html">Payment</a></li>
+      </ul>
+
+      <div class="nav-actions" id="navAuthContainer">
+        <!-- Injected dynamically via main.js -->
+      </div>
+    </div>
+  </header>
+
+  <div class="container" style="padding-top: 2rem; padding-bottom: 3.5rem;">
+    <!-- Welcome Header Banner -->
+    <div class="dashboard-welcome">
+      <div class="welcome-text">
+        <div class="badge badge-green" style="margin-bottom: 0.5rem;">Verified Farmer Profile</div>
+        <h2 id="farmerWelcomeTitle">Welcome, Farmer</h2>
+        <p id="farmerProfileSubtitle">Farmer ID: <strong>FARM1024</strong> • Village: Chandur Railway • District: Amravati</p>
+      </div>
+      <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <a href="booking.html" class="btn btn-primary">Book New Slot 🚜</a>
+        <a href="queue.html" class="btn btn-accent">View Live Queue ⚡</a>
+      </div>
+    </div>
+
+    <!-- 4 Summary Metric Cards -->
+    <div class="grid-4" style="margin-bottom: 2rem;">
+      <!-- Card 1: Upcoming Slot -->
+      <div class="stat-card">
+        <div class="stat-card-header">
+          <span class="stat-label">Upcoming Slot</span>
+          <span class="stat-icon">📅</span>
+        </div>
+        <div>
+          <div class="stat-value" id="summarySlotTime" style="font-size: 1.65rem;">19 Sep 2026</div>
+          <div class="stat-subtext" id="summarySlotHour">10:00 AM • Morning Window</div>
+        </div>
+      </div>
+
+      <!-- Card 2: Queue Position -->
+      <div class="stat-card">
+        <div class="stat-card-header">
+          <span class="stat-label">Queue Position</span>
+          <span class="stat-icon">🔢</span>
+        </div>
+        <div>
+          <div class="stat-value" id="summaryQueuePos" style="color: var(--primary);">#18</div>
+          <div class="stat-subtext" id="summaryQueueAhead">7 Farmers Ahead • ~35 min</div>
+        </div>
+      </div>
+
+      <!-- Card 3: Procurement Status -->
+      <div class="stat-card">
+        <div class="stat-card-header">
+          <span class="stat-label">Procurement</span>
+          <span class="stat-icon">⚖️</span>
+        </div>
+        <div>
+          <div class="stat-value" id="summaryProcStatus" style="font-size: 1.65rem; color: var(--accent);">In Progress</div>
+          <div class="stat-subtext" id="summaryProcStage">Stage 4: Produce Weighing</div>
+        </div>
+      </div>
+
+      <!-- Card 4: Payment Status -->
+      <div class="stat-card">
+        <div class="stat-card-header">
+          <span class="stat-label">Payment</span>
+          <span class="stat-icon">💳</span>
+        </div>
+        <div>
+          <div class="stat-value" id="summaryPayStatus" style="font-size: 1.65rem; color: #D97706;">Processing</div>
+          <div class="stat-subtext" id="summaryPayAmt">₹98,600 • Direct DBT PFMS</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Action Buttons -->
+    <div class="grid-4" style="margin-bottom: 2.5rem;">
+      <a href="booking.html" class="btn btn-outline btn-block" style="background: white; padding: 1.1rem; border: 1.5px solid var(--border);">
+        <span style="font-size: 1.4rem;">➕</span>
+        <span style="font-weight: 700;">Book New Slot</span>
+      </a>
+      <a href="queue.html" class="btn btn-outline btn-block" style="background: white; padding: 1.1rem; border: 1.5px solid var(--border);">
+        <span style="font-size: 1.4rem;">🚦</span>
+        <span style="font-weight: 700;">View Live Queue</span>
+      </a>
+      <a href="procurement.html" class="btn btn-outline btn-block" style="background: white; padding: 1.1rem; border: 1.5px solid var(--border);">
+        <span style="font-size: 1.4rem;">🔍</span>
+        <span style="font-weight: 700;">Track Procurement</span>
+      </a>
+      <a href="payment.html" class="btn btn-outline btn-block" style="background: white; padding: 1.1rem; border: 1.5px solid var(--border);">
+        <span style="font-size: 1.4rem;">💰</span>
+        <span style="font-weight: 700;">Payment History</span>
+      </a>
+    </div>
+
+    <!-- Current Booking Details Card -->
+    <div class="current-booking-card">
+      <div class="booking-header">
+        <div>
+          <span class="badge badge-green" style="margin-bottom: 0.35rem;">Active Mandi Appointment</span>
+          <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--secondary);">Your Current Booking</h3>
+        </div>
+        <div>
+          <span class="badge badge-blue" style="font-size: 0.95rem;" id="activeBookingBadge">Booking ID: PX10245</span>
+        </div>
+      </div>
+
+      <div class="booking-grid">
+        <div class="booking-meta-item">
+          <label>Booking ID</label>
+          <span id="cardBookingId">PX10245</span>
+        </div>
+
+        <div class="booking-meta-item">
+          <label>Centre</label>
+          <span id="cardCentreName">Central Procurement Centre</span>
+        </div>
+
+        <div class="booking-meta-item">
+          <label>Commodity</label>
+          <span id="cardCommodity">Rice (Paddy)</span>
+        </div>
+
+        <div class="booking-meta-item">
+          <label>Date & Time Slot</label>
+          <span id="cardSlotTime">19 September 2026, 10:00 AM</span>
+        </div>
+      </div>
+
+      <div style="background: var(--bg-main); border-radius: var(--radius-md); padding: 1.25rem; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <div style="font-weight: 700; color: var(--secondary); margin-bottom: 2px;">
+            Token Number: <span style="color: var(--primary); font-size: 1.2rem;">#18</span>
+          </div>
+          <div style="font-size: 0.88rem; color: var(--text-muted);">
+            Please present this booking reference at Gate 2 along with your 7/12 crop land record.
+          </div>
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+          <a href="queue.html" class="btn btn-primary btn-sm">Watch Live Queue ⚡</a>
+          <a href="confirmation.html" class="btn btn-outline btn-sm">View Digital Pass 🎫</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>© 2026 ProcureX – Smart Agricultural Procurement Platform. SIH 2026.</div>
+        <div><a href="javascript:void(0)" onclick="resetDemoData()" style="color:#94A3B8;">Reset Demo Data</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    async function loadDashboardData() {
+      const user = Session.getUser() || {
+        name: 'Ramesh Kumar',
+        farmerId: 'FARM1024',
+        village: 'Chandur Railway',
+        district: 'Amravati',
+        commodity: 'Rice'
+      };
+
+      // Set user title
+      document.getElementById('farmerWelcomeTitle').textContent = `Welcome, ${user.name}`;
+      document.getElementById('farmerProfileSubtitle').innerHTML = `Farmer ID: <strong>${user.farmerId}</strong> • Village: ${user.village || 'Chandur Railway'} • District: ${user.district || 'Amravati'}`;
+
+      const bookingId = Session.getActiveBookingId() || 'PX10245';
+
+      try {
+        // 1. Fetch booking info
+        const bookRes = await fetch(`${API_BASE}/bookings/${bookingId}`);
+        const bookData = await bookRes.json();
+        if (bookData.success && bookData.booking) {
+          const b = bookData.booking;
+          document.getElementById('cardBookingId').textContent = b.bookingId;
+          document.getElementById('activeBookingBadge').textContent = `Booking ID: ${b.bookingId}`;
+          document.getElementById('cardCentreName').textContent = b.centre;
+          document.getElementById('cardCommodity').textContent = b.commodity;
+          document.getElementById('cardSlotTime').textContent = `${b.date}, ${b.slot}`;
+          document.getElementById('summarySlotTime').textContent = b.date;
+          document.getElementById('summarySlotHour').textContent = `${b.slot} • Morning Window`;
+        }
+
+        // 2. Fetch live queue
+        const queueRes = await fetch(`${API_BASE}/queue/${bookingId}`);
+        const queueData = await queueRes.json();
+        if (queueData.success) {
+          document.getElementById('summaryQueuePos').textContent = `#${queueData.yourQueueNumber}`;
+          document.getElementById('summaryQueueAhead').textContent = `${queueData.farmersAhead} Farmers Ahead • ${queueData.estimatedWaiting}`;
+        }
+
+        // 3. Fetch procurement
+        const procRes = await fetch(`${API_BASE}/procurement/${bookingId}`);
+        const procData = await procRes.json();
+        if (procData.success && procData.procurement) {
+          document.getElementById('summaryProcStatus').textContent = procData.procurement.overallStatus;
+        }
+
+        // 4. Fetch payment
+        const payRes = await fetch(`${API_BASE}/payment/${bookingId}`);
+        const payData = await payRes.json();
+        if (payData.success && payData.payment) {
+          document.getElementById('summaryPayStatus').textContent = payData.payment.status;
+          document.getElementById('summaryPayAmt').textContent = `₹${payData.payment.totalAmount.toLocaleString('en-IN')} • ${payData.payment.paymentMode}`;
+        }
+      } catch (err) {
+        console.warn('Backend fetch note:', err);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadDashboardData);
+  </script>
+</body>
+</html>

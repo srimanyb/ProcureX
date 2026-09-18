@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmation – ProcureX</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="top-gov-bar">
+    <div>🇮🇳 Ministry of Agriculture & Farmers Welfare • Digital Procurement Pass</div>
+    <div><a href="dashboard.html">Go to Dashboard</a></div>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🌾</div>
+        <div class="brand-text">
+          <h1>ProcureX</h1>
+          <span>Smart Agricultural Procurement</span>
+        </div>
+      </a>
+      <div class="nav-actions" id="navAuthContainer"></div>
+    </div>
+  </header>
+
+  <div class="container" style="padding-top: 3rem; padding-bottom: 4rem;">
+    <!-- Visual Procurement Pass / Ticket Card -->
+    <div class="procurement-pass">
+      <div class="pass-header">
+        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎉</div>
+        <span class="badge badge-green" style="font-size: 1.1rem; padding: 0.4rem 1.25rem;">
+          ✓ SLOT CONFIRMED
+        </span>
+        <h2 style="font-size: 1.85rem; font-weight: 800; color: var(--secondary); margin-top: 0.75rem;">
+          Procurement Appointment Pass
+        </h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Please carry this digital pass or SMS confirmation when arriving at the mandi.
+        </p>
+      </div>
+
+      <!-- Pass Key Grid -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; background: var(--bg-main); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Booking ID</div>
+          <div style="font-size: 1.4rem; font-weight: 900; color: var(--primary);" id="confBookingId">PX10245</div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Queue Token Number</div>
+          <div style="font-size: 1.4rem; font-weight: 900; color: var(--accent);" id="confQueueNumber">#18</div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Farmer Name</div>
+          <div style="font-weight: 700; color: var(--secondary); font-size: 1.05rem;" id="confFarmerName">Ramesh Kumar</div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Commodity</div>
+          <div style="font-weight: 700; color: var(--secondary); font-size: 1.05rem;" id="confCommodity">Rice</div>
+        </div>
+
+        <div style="grid-column: 1 / -1;">
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Procurement Centre</div>
+          <div style="font-weight: 700; color: var(--secondary); font-size: 1.05rem;" id="confCentre">Central Procurement Centre</div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Scheduled Date</div>
+          <div style="font-weight: 700; color: var(--secondary); font-size: 1.05rem;" id="confDate">19 September 2026</div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Allocated Time Slot</div>
+          <div style="font-weight: 700; color: var(--secondary); font-size: 1.05rem;" id="confTime">10:00 AM</div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Booking Status</div>
+          <div><span class="badge badge-green" id="confStatus">Confirmed</span></div>
+        </div>
+
+        <div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Estimated Quantity</div>
+          <div style="font-weight: 700; color: var(--secondary); font-size: 1.05rem;" id="confQuantity">42.5 Quintals</div>
+        </div>
+      </div>
+
+      <!-- QR Representation & Verification Note -->
+      <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <div class="pass-qr-box" style="margin: 0; width: 100px; height: 100px;">
+            <div style="font-size: 2rem;">📲</div>
+            <div style="font-weight: 700;">Mandi QR</div>
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); max-width: 260px;">
+            Scan at APMC Security Gate 2 for automated barrier entry & token validation.
+          </div>
+        </div>
+
+        <button onclick="window.print()" class="btn btn-outline btn-sm">
+          🖨️ Print Pass
+        </button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
+        <a href="queue.html" class="btn btn-primary btn-lg" style="text-align: center;">
+          View Live Queue ⚡
+        </a>
+        <a href="dashboard.html" class="btn btn-outline btn-lg" style="text-align: center;">
+          Go to Dashboard 🏠
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>© 2026 ProcureX – Smart Agricultural Procurement Platform. SIH 2026.</div>
+        <div><a href="dashboard.html" style="color:#94A3B8;">Back to Farmer Dashboard</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    async function loadConfirmation() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const bookingId = urlParams.get('id') || Session.getActiveBookingId() || 'PX10245';
+
+      try {
+        const res = await fetch(`${API_BASE}/bookings/${bookingId}`);
+        const data = await res.json();
+        if (data.success && data.booking) {
+          const b = data.booking;
+          document.getElementById('confBookingId').textContent = b.bookingId;
+          document.getElementById('confQueueNumber').textContent = `#${b.queueNumber}`;
+          document.getElementById('confFarmerName').textContent = b.farmerName;
+          document.getElementById('confCommodity').textContent = b.commodity;
+          document.getElementById('confCentre').textContent = b.centre;
+          document.getElementById('confDate').textContent = b.date;
+          document.getElementById('confTime').textContent = b.slot;
+          document.getElementById('confStatus').textContent = b.status;
+          document.getElementById('confQuantity').textContent = `${b.estimatedQuantity || 42.5} Quintals`;
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadConfirmation);
+  </script>
+</body>
+</html>
