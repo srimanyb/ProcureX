@@ -6,79 +6,248 @@
   <title>Book Procurement Slot – ProcureX</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    .step-section {
-      display: none;
+    /* Single-Screen Zero-Scroll Layout */
+    @media (min-width: 992px) {
+      html, body {
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+      }
+      .booking-page-container {
+        height: calc(100vh - 60px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-top: 0.6rem !important;
+        padding-bottom: 0.6rem !important;
+      }
+      .booking-layout {
+        flex: 1;
+        min-height: 0;
+      }
+      .booking-left-card, .booking-right-card {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
     }
-    .step-section.active {
-      display: block;
-      animation: fadeIn 0.3s ease;
+
+    .booking-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
+
+    /* Compact Stepper */
+    .step-indicator-bar-compact {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.65rem;
+      position: relative;
     }
-    .selection-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 1.25rem;
-      margin: 1.5rem 0;
+    .step-indicator-bar-compact::before {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: 8%;
+      right: 8%;
+      height: 2px;
+      background-color: var(--border);
+      z-index: 1;
     }
-    .select-card {
+    .step-col-compact {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      flex: 1;
+      cursor: pointer;
+    }
+    .step-circle-compact {
       background: #FFFFFF;
       border: 2px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem 1rem;
-      text-align: center;
-      cursor: pointer;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0 auto 0.2rem;
       transition: all 0.2s ease;
     }
-    .select-card:hover {
+    .step-col-compact.active .step-circle-compact {
       border-color: var(--primary);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-sm);
+      background-color: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 0 0 3px var(--primary-subtle);
     }
-    .select-card.selected {
+    .step-col-compact.done .step-circle-compact {
+      border-color: var(--primary);
+      background-color: var(--primary-subtle);
+      color: var(--primary-dark);
+    }
+    .step-name-compact {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .step-col-compact.active .step-name-compact {
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    /* 2-Column Responsive Layout */
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 1.75fr 1fr;
+      gap: 1.15rem;
+    }
+    @media (max-width: 991px) {
+      .booking-layout {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+
+    .step-section {
+      display: none;
+      height: 100%;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .step-section.active {
+      display: flex;
+      animation: fadeIn 0.25s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Compact Commodity Grid */
+    .selection-grid-compact {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.55rem;
+      margin: 0.4rem 0 0.55rem;
+    }
+    .select-card-compact {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.55rem 0.45rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .select-card-compact:hover {
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+    .select-card-compact.selected {
       border-color: var(--primary);
       background-color: var(--primary-subtle);
       box-shadow: 0 0 0 2px var(--primary);
     }
-    .select-card .icon {
-      font-size: 2.25rem;
-      margin-bottom: 0.5rem;
+    .select-card-compact .icon {
+      font-size: 1.45rem;
+      margin-bottom: 0.15rem;
     }
-    .select-card .title {
+    .select-card-compact .title {
       font-weight: 700;
       color: var(--secondary);
-      font-size: 1.05rem;
+      font-size: 0.88rem;
+      line-height: 1.2;
     }
-    .select-card .sub {
-      font-size: 0.8rem;
+    .select-card-compact .sub {
+      font-size: 0.72rem;
       color: var(--text-muted);
-      margin-top: 0.25rem;
+      margin-top: 0.15rem;
     }
-    .booking-layout {
+
+    /* Compact Centre Cards */
+    .centre-list-compact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin: 0.4rem 0 0.6rem;
+    }
+    .centre-card-compact {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.65rem 0.85rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .centre-card-compact:hover {
+      border-color: var(--primary);
+    }
+    .centre-card-compact.selected {
+      border-color: var(--primary);
+      background-color: var(--primary-subtle);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    /* Compact Date Grid */
+    .date-grid-compact {
       display: grid;
-      grid-template-columns: 1.8fr 1fr;
-      gap: 2rem;
-      margin-top: 1.5rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.55rem;
+      margin: 0.6rem 0 0.8rem;
     }
-    @media (max-width: 992px) {
-      .booking-layout {
-        grid-template-columns: 1fr;
-      }
+
+    /* Compact Slots Grid */
+    .slots-grid-compact {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin: 0.4rem 0 0.6rem;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+    .slot-item-compact {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.5rem 0.4rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .slot-item-compact:hover:not(.disabled) {
+      border-color: var(--primary);
+    }
+    .slot-item-compact.selected {
+      border-color: var(--primary);
+      background-color: var(--primary-subtle);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    .slot-item-compact.disabled {
+      background-color: #F8FAFC;
+      opacity: 0.55;
+      cursor: not-allowed;
     }
   </style>
 </head>
 <body>
 
-
-  <header class="site-header">
+  <header class="site-header" style="height: 54px; min-height: 54px; padding: 0.35rem 0;">
     <div class="container nav-container">
       <a href="index.html" class="brand-logo">
-        <div class="brand-icon">🌾</div>
+        <div class="brand-icon" style="font-size: 1.3rem;">🌾</div>
         <div class="brand-text">
-          <h1>ProcureX</h1>
-          <span>Smart Agricultural Procurement</span>
+          <h1 style="font-size: 1.15rem;" data-i18n="brand_title">ProcureX</h1>
+          <span style="font-size: 0.68rem;" data-i18n="brand_sub">Smart Agricultural Procurement</span>
         </div>
       </a>
 
@@ -96,260 +265,293 @@
     </div>
   </header>
 
-  <div class="container" style="padding-top: 2rem; padding-bottom: 4rem;">
-    <!-- Step Header -->
-    <div style="margin-bottom: 2rem;">
-      <span class="badge badge-green" style="margin-bottom: 0.5rem;">Digital Appointment Engine</span>
-      <h2 style="font-size: 2.2rem; font-weight: 800; color: var(--secondary);">Book a Procurement Slot</h2>
-      <p style="color: var(--text-muted); font-size: 1.05rem;">
-        Reserve your designated weighbridge window to skip long mandi queues.
+  <div class="container booking-page-container">
+    <!-- Header Row -->
+    <div class="booking-top-bar">
+      <div style="display: flex; align-items: center; gap: 0.65rem;">
+        <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_title">Book a Procurement Slot</h2>
+        <span class="badge badge-green" style="font-size: 0.72rem; padding: 0.2rem 0.5rem;" data-i18n="book_engine_badge">Digital Appointment</span>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.84rem; margin: 0;" data-i18n="book_subtitle">
+        Reserve weighbridge window to eliminate mandi waiting time.
       </p>
     </div>
 
-    <!-- 4-Step Progress Indicator -->
-    <div class="step-indicator-bar">
-      <div class="step-col active" id="stepCol1">
-        <div class="step-circle" id="circle1">1</div>
-        <div class="step-name">Commodity</div>
+    <!-- 4-Step Progress Stepper -->
+    <div class="step-indicator-bar-compact">
+      <div class="step-col-compact active" id="stepCol1" onclick="goToStep(1)">
+        <div class="step-circle-compact" id="circle1">1</div>
+        <div class="step-name-compact" data-i18n="step_name_1">Commodity</div>
       </div>
-      <div class="step-col" id="stepCol2">
-        <div class="step-circle" id="circle2">2</div>
-        <div class="step-name">Centre</div>
+      <div class="step-col-compact" id="stepCol2" onclick="goToStep(2)">
+        <div class="step-circle-compact" id="circle2">2</div>
+        <div class="step-name-compact" data-i18n="step_name_2">Centre</div>
       </div>
-      <div class="step-col" id="stepCol3">
-        <div class="step-circle" id="circle3">3</div>
-        <div class="step-name">Date</div>
+      <div class="step-col-compact" id="stepCol3" onclick="goToStep(3)">
+        <div class="step-circle-compact" id="circle3">3</div>
+        <div class="step-name-compact" data-i18n="step_name_3">Date</div>
       </div>
-      <div class="step-col" id="stepCol4">
-        <div class="step-circle" id="circle4">4</div>
-        <div class="step-name">Time Slot</div>
+      <div class="step-col-compact" id="stepCol4" onclick="goToStep(4)">
+        <div class="step-circle-compact" id="circle4">4</div>
+        <div class="step-name-compact" data-i18n="step_name_4">Time Slot</div>
       </div>
     </div>
 
-    <!-- Booking Layout: Wizard + Live Summary -->
+    <!-- Main 2-Column Booking Layout -->
     <div class="booking-layout">
-      <!-- Wizard Left Pane -->
-      <div class="card" style="padding: 2rem;">
+      <!-- Left Card: Interactive Wizard -->
+      <div class="card booking-left-card" style="padding: 1.15rem 1.25rem; margin: 0; box-shadow: var(--shadow-sm);">
+        
         <!-- STEP 1: Select Commodity -->
         <div class="step-section active" id="stepSection1">
-          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--secondary); margin-bottom: 0.35rem;">
-            Step 1: Select Commodity
-          </h3>
-          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem;">
-            Choose the crop you wish to deliver for government MSP procurement:
-          </p>
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <h3 style="font-size: 1.12rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_step1">
+                Step 1: Select Commodity
+              </h3>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">Step 1 of 4</span>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.84rem; margin: 0.2rem 0 0.5rem;" data-i18n="step1_sub">
+              Choose crop to deliver for government MSP procurement:
+            </p>
 
-          <div class="selection-grid">
-            <div class="select-card selected" onclick="selectCommodity('Rice', 'MSP: ₹2,320/Qtl', this)">
-              <div class="icon">🌾</div>
-              <div class="title">Rice (Paddy)</div>
-              <div class="sub">MSP ₹2,320 / Qtl</div>
+            <div class="selection-grid-compact">
+              <div class="select-card select-card-compact selected" onclick="selectCommodity('Rice', 'MSP: ₹2,320/Qtl', this)">
+                <div class="icon">🌾</div>
+                <div class="title" data-i18n="crop_rice">Rice (Paddy)</div>
+                <div class="sub">MSP ₹2,320 / Qtl</div>
+              </div>
+              <div class="select-card select-card-compact" onclick="selectCommodity('Wheat', 'MSP: ₹2,275/Qtl', this)">
+                <div class="icon">🌿</div>
+                <div class="title" data-i18n="crop_wheat">Wheat</div>
+                <div class="sub">MSP ₹2,275 / Qtl</div>
+              </div>
+              <div class="select-card select-card-compact" onclick="selectCommodity('Maize', 'MSP: ₹2,090/Qtl', this)">
+                <div class="icon">🌽</div>
+                <div class="title" data-i18n="crop_maize">Maize</div>
+                <div class="sub">MSP ₹2,090 / Qtl</div>
+              </div>
+              <div class="select-card select-card-compact" onclick="selectCommodity('Cotton', 'MSP: ₹7,121/Qtl', this)">
+                <div class="icon">☁️</div>
+                <div class="title" data-i18n="crop_cotton">Cotton</div>
+                <div class="sub">MSP ₹7,121 / Qtl</div>
+              </div>
+              <div class="select-card select-card-compact" onclick="selectCommodity('Soybean', 'MSP: ₹4,892/Qtl', this)">
+                <div class="icon">🌱</div>
+                <div class="title" data-i18n="crop_soybean">Soybean</div>
+                <div class="sub">MSP ₹4,892 / Qtl</div>
+              </div>
+              <div class="select-card select-card-compact" onclick="selectCommodity('Pulses', 'MSP: ₹7,550/Qtl', this)">
+                <div class="icon">🥣</div>
+                <div class="title" data-i18n="crop_pulses">Pulses (Arhar)</div>
+                <div class="sub">MSP ₹7,550 / Qtl</div>
+              </div>
             </div>
-            <div class="select-card" onclick="selectCommodity('Wheat', 'MSP: ₹2,275/Qtl', this)">
-              <div class="icon">🌿</div>
-              <div class="title">Wheat</div>
-              <div class="sub">MSP ₹2,275 / Qtl</div>
-            </div>
-            <div class="select-card" onclick="selectCommodity('Maize', 'MSP: ₹2,090/Qtl', this)">
-              <div class="icon">🌽</div>
-              <div class="title">Maize</div>
-              <div class="sub">MSP ₹2,090 / Qtl</div>
-            </div>
-            <div class="select-card" onclick="selectCommodity('Cotton', 'MSP: ₹7,121/Qtl', this)">
-              <div class="icon">☁️</div>
-              <div class="title">Cotton</div>
-              <div class="sub">MSP ₹7,121 / Qtl</div>
-            </div>
-            <div class="select-card" onclick="selectCommodity('Soybean', 'MSP: ₹4,892/Qtl', this)">
-              <div class="icon">🌱</div>
-              <div class="title">Soybean</div>
-              <div class="sub">MSP ₹4,892 / Qtl</div>
-            </div>
-            <div class="select-card" onclick="selectCommodity('Pulses', 'MSP: ₹7,550/Qtl', this)">
-              <div class="icon">🥣</div>
-              <div class="title">Pulses (Arhar)</div>
-              <div class="sub">MSP ₹7,550 / Qtl</div>
+
+            <!-- Compact Quantity Bar -->
+            <div style="display: flex; align-items: center; justify-content: space-between; background: var(--bg-main); padding: 0.45rem 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
+              <label style="font-weight: 700; font-size: 0.85rem; color: var(--secondary); margin: 0;" data-i18n="est_qty_label">
+                Estimated Quantity:
+              </label>
+              <div style="display: flex; align-items: center; gap: 0.4rem;">
+                <input type="number" id="inputQuantity" class="form-control" value="40" min="1" max="500" style="width: 85px; padding: 0.3rem 0.5rem; font-weight: 800; font-size: 0.95rem; text-align: center; color: var(--primary);">
+                <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted);">Quintals</span>
+              </div>
             </div>
           </div>
 
-          <div class="form-group" style="max-width: 300px; margin-top: 1rem;">
-            <label class="form-label">Estimated Quantity (Quintals)</label>
-            <input type="number" id="inputQuantity" class="form-control" value="40" min="1" max="500">
-          </div>
-
-          <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
-            <button onclick="goToStep(2)" class="btn btn-primary btn-lg">Next: Select Centre &rarr;</button>
+          <div style="display: flex; justify-content: flex-end; margin-top: 0.6rem;">
+            <button onclick="goToStep(2)" class="btn btn-primary btn-sm" style="padding: 0.5rem 1.25rem; font-weight: 700;">
+              Next: Select Centre &rarr;
+            </button>
           </div>
         </div>
 
         <!-- STEP 2: Select Procurement Centre -->
         <div class="step-section" id="stepSection2">
-          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--secondary); margin-bottom: 0.35rem;">
-            Step 2: Select Procurement Centre
-          </h3>
-          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem;">
-            Select an authorized APMC procurement mandi in your district:
-          </p>
-
-          <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
-            <div class="card select-card selected" style="text-align: left; padding: 1.25rem;" onclick="selectCentre('Central Procurement Centre (APMC Yard)', 'Badnera Road, Amravati', this)">
-              <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                <div>
-                  <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--secondary);">Central Procurement Centre (APMC Yard)</h4>
-                  <p style="color: var(--text-muted); font-size: 0.88rem;">Badnera Road, Main Grain Market, Amravati</p>
-                  <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
-                    <span class="badge badge-green">🟢 Operational</span>
-                    <span class="badge badge-blue">Capacity: 100/day</span>
-                  </div>
-                </div>
-                <span style="font-size: 1.5rem;">🏢</span>
-              </div>
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <h3 style="font-size: 1.12rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_step2">
+                Step 2: Select Procurement Centre
+              </h3>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">Step 2 of 4</span>
             </div>
+            <p style="color: var(--text-muted); font-size: 0.84rem; margin: 0.2rem 0 0.5rem;" data-i18n="step2_sub">
+              Select authorized APMC procurement mandi in your district:
+            </p>
 
-            <div class="card select-card" style="text-align: left; padding: 1.25rem;" onclick="selectCentre('Chandur Sub-Mandi Procurement Depot', 'Chandur Railway', this)">
-              <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div class="centre-list-compact">
+              <div class="centre-card-compact selected select-card" onclick="selectCentre('Central Procurement Centre (APMC Yard)', 'Badnera Road, Amravati', this)">
                 <div>
-                  <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--secondary);">Chandur Sub-Mandi Procurement Depot</h4>
-                  <p style="color: var(--text-muted); font-size: 0.88rem;">Station Road, Chandur Railway</p>
-                  <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
-                    <span class="badge badge-green">🟢 Operational</span>
-                    <span class="badge badge-blue">Capacity: 60/day</span>
+                  <div style="font-size: 0.94rem; font-weight: 800; color: var(--secondary);">Central Procurement Centre (APMC Yard)</div>
+                  <div style="color: var(--text-muted); font-size: 0.78rem;">Badnera Road, Main Grain Market, Amravati</div>
+                  <div style="display: flex; gap: 0.4rem; margin-top: 0.25rem;">
+                    <span class="badge badge-green" style="font-size: 0.7rem; padding: 0.1rem 0.4rem;">🟢 Operational</span>
+                    <span class="badge badge-blue" style="font-size: 0.7rem; padding: 0.1rem 0.4rem;">Capacity: 100/day</span>
                   </div>
                 </div>
-                <span style="font-size: 1.5rem;">🏢</span>
+                <div style="font-size: 1.5rem;">🏢</div>
               </div>
-            </div>
 
-            <div class="card select-card" style="text-align: left; padding: 1.25rem;" onclick="selectCentre('Morshi Taluka Procurement Hub', 'Morshi APMC', this)">
-              <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+              <div class="centre-card-compact select-card" onclick="selectCentre('Chandur Sub-Mandi Procurement Depot', 'Chandur Railway', this)">
                 <div>
-                  <h4 style="font-size: 1.15rem; font-weight: 800; color: var(--secondary);">Morshi Taluka Procurement Hub</h4>
-                  <p style="color: var(--text-muted); font-size: 0.88rem;">Near Bus Stand, Morshi</p>
-                  <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
-                    <span class="badge badge-yellow">🟡 Moderate Load</span>
-                    <span class="badge badge-blue">Capacity: 50/day</span>
+                  <div style="font-size: 0.94rem; font-weight: 800; color: var(--secondary);">Chandur Sub-Mandi Procurement Depot</div>
+                  <div style="color: var(--text-muted); font-size: 0.78rem;">Station Road, Chandur Railway</div>
+                  <div style="display: flex; gap: 0.4rem; margin-top: 0.25rem;">
+                    <span class="badge badge-green" style="font-size: 0.7rem; padding: 0.1rem 0.4rem;">🟢 Operational</span>
+                    <span class="badge badge-blue" style="font-size: 0.7rem; padding: 0.1rem 0.4rem;">Capacity: 60/day</span>
                   </div>
                 </div>
-                <span style="font-size: 1.5rem;">🏢</span>
+                <div style="font-size: 1.5rem;">🏢</div>
+              </div>
+
+              <div class="centre-card-compact select-card" onclick="selectCentre('Morshi Taluka Procurement Hub', 'Morshi APMC', this)">
+                <div>
+                  <div style="font-size: 0.94rem; font-weight: 800; color: var(--secondary);">Morshi Taluka Procurement Hub</div>
+                  <div style="color: var(--text-muted); font-size: 0.78rem;">Near Bus Stand, Morshi</div>
+                  <div style="display: flex; gap: 0.4rem; margin-top: 0.25rem;">
+                    <span class="badge badge-yellow" style="font-size: 0.7rem; padding: 0.1rem 0.4rem;">🟡 Moderate Load</span>
+                    <span class="badge badge-blue" style="font-size: 0.7rem; padding: 0.1rem 0.4rem;">Capacity: 50/day</span>
+                  </div>
+                </div>
+                <div style="font-size: 1.5rem;">🏢</div>
               </div>
             </div>
           </div>
 
-          <div style="display: flex; justify-content: space-between;">
-            <button onclick="goToStep(1)" class="btn btn-outline">&larr; Back</button>
-            <button onclick="goToStep(3)" class="btn btn-primary btn-lg">Next: Select Date &rarr;</button>
+          <div style="display: flex; justify-content: space-between; margin-top: 0.6rem;">
+            <button onclick="goToStep(1)" class="btn btn-outline btn-sm">&larr; Back</button>
+            <button onclick="goToStep(3)" class="btn btn-primary btn-sm" style="padding: 0.5rem 1.25rem; font-weight: 700;">
+              Next: Select Date &rarr;
+            </button>
           </div>
         </div>
 
         <!-- STEP 3: Select Date -->
         <div class="step-section" id="stepSection3">
-          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--secondary); margin-bottom: 0.35rem;">
-            Step 3: Select Date
-          </h3>
-          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem;">
-            Choose a procurement delivery date:
-          </p>
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <h3 style="font-size: 1.12rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_step3">
+                Step 3: Select Date
+              </h3>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">Step 3 of 4</span>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.84rem; margin: 0.2rem 0 0.5rem;" data-i18n="step3_sub">
+              Choose procurement delivery appointment date:
+            </p>
 
-          <div class="selection-grid">
-            <div class="select-card selected" onclick="selectDate('19 September 2026', 'Tomorrow', this)">
-              <div class="icon">📅</div>
-              <div class="title">19 Sep 2026</div>
-              <div class="sub"><span class="badge badge-green">Recommended</span></div>
-            </div>
-            <div class="select-card" onclick="selectDate('20 September 2026', 'Sunday', this)">
-              <div class="icon">📅</div>
-              <div class="title">20 Sep 2026</div>
-              <div class="sub">Weekend Window</div>
-            </div>
-            <div class="select-card" onclick="selectDate('21 September 2026', 'Monday', this)">
-              <div class="icon">📅</div>
-              <div class="title">21 Sep 2026</div>
-              <div class="sub">Open Schedule</div>
-            </div>
-            <div class="select-card" onclick="selectDate('22 September 2026', 'Tuesday', this)">
-              <div class="icon">📅</div>
-              <div class="title">22 Sep 2026</div>
-              <div class="sub">Open Schedule</div>
+            <div class="date-grid-compact">
+              <div class="select-card-compact selected select-card" onclick="selectDate('19 September 2026', 'Tomorrow', this)">
+                <div class="icon">📅</div>
+                <div class="title">19 Sep 2026</div>
+                <div class="sub"><span class="badge badge-green" style="font-size:0.68rem; padding:0.1rem 0.3rem;">Recommended</span></div>
+              </div>
+              <div class="select-card-compact select-card" onclick="selectDate('20 September 2026', 'Sunday', this)">
+                <div class="icon">📅</div>
+                <div class="title">20 Sep 2026</div>
+                <div class="sub">Weekend</div>
+              </div>
+              <div class="select-card-compact select-card" onclick="selectDate('21 September 2026', 'Monday', this)">
+                <div class="icon">📅</div>
+                <div class="title">21 Sep 2026</div>
+                <div class="sub">Open Schedule</div>
+              </div>
+              <div class="select-card-compact select-card" onclick="selectDate('22 September 2026', 'Tuesday', this)">
+                <div class="icon">📅</div>
+                <div class="title">22 Sep 2026</div>
+                <div class="sub">Open Schedule</div>
+              </div>
             </div>
           </div>
 
-          <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
-            <button onclick="goToStep(2)" class="btn btn-outline">&larr; Back</button>
-            <button onclick="goToStep(4)" class="btn btn-primary btn-lg">Next: Select Time Slot &rarr;</button>
+          <div style="display: flex; justify-content: space-between; margin-top: 0.6rem;">
+            <button onclick="goToStep(2)" class="btn btn-outline btn-sm">&larr; Back</button>
+            <button onclick="goToStep(4)" class="btn btn-primary btn-sm" style="padding: 0.5rem 1.25rem; font-weight: 700;">
+              Next: Select Time Slot &rarr;
+            </button>
           </div>
         </div>
 
         <!-- STEP 4: Select Time Slot -->
         <div class="step-section" id="stepSection4">
-          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--secondary); margin-bottom: 0.35rem;">
-            Step 4: Select Available Time Slot
-          </h3>
-          <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem;">
-            Choose an hourly intake window. Color indicators show live capacity:
-          </p>
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <h3 style="font-size: 1.12rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_step4">
+                Step 4: Select Time Slot
+              </h3>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">Step 4 of 4</span>
+            </div>
+            
+            <div style="display: flex; gap: 0.8rem; margin: 0.3rem 0 0.5rem; font-size: 0.78rem;">
+              <span>🟢 Available</span>
+              <span>🟡 Few Slots Left</span>
+              <span>🔴 Full</span>
+            </div>
 
-          <div style="display: flex; gap: 1rem; margin-bottom: 1rem; font-size: 0.85rem;">
-            <span>🟢 <strong>Available</strong></span>
-            <span>🟡 <strong>Few Slots Left</strong></span>
-            <span>🔴 <strong>Full</strong></span>
+            <div class="slots-grid-compact" id="slotsContainer">
+              <!-- Rendered dynamically via booking.js -->
+            </div>
           </div>
 
-          <div class="slots-grid" id="slotsContainer">
-            <!-- Dynamic slots -->
-          </div>
-
-          <div style="display: flex; justify-content: space-between; margin-top: 2rem;">
-            <button onclick="goToStep(3)" class="btn btn-outline">&larr; Back</button>
-            <button onclick="confirmSlotBooking()" class="btn btn-accent btn-lg" id="btnConfirmSlot">
+          <div style="display: flex; justify-content: space-between; margin-top: 0.6rem;">
+            <button onclick="goToStep(3)" class="btn btn-outline btn-sm">&larr; Back</button>
+            <button onclick="confirmSlotBooking()" class="btn btn-accent btn-sm" id="btnConfirmSlot" style="padding: 0.5rem 1.25rem; font-weight: 700;">
               Confirm Slot 🚜
             </button>
           </div>
         </div>
+
       </div>
 
-      <!-- Live Booking Summary Panel (Right Side) -->
-      <div class="card" style="padding: 1.75rem; align-self: start;">
-        <div class="card-header" style="margin-bottom: 1rem;">
-          <h4 class="card-title">Booking Summary</h4>
-          <span class="badge badge-blue">New Reservation</span>
+      <!-- Right Card: Live Booking Summary Panel -->
+      <div class="card booking-right-card" style="padding: 1.15rem 1.25rem; margin: 0; box-shadow: var(--shadow-sm); background: #FFFFFF;">
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-light); padding-bottom: 0.6rem; margin-bottom: 0.75rem;">
+            <h4 style="font-size: 1.08rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_summary">Booking Summary</h4>
+            <span class="badge badge-blue" style="font-size: 0.72rem;">Live Preview</span>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.55rem; font-size: 0.88rem;">
+            <div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="sum_centre_label">Procurement Centre</div>
+              <div style="font-weight: 800; color: var(--secondary); line-height: 1.2;" id="sumCentre">Central Procurement Centre (APMC Yard)</div>
+            </div>
+
+            <div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="sum_crop_label">Selected Crop & Quota</div>
+              <div style="font-weight: 800; color: var(--primary);" id="sumCommodity">Rice (Paddy) (~40 Qtl)</div>
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+              <div style="flex: 1;">
+                <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="sum_date_label">Date</div>
+                <div style="font-weight: 800; color: var(--secondary);" id="sumDate">19 September 2026</div>
+              </div>
+              <div style="flex: 1;">
+                <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="sum_slot_label">Time Slot</div>
+                <div style="font-weight: 800; color: var(--secondary);" id="sumSlot">11:00 AM</div>
+              </div>
+            </div>
+
+            <div style="background: var(--bg-main); border-radius: var(--radius-md); padding: 0.55rem 0.75rem; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; margin-top: 0.2rem;">
+              <div>
+                <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="est_token_label">Estimated Queue Token</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Est. Wait: <strong>~10 minutes</strong></div>
+              </div>
+              <div style="font-size: 1.5rem; font-weight: 900; color: var(--accent);" id="sumEstQueue">~#19</div>
+            </div>
+          </div>
         </div>
 
-        <div style="display: flex; flex-direction: column; gap: 1.25rem; font-size: 0.95rem;">
-          <div>
-            <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Selected Centre</div>
-            <div style="font-weight: 800; color: var(--secondary);" id="sumCentre">Central Procurement Centre (APMC Yard)</div>
-          </div>
-
-          <div>
-            <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Selected Commodity</div>
-            <div style="font-weight: 800; color: var(--primary);" id="sumCommodity">Rice (Paddy)</div>
-          </div>
-
-          <div>
-            <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Selected Date</div>
-            <div style="font-weight: 800; color: var(--secondary);" id="sumDate">19 September 2026</div>
-          </div>
-
-          <div>
-            <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Selected Time Slot</div>
-            <div style="font-weight: 800; color: var(--secondary);" id="sumSlot">11:00 AM</div>
-          </div>
-
-          <div style="border-top: 1px solid var(--border); padding-top: 1rem;">
-            <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Estimated Queue Token</div>
-            <div style="font-size: 1.6rem; font-weight: 900; color: var(--accent);" id="sumEstQueue">~#19</div>
-            <div style="font-size: 0.85rem; color: var(--text-muted);">Estimated Mandi Waiting: <strong>~10 minutes</strong></div>
-          </div>
-        </div>
-
-        <div style="margin-top: 1.75rem;">
-          <button onclick="confirmSlotBooking()" class="btn btn-primary btn-block btn-lg">
+        <div style="margin-top: 0.75rem; border-top: 1px solid var(--border-light); padding-top: 0.65rem;">
+          <button onclick="confirmSlotBooking()" class="btn btn-primary btn-block" style="padding: 0.65rem 1rem; font-size: 1rem; font-weight: 800;">
             Confirm Slot 🚜
           </button>
-          <div style="font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">
-            Instant SMS confirmation & digital procurement pass issued.
+          <div style="font-size: 0.72rem; color: var(--text-muted); text-align: center; margin-top: 0.35rem;">
+            Instant SMS confirmation & digital token pass issued.
           </div>
         </div>
+
       </div>
     </div>
   </div>
