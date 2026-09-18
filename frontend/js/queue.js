@@ -143,3 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('beforeunload', () => {
   if (pollInterval) clearInterval(pollInterval);
 });
+
+
+window.addEventListener('procurex-language-changed', () => {
+  fetchQueueTelemetry();
+});

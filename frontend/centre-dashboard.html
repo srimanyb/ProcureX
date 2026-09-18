@@ -76,18 +76,18 @@
       <a href="centre-dashboard.html" class="brand-logo">
         <div class="brand-icon">🏢</div>
         <div class="brand-text">
-          <h1>ProcureX Centre</h1>
-          <span>Operations & Queue Management</span>
+          <h1 data-i18n="brand_centre">ProcureX Centre</h1>
+          <span data-i18n="brand_centre_sub">Operations & Queue Management</span>
         </div>
       </a>
 
       <button class="mobile-toggle" id="mobileNavToggle" aria-label="Toggle navigation">☰</button>
 
       <ul class="nav-links" id="navLinks">
-        <li><a href="centre-dashboard.html" class="active">Centre Dashboard</a></li>
-        <li><a href="#queue-table-section">Current Queue</a></li>
-        <li><a href="#analytics-section">Capacity Analytics</a></li>
-        <li><a href="dashboard.html">Farmer View</a></li>
+        <li><a href="centre-dashboard.html" class="active" data-i18n="nav_centre_dash">Centre Dashboard</a></li>
+        <li><a href="#queue-table-section" data-i18n="nav_curr_queue">Current Queue</a></li>
+        <li><a href="#analytics-section" data-i18n="nav_cap_analytics">Capacity Analytics</a></li>
+        <li><a href="dashboard.html" data-i18n="nav_farmer_view">Farmer View</a></li>
       </ul>
 
       <div class="nav-actions" id="navAuthContainer">
@@ -101,19 +101,15 @@
     <div class="centre-header-banner">
       <div>
         <div class="badge badge-green" style="margin-bottom: 0.5rem;">
-          <span class="pulse-dot"></span> Mandi Gates Operational
+          <span class="pulse-dot"></span> <span data-i18n="centre_gates_open">Mandi Gates Operational</span>
         </div>
-        <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 0.25rem;" id="centreNameTitle">
-          Central Procurement Centre Dashboard
-        </h2>
-        <p style="color: #94A3B8; font-size: 1rem;">
-          Location: Badnera Road, Grain Market Complex • Max Intake: 100 Farmers/Day
-        </p>
+        <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 0.25rem;" id="centreNameTitle" data-i18n="centre_title">Central Procurement Centre Dashboard</h2>
+        <p style="color: #94A3B8; font-size: 1rem;" data-i18n="centre_subtitle">Location: Badnera Road, Grain Market Complex • Max Intake: 100 Farmers/Day</p>
       </div>
 
       <div style="display: flex; align-items: center; gap: 1rem; background: rgba(255,255,255,0.1); padding: 0.85rem 1.25rem; border-radius: var(--radius-md); backdrop-filter: blur(6px);">
         <div>
-          <div style="font-size: 0.8rem; color: #CBD5E1; text-transform: uppercase; font-weight: 700;">Currently Serving Token</div>
+          <div style="font-size: 0.8rem; color: #CBD5E1; text-transform: uppercase; font-weight: 700;" data-i18n="centre_serving_token">Currently Serving Token</div>
           <div style="font-size: 2.2rem; font-weight: 900; color: #F59E0B; line-height: 1;" id="centreCurrentlyServing">#11</div>
         </div>
         <div style="font-size: 2rem;">🚜</div>
@@ -124,45 +120,45 @@
     <div class="grid-4" style="margin-bottom: 2rem;">
       <div class="stat-card">
         <div class="stat-card-header">
-          <span class="stat-label">Today's Farmers</span>
+          <span class="stat-label" data-i18n="stat_today_farmers">Today's Farmers</span>
           <span class="stat-icon">👥</span>
         </div>
         <div>
           <div class="stat-value" id="statTodayFarmers">42</div>
-          <div class="stat-subtext">Total Scheduled Bookings</div>
+          <div class="stat-subtext" data-i18n="stat_total_bookings">Total Scheduled Bookings</div>
         </div>
       </div>
 
       <div class="stat-card">
         <div class="stat-card-header">
-          <span class="stat-label">Completed</span>
+          <span class="stat-label" data-i18n="stat_completed">Completed</span>
           <span class="stat-icon">✅</span>
         </div>
         <div>
           <div class="stat-value" style="color: var(--primary);" id="statCompleted">27</div>
-          <div class="stat-subtext">Weighed & Approved</div>
+          <div class="stat-subtext" data-i18n="stat_weighed_approved">Weighed & Approved</div>
         </div>
       </div>
 
       <div class="stat-card">
         <div class="stat-card-header">
-          <span class="stat-label">Waiting in Yard</span>
+          <span class="stat-label" data-i18n="stat_waiting_yard">Waiting in Yard</span>
           <span class="stat-icon">⏳</span>
         </div>
         <div>
           <div class="stat-value" style="color: #D97706;" id="statWaiting">15</div>
-          <div class="stat-subtext">Staged in Arrival Bays</div>
+          <div class="stat-subtext" data-i18n="stat_staged_bays">Staged in Arrival Bays</div>
         </div>
       </div>
 
       <div class="stat-card">
         <div class="stat-card-header">
-          <span class="stat-label">Currently Processing</span>
+          <span class="stat-label" data-i18n="stat_currently_processing">Currently Processing</span>
           <span class="stat-icon">⚖️</span>
         </div>
         <div>
           <div class="stat-value" style="color: var(--accent);" id="statProcessing">03</div>
-          <div class="stat-subtext">Bays 1, 2 & 3 Active</div>
+          <div class="stat-subtext" data-i18n="stat_bays_active">Bays 1, 2 & 3 Active</div>
         </div>
       </div>
     </div>
@@ -171,18 +167,18 @@
     <div class="grid-2" style="margin-bottom: 2rem;">
       <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
         <div>
-          <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Average Waiting Time</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Average Waiting Time" data-i18n="stat_avg_wait_label</div>
           <div style="font-size: 1.8rem; font-weight: 800; color: var(--secondary);" id="statAvgWait">~28 min</div>
-          <div style="font-size: 0.8rem; color: var(--primary); font-weight: 600;">⚡ Down from traditional 8-12 hours wait</div>
+          <div style="font-size: 0.8rem; color: var(--primary); font-weight: 600;">⚡ Down from traditional 8-12 hours wait" data-i18n="stat_avg_wait_sub</div>
         </div>
         <div style="font-size: 2.5rem;">⏱️</div>
       </div>
 
       <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
         <div>
-          <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Centre Capacity Utilization</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Centre Capacity Utilization" data-i18n="stat_capacity_label</div>
           <div style="font-size: 1.8rem; font-weight: 800; color: var(--secondary);" id="statCapacity">78%</div>
-          <div style="font-size: 0.8rem; color: var(--text-muted);">78 / 100 daily quota allocated</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">78 / 100 daily quota allocated" data-i18n="stat_capacity_sub</div>
         </div>
         <div style="font-size: 2.5rem;">📊</div>
       </div>
@@ -191,22 +187,22 @@
     <!-- Operator Action Bar (Call Next, Start, Complete, Update Payment) -->
     <div class="operator-action-bar">
       <div style="font-weight: 800; color: var(--secondary); font-size: 1.05rem; margin-right: 0.5rem;">
-        ⚡ Centre Actions:
+        ⚡ Centre Actions:" data-i18n="centre_actions_title
       </div>
       <button onclick="handleCallNextFarmer()" class="btn btn-accent" id="btnCallNext">
-        📢 Call Next Farmer
+        📢 Call Next Farmer" data-i18n="btn_call_next
       </button>
       <button onclick="handleStartProcurement()" class="btn btn-primary" id="btnStartProc">
-        ⚖️ Start Procurement
+        ⚖️ Start Procurement" data-i18n="btn_start_proc
       </button>
       <button onclick="handleCompleteProcurement()" class="btn btn-secondary" id="btnCompleteProc">
-        ✅ Complete Procurement
+        ✅ Complete Procurement" data-i18n="btn_complete_proc
       </button>
       <button onclick="handleUpdatePayment()" class="btn btn-outline-primary" id="btnUpdatePay">
-        💰 Update Payment (PFMS DBT)
+        💰 Update Payment (PFMS DBT)" data-i18n="btn_update_pay
       </button>
       <button onclick="openCustomFarmerModal()" class="btn btn-outline btn-sm" style="margin-left: auto;">
-        🔍 View Farmer Details
+        🔍 View Farmer Details" data-i18n="btn_view_farmer_details
       </button>
     </div>
 
@@ -214,8 +210,8 @@
     <div class="card" style="padding: 0; overflow: hidden; margin-bottom: 3rem;" id="queue-table-section">
       <div style="padding: 1.25rem 1.5rem; background: var(--bg-main); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
         <div>
-          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--secondary);">Current Mandi Queue & Staging</h3>
-          <p style="font-size: 0.88rem; color: var(--text-muted);">Real-time vehicle sequence at APMC Gate 2.</p>
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--secondary);">Current Mandi Queue & Staging" data-i18n="queue_table_title</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted);">Real-time vehicle sequence at APMC Gate 2." data-i18n="queue_table_sub</p>
         </div>
         <div>
           <span class="badge badge-green" id="centreQueueCountBadge">Active Queue</span>
@@ -226,13 +222,13 @@
         <table class="queue-list-table">
           <thead>
             <tr>
-              <th style="width: 100px;">Queue No.</th>
-              <th>Farmer Name</th>
-              <th>Farmer ID</th>
-              <th>Commodity</th>
-              <th>Slot Time</th>
-              <th>Status</th>
-              <th style="text-align: right; width: 220px;">Action Controls</th>
+              <th style="width: 100px;" data-i18n="th_queue_no">Queue No.</th>
+              <th data-i18n="th_farmer_name">Farmer Name</th>
+              <th data-i18n="th_farmer_id">Farmer ID</th>
+              <th data-i18n="th_commodity">Commodity</th>
+              <th data-i18n="th_slot_time">Slot Time</th>
+              <th data-i18n="th_status">Status</th>
+              <th style="text-align: right; width: 220px;" data-i18n="th_action_controls">Action Controls</th>
             </tr>
           </thead>
           <tbody id="centreQueueTbody">
@@ -245,13 +241,13 @@
     <!-- Centre Load / Analytics Section -->
     <div id="analytics-section" style="margin-top: 2rem;">
       <div class="section-header" style="text-align: left; margin-bottom: 1.5rem;">
-        <span class="section-tag">Queue Telemetry & Utilization</span>
-        <h3 style="font-size: 1.75rem; font-weight: 800; color: var(--secondary);">Centre Load & Operational Analytics</h3>
+        <span class="section-tag">Queue Telemetry & Utilization" data-i18n="analytics_tag</span>
+        <h3 style="font-size: 1.75rem; font-weight: 800; color: var(--secondary);">Centre Load & Operational Analytics" data-i18n="analytics_title</h3>
         <p style="color: var(--text-muted);">Visual distribution of procurement volume, bottleneck detection, and waiting trends.</p>
       </div>
 
       <div class="grid-3" style="margin-bottom: 2rem;">
-        <!-- Card 1: Today's Centre Load by Time Window -->
+        <!-- Card 1: Today's Centre Load" data-i18n="load_card_title by Time Window -->
         <div class="card">
           <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--secondary); margin-bottom: 1rem;">
             Today's Centre Load
@@ -290,7 +286,7 @@
         <!-- Card 2: Queue Bottlenecks -->
         <div class="card">
           <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--secondary); margin-bottom: 1rem;">
-            Queue Bottleneck Monitor
+            Queue Bottleneck Monitor" data-i18n="bottleneck_title
           </h4>
           <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             <div style="display: flex; justify-content: space-between; padding: 0.6rem 0.8rem; background: var(--bg-main); border-radius: var(--radius-sm); border: 1px solid var(--border);">
@@ -322,7 +318,7 @@
         <!-- Card 3: Hourly Waiting Trends -->
         <div class="card">
           <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--secondary); margin-bottom: 1rem;">
-            Waiting Trends by Hour
+            Waiting Trends by Hour" data-i18n="trends_title
           </h4>
           <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem;">
             <div style="display: flex; justify-content: space-between;">

@@ -33,6 +33,8 @@ function renderCentreQueueTable(queueList, currentlyServing) {
   const tbody = document.getElementById('centreQueueTbody');
   if (!tbody || !queueList) return;
 
+  const currentLang = typeof I18N !== 'undefined' ? I18N.getLang() : 'en';
+
   tbody.innerHTML = queueList.map(item => {
     let badgeClass = 'badge-yellow';
     let icon = '⏳';
@@ -52,6 +54,12 @@ function renderCentreQueueTable(queueList, currentlyServing) {
     const isRamesh = item.farmerId === 'FARM1024';
     const rowClass = isCurrentServing ? 'user-row' : (isRamesh ? 'user-row' : '');
 
+    const statusKey = 'status_' + item.status.toLowerCase();
+    const translatedStatus = typeof I18N !== 'undefined' ? I18N.t(statusKey) : item.status;
+    const viewText = typeof I18N !== 'undefined' ? I18N.t('btn_view') : 'View';
+    const callText = typeof I18N !== 'undefined' ? I18N.t('btn_call') : 'Call';
+    const completeText = typeof I18N !== 'undefined' ? I18N.t('btn_complete') : 'Complete';
+
     return `
       <tr class="${rowClass}">
         <td style="font-weight: 800; color: var(--secondary); font-size: 1.15rem;">#${item.queueNumber}</td>
@@ -64,20 +72,20 @@ function renderCentreQueueTable(queueList, currentlyServing) {
         <td><code>${item.farmerId}</code></td>
         <td><strong>${item.commodity}</strong></td>
         <td>${item.slot}</td>
-        <td><span class="badge ${badgeClass}">${icon} ${item.status}</span></td>
+        <td><span class="badge ${badgeClass}">${icon} ${translatedStatus}</span></td>
         <td style="text-align: right;">
           <div style="display: flex; gap: 0.4rem; justify-content: flex-end; flex-wrap: wrap;">
             <button onclick="viewFarmerDetails('${item.bookingId}', '${item.farmerName}', '${item.farmerId}', '${item.commodity}', ${item.queueNumber})" class="btn btn-outline btn-sm" title="View details">
-              View
+              ${viewText}
             </button>
             ${item.status === 'Waiting' ? `
               <button onclick="handleDirectCall(${item.queueNumber}, '${item.farmerName}')" class="btn btn-accent btn-sm">
-                Call
+                ${callText}
               </button>
             ` : ''}
             ${item.status === 'Processing' ? `
               <button onclick="handleCompleteProcurement('${item.bookingId}')" class="btn btn-primary btn-sm">
-                Complete
+                ${completeText}
               </button>
             ` : ''}
           </div>
@@ -88,8 +96,10 @@ function renderCentreQueueTable(queueList, currentlyServing) {
 
   const countBadge = document.getElementById('centreQueueCountBadge');
   if (countBadge) {
-    countBadge.textContent = `${queueList.length} Vehicles in Queue`;
+    const vehText = typeof I18N !== 'undefined' ? I18N.t('vehicles_in_queue') : 'Vehicles in Queue';
+    countBadge.textContent = `${queueList.length} ${vehText}`;
   }
+  return;
 }
 
 // Call Next Farmer button action
@@ -208,4 +218,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('beforeunload', () => {
   if (pollTimer) clearInterval(pollTimer);
+});
+
+
+window.addEventListener('procurex-language-changed', () => {
+  if (currentQueueData && currentQueueData.length > 0) {
+    const servingEl = document.getElementById('centreCurrentlyServing');
+    const serving = servingEl ? parseInt((servingEl.textContent || '0').replace('#', '')) || 0 : 0;
+    renderCentreQueueTable(currentQueueData, serving);
+  }
 });

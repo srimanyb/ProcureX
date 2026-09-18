@@ -50,11 +50,11 @@
       <button class="mobile-toggle" id="mobileNavToggle" aria-label="Toggle navigation">☰</button>
 
       <ul class="nav-links" id="navLinks">
-        <li><a href="dashboard.html">Dashboard</a></li>
-        <li><a href="booking.html">Book Slot</a></li>
-        <li><a href="queue.html" class="active">Live Queue</a></li>
-        <li><a href="procurement.html">Procurement</a></li>
-        <li><a href="payment.html">Payment</a></li>
+        <li><a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a></li>
+        <li><a href="booking.html" data-i18n="nav_book_slot">Book Slot</a></li>
+        <li><a href="queue.html" class="active" data-i18n="nav_live_queue">Live Queue</a></li>
+        <li><a href="procurement.html" data-i18n="nav_procurement">Procurement</a></li>
+        <li><a href="payment.html" data-i18n="nav_payment">Payment</a></li>
       </ul>
 
       <div class="nav-actions" id="navAuthContainer"></div>
@@ -76,7 +76,7 @@
       </div>
       <div style="display: flex; gap: 0.75rem;">
         <button onclick="triggerQueueSimulation()" class="btn btn-accent btn-lg" id="btnSimulate">
-          Simulate Queue Movement 🚜
+          Simulate Queue Movement 🚜" data-i18n="queue_sim_btn
         </button>
         <button onclick="resetQueueSimulation()" class="btn btn-outline btn-lg" style="background: white;">
           🔄 Reset
@@ -108,32 +108,32 @@
         <!-- Your Queue Number -->
         <div class="queue-metric-box highlight">
           <div class="metric-num" id="qYourNumber">#18</div>
-          <div class="metric-desc">Your Queue Token</div>
+          <div class="metric-desc">Your Queue Token" data-i18n="queue_your_number</div>
           <div style="font-size: 0.75rem; color: var(--primary); font-weight: 700; margin-top: 4px;">Ramesh Kumar</div>
         </div>
 
-        <!-- Current Position -->
+        <!-- Current Position" data-i18n="queue_current_pos -->
         <div class="queue-metric-box">
           <div class="metric-num" style="color: var(--accent);" id="qCurrentPosition">#08</div>
           <div class="metric-desc">Current Position</div>
           <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">In Mandatory Queue</div>
         </div>
 
-        <!-- Farmers Ahead -->
+        <!-- Farmers Ahead" data-i18n="queue_farmers_ahead -->
         <div class="queue-metric-box">
           <div class="metric-num" id="qFarmersAhead">07</div>
           <div class="metric-desc">Farmers Ahead</div>
           <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Tractors in Yard</div>
         </div>
 
-        <!-- Currently Serving -->
+        <!-- Currently Serving" data-i18n="queue_serving -->
         <div class="queue-metric-box">
           <div class="metric-num" style="color: var(--secondary);" id="qCurrentlyServing">#11</div>
           <div class="metric-desc">Currently Serving</div>
           <div style="font-size: 0.75rem; color: var(--primary); font-weight: 700; margin-top: 4px;">At Weighbridge Bay 3</div>
         </div>
 
-        <!-- Estimated Waiting -->
+        <!-- Estimated Waiting" data-i18n="queue_est_wait -->
         <div class="queue-metric-box">
           <div class="metric-num" style="font-size: 2.2rem; color: #475569;" id="qEstimatedWait">~35 min</div>
           <div class="metric-desc">Estimated Waiting</div>
