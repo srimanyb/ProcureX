@@ -4,7 +4,7 @@ const Booking = require('../models/Booking');
 // Register a new farmer
 exports.registerFarmer = async (req, res) => {
   try {
-    const { name, mobile, farmerId, village, district, preferredCentre, commodity } = req.body;
+    const { name, mobile, farmerId, village, district, preferredCentre, commodity, language } = req.body;
 
     if (!name || !mobile || !farmerId || !village || !district || !commodity) {
       return res.status(400).json({
@@ -22,6 +22,7 @@ exports.registerFarmer = async (req, res) => {
       farmer.district = district;
       farmer.preferredCentre = preferredCentre || farmer.preferredCentre;
       farmer.commodity = commodity;
+      if (language) farmer.language = language;
       await farmer.save();
     } else {
       farmer = await Farmer.create({
@@ -31,7 +32,8 @@ exports.registerFarmer = async (req, res) => {
         village,
         district,
         preferredCentre: preferredCentre || 'Central Procurement Centre (APMC Yard)',
-        commodity
+        commodity,
+        language: language || 'en'
       });
     }
 
@@ -116,6 +118,37 @@ exports.getFarmerProfile = async (req, res) => {
       success: true,
       farmer,
       latestBooking
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// Update farmer language preference
+exports.updateFarmerLanguage = async (req, res) => {
+  try {
+    const { farmerId } = req.params;
+    const { language } = req.body;
+
+    if (!['en', 'hi', 'te', 'mr'].includes(language)) {
+      return res.status(400).json({ success: false, message: 'Invalid language selection' });
+    }
+
+    const farmer = await Farmer.findOneAndUpdate(
+      { farmerId: farmerId.toUpperCase() },
+      { language },
+      { new: true }
+    );
+
+    if (!farmer) {
+      return res.status(404).json({ success: false, message: 'Farmer not found' });
+    }
+
+    res.json({
+      success: true,
+      message: 'Language preference updated',
+      language: farmer.language,
+      farmer
     });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });

@@ -40,13 +40,28 @@
     <!-- Welcome Header Banner -->
     <div class="dashboard-welcome">
       <div class="welcome-text">
-        <div class="badge badge-green" style="margin-bottom: 0.5rem;">Verified Farmer Profile</div>
-        <h2 id="farmerWelcomeTitle">Welcome, Farmer</h2>
+        <div class="badge badge-green" style="margin-bottom: 0.5rem;" data-i18n="dash_profile_tag">Verified Farmer Profile</div>
+        <h2 id="farmerWelcomeTitle" data-i18n="dash_welcome">Welcome, Farmer</h2>
         <p id="farmerProfileSubtitle">Farmer ID: <strong>FARM1024</strong> • Village: Chandur Railway • District: Amravati</p>
       </div>
+      
+      <!-- Profile Language Selector -->
+      <div style="background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: var(--radius-md); padding: 0.6rem 0.9rem; display: flex; align-items: center; gap: 0.6rem;">
+        <span style="font-size: 1.3rem;">🌐</span>
+        <div>
+          <div style="font-size: 0.72rem; color: #CBD5E1; text-transform: uppercase; font-weight: 700;" data-i18n="dash_change_lang">Website Language Preference</div>
+          <select id="profileLanguageSelect" class="lang-select-input" onchange="changeFarmerLanguage(this.value)" style="background: white; border: none; border-radius: 4px; padding: 0.25rem 0.5rem; font-weight: 700; color: var(--secondary); font-size: 0.88rem; cursor: pointer; margin-top: 2px;">
+            <option value="en">English (English)</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="mr">मराठी (Marathi)</option>
+          </select>
+        </div>
+      </div>
+
       <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-        <a href="booking.html" class="btn btn-primary">Book New Slot 🚜</a>
-        <a href="queue.html" class="btn btn-accent">View Live Queue ⚡</a>
+        <a href="booking.html" class="btn btn-primary" data-i18n="dash_btn_book">Book New Slot 🚜</a>
+        <a href="queue.html" class="btn btn-accent" data-i18n="dash_btn_queue">View Live Queue ⚡</a>
       </div>
     </div>
 
@@ -55,7 +70,7 @@
       <!-- Card 1: Upcoming Slot -->
       <div class="stat-card">
         <div class="stat-card-header">
-          <span class="stat-label">Upcoming Slot</span>
+          <span class="stat-label" data-i18n="dash_upcoming_slot">Upcoming Slot</span>
           <span class="stat-icon">📅</span>
         </div>
         <div>
@@ -67,7 +82,7 @@
       <!-- Card 2: Queue Position -->
       <div class="stat-card">
         <div class="stat-card-header">
-          <span class="stat-label">Queue Position</span>
+          <span class="stat-label" data-i18n="dash_queue_pos">Queue Position</span>
           <span class="stat-icon">🔢</span>
         </div>
         <div>
@@ -79,7 +94,7 @@
       <!-- Card 3: Procurement Status -->
       <div class="stat-card">
         <div class="stat-card-header">
-          <span class="stat-label">Procurement</span>
+          <span class="stat-label" data-i18n="dash_proc_status">Procurement</span>
           <span class="stat-icon">⚖️</span>
         </div>
         <div>
@@ -91,7 +106,7 @@
       <!-- Card 4: Payment Status -->
       <div class="stat-card">
         <div class="stat-card-header">
-          <span class="stat-label">Payment</span>
+          <span class="stat-label" data-i18n="dash_pay_status">Payment</span>
           <span class="stat-icon">💳</span>
         </div>
         <div>
@@ -105,19 +120,19 @@
     <div class="grid-4" style="margin-bottom: 2.5rem;">
       <a href="booking.html" class="btn btn-outline btn-block" style="background: white; padding: 1.1rem; border: 1.5px solid var(--border);">
         <span style="font-size: 1.4rem;">➕</span>
-        <span style="font-weight: 700;">Book New Slot</span>
+        <span style="font-weight: 700;" data-i18n="dash_btn_book">Book New Slot</span>
       </a>
       <a href="queue.html" class="btn btn-outline btn-block" style="background: white; padding: 1.1rem; border: 1.5px solid var(--border);">
         <span style="font-size: 1.4rem;">🚦</span>
-        <span style="font-weight: 700;">View Live Queue</span>
+        <span style="font-weight: 700;" data-i18n="dash_btn_queue">View Live Queue</span>
       </a>
       <a href="procurement.html" class="btn btn-outline btn-block" style="background: white; padding: 1.1rem; border: 1.5px solid var(--border);">
         <span style="font-size: 1.4rem;">🔍</span>
-        <span style="font-weight: 700;">Track Procurement</span>
+        <span style="font-weight: 700;" data-i18n="dash_btn_track">Track Procurement</span>
       </a>
       <a href="payment.html" class="btn btn-outline btn-block" style="background: white; padding: 1.1rem; border: 1.5px solid var(--border);">
         <span style="font-size: 1.4rem;">💰</span>
-        <span style="font-weight: 700;">Payment History</span>
+        <span style="font-weight: 700;" data-i18n="dash_btn_payment">Payment History</span>
       </a>
     </div>
 
@@ -126,7 +141,7 @@
       <div class="booking-header">
         <div>
           <span class="badge badge-green" style="margin-bottom: 0.35rem;">Active Mandi Appointment</span>
-          <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--secondary);">Your Current Booking</h3>
+          <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--secondary);" data-i18n="dash_current_booking">Your Current Booking</h3>
         </div>
         <div>
           <span class="badge badge-blue" style="font-size: 0.95rem;" id="activeBookingBadge">Booking ID: PX10245</span>
@@ -181,19 +196,37 @@
     </div>
   </footer>
 
+  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
   <script>
+    async function changeFarmerLanguage(newLang) {
+      await I18N.setLang(newLang);
+      const user = Session.getUser();
+      if (user) {
+        user.language = newLang;
+        Session.setUser(user);
+        document.getElementById('farmerWelcomeTitle').textContent = `${I18N.t('dash_welcome')}, ${user.name}`;
+      }
+      showToast('Language Updated', `Website display updated to ${newLang.toUpperCase()}`, 'success');
+    }
+
     async function loadDashboardData() {
       const user = Session.getUser() || {
         name: 'Ramesh Kumar',
         farmerId: 'FARM1024',
         village: 'Chandur Railway',
         district: 'Amravati',
-        commodity: 'Rice'
+        commodity: 'Rice',
+        language: 'en'
       };
 
+      // Set language dropdown to user's saved preference
+      const activeLang = user.language || I18N.getLang() || 'en';
+      const langSelect = document.getElementById('profileLanguageSelect');
+      if (langSelect) langSelect.value = activeLang;
+
       // Set user title
-      document.getElementById('farmerWelcomeTitle').textContent = `Welcome, ${user.name}`;
+      document.getElementById('farmerWelcomeTitle').textContent = `${I18N.t('dash_welcome')}, ${user.name}`;
       document.getElementById('farmerProfileSubtitle').innerHTML = `Farmer ID: <strong>${user.farmerId}</strong> • Village: ${user.village || 'Chandur Railway'} • District: ${user.district || 'Amravati'}`;
 
       const bookingId = Session.getActiveBookingId() || 'PX10245';

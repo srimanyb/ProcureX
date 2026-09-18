@@ -37,6 +37,11 @@ const FarmerSchema = new mongoose.Schema({
     required: [true, 'Commodity is required'],
     enum: ['Rice', 'Wheat', 'Maize', 'Cotton', 'Soybean', 'Pulses']
   },
+  language: {
+    type: String,
+    enum: ['en', 'hi', 'te', 'mr'],
+    default: 'en'
+  },
   createdAt: {
     type: Date,
     default: Date.now
