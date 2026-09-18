@@ -5,6 +5,28 @@
 
 const translations = {
   en: {
+    book_engine_badge: 'Digital Appointment Engine',
+    book_subtitle: 'Reserve your designated weighbridge window to skip long mandi queues.',
+    step_name_1: '1. Commodity',
+    step_name_2: '2. Centre',
+    step_name_3: '3. Date',
+    step_name_4: '4. Time Slot',
+    step1_sub: 'Choose crop to deliver for government MSP procurement:',
+    step2_sub: 'Select authorized APMC procurement mandi in your district:',
+    step3_sub: 'Choose procurement delivery appointment date:',
+    step4_sub: 'Choose an hourly intake window with live capacity:',
+    crop_rice: 'Rice (Paddy)',
+    crop_wheat: 'Wheat',
+    crop_maize: 'Maize',
+    crop_cotton: 'Cotton',
+    crop_soybean: 'Soybean',
+    crop_pulses: 'Pulses (Arhar)',
+    est_qty_label: 'Estimated Quantity (Quintals):',
+    sum_centre_label: 'Procurement Centre',
+    sum_crop_label: 'Selected Crop & Quota',
+    sum_date_label: 'Delivery Date',
+    sum_slot_label: 'Time Window',
+    est_token_label: 'Estimated Queue Token',
     brand_title: 'ProcureX',
     brand_sub: 'Smart Agricultural Procurement',
     brand_centre: 'ProcureX Centre',
@@ -169,6 +191,28 @@ const translations = {
   },
 
   te: {
+    book_engine_badge: 'డిజిటల్ అపాయింట్‌మెంట్ ఇంజిన్',
+    book_subtitle: 'మార్కెట్ నిరీక్షణ సమయాన్ని నివారించడానికి వేబ్రిడ్జ్ స్లాట్‌ను రిజర్వ్ చేసుకోండి.',
+    step_name_1: '1. పంట',
+    step_name_2: '2. కేంద్రం',
+    step_name_3: '3. తేదీ',
+    step_name_4: '4. సమయ స్లాట్',
+    step1_sub: 'ప్రభుత్వ మద్దతు ధర సేకరణ కోసం పంటను ఎంచుకోండి:',
+    step2_sub: 'మీ జిల్లాలోని అధీకృత మార్కెట్ కేంద్రాన్ని ఎంచుకోండి:',
+    step3_sub: 'సేకరణ డెలివరీ నియామక తేదీని ఎంచుకోండి:',
+    step4_sub: 'అందుబాటులో ఉన్న గంటల సమయ స్లాట్‌ను ఎంచుకోండి:',
+    crop_rice: 'వరి (ధాన్యం)',
+    crop_wheat: 'గోధుమలు',
+    crop_maize: 'మొక్కజొన్న',
+    crop_cotton: 'పత్తి',
+    crop_soybean: 'సోయాబీన్',
+    crop_pulses: 'పప్పుధాన్యాలు (కందులు)',
+    est_qty_label: 'అంచనా పరిమాణం (క్వింటాళ్ళు):',
+    sum_centre_label: 'సేకరణ కేంద్రం',
+    sum_crop_label: 'ఎంచుకున్న పంట & పరిమాణం',
+    sum_date_label: 'డెలివరీ తేదీ',
+    sum_slot_label: 'సమయ స్లాట్',
+    est_token_label: 'అంచనా క్యూ టోకెన్',
     brand_title: 'ప్రొక్యూర్ ఎక్స్',
     brand_sub: 'స్మార్ట్ వ్యవసాయ సేకరణ వేదిక',
     brand_centre: 'ప్రొక్యూర్ ఎక్స్ కేంద్రం',
@@ -324,6 +368,28 @@ const translations = {
   },
 
   hi: {
+    book_engine_badge: 'डिजिटल अपॉइंटमेंट इंजन',
+    book_subtitle: 'मंडी में कतार व प्रतीक्षा समाप्त करने हेतु वेब्रिज विंडो आरक्षित करें।',
+    step_name_1: '1. फसल',
+    step_name_2: '2. केन्द्र',
+    step_name_3: '3. तारीख',
+    step_name_4: '4. समय स्लॉट',
+    step1_sub: 'सरकारी एमएसपी खरीद हेतु फसल चुनें:',
+    step2_sub: 'अपने ज़िले में अधिकृत एपीएमसी खरीद केन्द्र चुनें:',
+    step3_sub: 'खरीद डिलीवरी अपॉइंटमेंट तारीख चुनें:',
+    step4_sub: 'उपलब्ध प्रति घंटा समय स्लॉट चुनें:',
+    crop_rice: 'धान (चावल)',
+    crop_wheat: 'गेहूं',
+    crop_maize: 'मक्का',
+    crop_cotton: 'कपास',
+    crop_soybean: 'सोयाबीन',
+    crop_pulses: 'दालें (अरहर)',
+    est_qty_label: 'अनुमानित मात्रा (क्विंटल):',
+    sum_centre_label: 'खरीद केन्द्र',
+    sum_crop_label: 'चयनित फसल एवं कोटा',
+    sum_date_label: 'डिलीवरी तारीख',
+    sum_slot_label: 'समय विंडो',
+    est_token_label: 'अनुमानित कतार टोकन',
     brand_title: 'प्रोक्योरएक्स',
     brand_sub: 'स्मार्ट कृषि खरीद मंच',
     brand_centre: 'प्रोक्योरएक्स केन्द्र',
@@ -479,6 +545,28 @@ const translations = {
   },
 
   mr: {
+    book_engine_badge: 'डिजिटल अपॉइंटमेंट इंजिन',
+    book_subtitle: 'बाजार प्रतीक्षा वेळ टाळण्यासाठी वेब्रिज वेळ स्लॉट राखीव करा.',
+    step_name_1: '1. पीक',
+    step_name_2: '2. केंद्र',
+    step_name_3: '3. तारीख',
+    step_name_4: '4. वेळ स्लॉट',
+    step1_sub: 'हमीभाव खरेदीसाठी पीक निवडा:',
+    step2_sub: 'आपल्या जिल्ह्यातील अधिकृत एपीएमसी खरेदी केंद्र निवडा:',
+    step3_sub: 'खरेदी डिलिव्हरी अपॉइंटमेंट तारीख निवडा:',
+    step4_sub: 'उपलब्ध प्रति तास वेळ स्लॉट निवडा:',
+    crop_rice: 'भात (धान)',
+    crop_wheat: 'गहू',
+    crop_maize: 'मका',
+    crop_cotton: 'कापूस',
+    crop_soybean: 'सोयाबीन',
+    crop_pulses: 'डाळी (तूर)',
+    est_qty_label: 'अंदाजे प्रमाण (क्विंटल):',
+    sum_centre_label: 'खरेदी केंद्र',
+    sum_crop_label: 'निवडलेले पीक आणि कोटा',
+    sum_date_label: 'डिलिव्हरी तारीख',
+    sum_slot_label: 'वेळ विंडो',
+    est_token_label: 'अंदाजे रांग टोकन',
     brand_title: 'प्रोक्योरएक्स',
     brand_sub: 'स्मार्ट कृषी खरेदी व्यासपीठ',
     brand_centre: 'प्रोक्योरएक्स केंद्र',
@@ -1356,7 +1444,9 @@ const I18N = {
   t(key) {
     const lang = this.getLang();
     const dict = translations[lang] || translations.en;
-    return dict[key] || translations.en[key] || key;
+    if (dict && dict[key]) return dict[key];
+    if (translations.en && translations.en[key]) return translations.en[key];
+    return null;
   },
 
   translateString(str, targetLang) {
@@ -1413,7 +1503,7 @@ const I18N = {
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       const translation = this.t(key);
-      if (translation) {
+      if (translation && typeof translation === 'string' && translation !== key) {
         el.textContent = translation;
       }
     });

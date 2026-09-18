@@ -6,7 +6,7 @@
   <title>Book Procurement Slot – ProcureX</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
-    /* Single-Screen Zero-Scroll Layout */
+    /* Full-Screen Zero-Scroll Viewport Layout */
     @media (min-width: 992px) {
       html, body {
         height: 100vh;
@@ -14,12 +14,12 @@
         overflow: hidden;
       }
       .booking-page-container {
-        height: calc(100vh - 60px);
+        height: calc(100vh - 72px);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding-top: 0.6rem !important;
-        padding-bottom: 0.6rem !important;
+        padding-top: 0.85rem !important;
+        padding-bottom: 0.85rem !important;
       }
       .booking-layout {
         flex: 1;
@@ -33,80 +33,91 @@
       }
     }
 
-    .booking-top-bar {
+    /* Clean, Elegant Header Banner */
+    .booking-hero-header {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 0.85rem 1.4rem;
+      margin-bottom: 0.85rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.4rem;
+      box-shadow: var(--shadow-sm);
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 1rem;
+    }
+    .booking-title-group h2 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--secondary);
+      margin: 0 0 0.15rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .booking-title-group p {
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      margin: 0;
     }
 
-    /* Compact Stepper */
-    .step-indicator-bar-compact {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.65rem;
-      position: relative;
-    }
-    .step-indicator-bar-compact::before {
-      content: '';
-      position: absolute;
-      top: 14px;
-      left: 8%;
-      right: 8%;
-      height: 2px;
-      background-color: var(--border);
-      z-index: 1;
-    }
-    .step-col-compact {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      flex: 1;
-      cursor: pointer;
-    }
-    .step-circle-compact {
-      background: #FFFFFF;
-      border: 2px solid var(--border);
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
+    /* Modern Stepper Track */
+    .stepper-nav {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin: 0 auto 0.2rem;
-      transition: all 0.2s ease;
+      gap: 0.5rem;
+      background: var(--bg-main);
+      padding: 0.35rem 0.6rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
     }
-    .step-col-compact.active .step-circle-compact {
-      border-color: var(--primary);
-      background-color: var(--primary);
-      color: #FFFFFF;
-      box-shadow: 0 0 0 3px var(--primary-subtle);
-    }
-    .step-col-compact.done .step-circle-compact {
-      border-color: var(--primary);
-      background-color: var(--primary-subtle);
-      color: var(--primary-dark);
-    }
-    .step-name-compact {
-      font-size: 0.78rem;
+    .step-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
       font-weight: 600;
       color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: transparent;
+      user-select: none;
     }
-    .step-col-compact.active .step-name-compact {
+    .step-pill.active {
+      background: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(21, 128, 61, 0.3);
+      font-weight: 700;
+    }
+    .step-pill.done {
+      background: var(--primary-subtle);
       color: var(--primary-dark);
       font-weight: 700;
+    }
+    .step-num {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      background: rgba(0, 0, 0, 0.08);
+    }
+    .step-pill.active .step-num {
+      background: #FFFFFF;
+      color: var(--primary);
     }
 
     /* 2-Column Responsive Layout */
     .booking-layout {
       display: grid;
-      grid-template-columns: 1.75fr 1fr;
-      gap: 1.15rem;
+      grid-template-columns: 1.8fr 1fr;
+      gap: 1.25rem;
     }
     @media (max-width: 991px) {
       .booking-layout {
@@ -130,14 +141,92 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Compact Commodity Grid */
+    /* Commodity Grid */
     .selection-grid-compact {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0.55rem;
-      margin: 0.4rem 0 0.55rem;
+      gap: 0.65rem;
+      margin: 0.5rem 0 0.65rem;
     }
-    .select-card-compact {
+    .select-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.65rem 0.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .select-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+    .select-card.selected {
+      border-color: var(--primary);
+      background-color: var(--primary-subtle);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+    .select-card .icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.15rem;
+    }
+    .select-card .title {
+      font-weight: 700;
+      color: var(--secondary);
+      font-size: 0.92rem;
+      line-height: 1.2;
+    }
+    .select-card .sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    /* Centre Cards */
+    .centre-list-compact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      margin: 0.5rem 0 0.65rem;
+    }
+    .centre-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .centre-card:hover {
+      border-color: var(--primary);
+    }
+    .centre-card.selected {
+      border-color: var(--primary);
+      background-color: var(--primary-subtle);
+      box-shadow: 0 0 0 2px var(--primary);
+    }
+
+    /* Date Grid */
+    .date-grid-compact {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.65rem;
+      margin: 0.65rem 0 0.85rem;
+    }
+
+    /* Slots Grid */
+    .slots-grid-compact {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.55rem;
+      margin: 0.5rem 0 0.65rem;
+      max-height: 230px;
+      overflow-y: auto;
+    }
+    .slot-item {
       background: #FFFFFF;
       border: 1.5px solid var(--border);
       border-radius: var(--radius-md);
@@ -146,93 +235,15 @@
       cursor: pointer;
       transition: all 0.15s ease;
     }
-    .select-card-compact:hover {
-      border-color: var(--primary);
-      transform: translateY(-1px);
-    }
-    .select-card-compact.selected {
-      border-color: var(--primary);
-      background-color: var(--primary-subtle);
-      box-shadow: 0 0 0 2px var(--primary);
-    }
-    .select-card-compact .icon {
-      font-size: 1.45rem;
-      margin-bottom: 0.15rem;
-    }
-    .select-card-compact .title {
-      font-weight: 700;
-      color: var(--secondary);
-      font-size: 0.88rem;
-      line-height: 1.2;
-    }
-    .select-card-compact .sub {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      margin-top: 0.15rem;
-    }
-
-    /* Compact Centre Cards */
-    .centre-list-compact {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin: 0.4rem 0 0.6rem;
-    }
-    .centre-card-compact {
-      background: #FFFFFF;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 0.65rem 0.85rem;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .centre-card-compact:hover {
+    .slot-item:hover:not(.disabled) {
       border-color: var(--primary);
     }
-    .centre-card-compact.selected {
+    .slot-item.selected {
       border-color: var(--primary);
       background-color: var(--primary-subtle);
       box-shadow: 0 0 0 2px var(--primary);
     }
-
-    /* Compact Date Grid */
-    .date-grid-compact {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.55rem;
-      margin: 0.6rem 0 0.8rem;
-    }
-
-    /* Compact Slots Grid */
-    .slots-grid-compact {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.5rem;
-      margin: 0.4rem 0 0.6rem;
-      max-height: 220px;
-      overflow-y: auto;
-    }
-    .slot-item-compact {
-      background: #FFFFFF;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 0.5rem 0.4rem;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .slot-item-compact:hover:not(.disabled) {
-      border-color: var(--primary);
-    }
-    .slot-item-compact.selected {
-      border-color: var(--primary);
-      background-color: var(--primary-subtle);
-      box-shadow: 0 0 0 2px var(--primary);
-    }
-    .slot-item-compact.disabled {
+    .slot-item.disabled {
       background-color: #F8FAFC;
       opacity: 0.55;
       cursor: not-allowed;
@@ -241,13 +252,14 @@
 </head>
 <body>
 
-  <header class="site-header" style="height: 54px; min-height: 54px; padding: 0.35rem 0;">
+  <!-- Clean Top Navigation Bar -->
+  <header class="site-header">
     <div class="container nav-container">
       <a href="index.html" class="brand-logo">
-        <div class="brand-icon" style="font-size: 1.3rem;">🌾</div>
+        <div class="brand-icon">🌾</div>
         <div class="brand-text">
-          <h1 style="font-size: 1.15rem;" data-i18n="brand_title">ProcureX</h1>
-          <span style="font-size: 0.68rem;" data-i18n="brand_sub">Smart Agricultural Procurement</span>
+          <h1 data-i18n="brand_title">ProcureX</h1>
+          <span data-i18n="brand_sub">Smart Agricultural Procurement</span>
         </div>
       </a>
 
@@ -266,82 +278,83 @@
   </header>
 
   <div class="container booking-page-container">
-    <!-- Header Row -->
-    <div class="booking-top-bar">
-      <div style="display: flex; align-items: center; gap: 0.65rem;">
-        <h2 style="font-size: 1.35rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_title">Book a Procurement Slot</h2>
-        <span class="badge badge-green" style="font-size: 0.72rem; padding: 0.2rem 0.5rem;" data-i18n="book_engine_badge">Digital Appointment</span>
+    <!-- Top Hero Header Bar -->
+    <div class="booking-hero-header">
+      <div class="booking-title-group">
+        <h2>
+          <span data-i18n="book_title">Book a Procurement Slot</span>
+          <span class="badge badge-green" style="font-size: 0.72rem; padding: 0.2rem 0.55rem;" data-i18n="book_engine_badge">Digital Appointment Engine</span>
+        </h2>
+        <p data-i18n="book_subtitle">Reserve your designated weighbridge window to skip long mandi queues.</p>
       </div>
-      <p style="color: var(--text-muted); font-size: 0.84rem; margin: 0;" data-i18n="book_subtitle">
-        Reserve weighbridge window to eliminate mandi waiting time.
-      </p>
+
+      <!-- Modern Step Navigation Tracker -->
+      <div class="stepper-nav">
+        <div class="step-pill active" id="stepCol1" onclick="goToStep(1)">
+          <span class="step-num" id="circle1">1</span>
+          <span class="step-name" data-i18n="step_name_1">1. Commodity</span>
+        </div>
+        <div class="step-pill" id="stepCol2" onclick="goToStep(2)">
+          <span class="step-num" id="circle2">2</span>
+          <span class="step-name" data-i18n="step_name_2">2. Centre</span>
+        </div>
+        <div class="step-pill" id="stepCol3" onclick="goToStep(3)">
+          <span class="step-num" id="circle3">3</span>
+          <span class="step-name" data-i18n="step_name_3">3. Date</span>
+        </div>
+        <div class="step-pill" id="stepCol4" onclick="goToStep(4)">
+          <span class="step-num" id="circle4">4</span>
+          <span class="step-name" data-i18n="step_name_4">4. Time Slot</span>
+        </div>
+      </div>
     </div>
 
-    <!-- 4-Step Progress Stepper -->
-    <div class="step-indicator-bar-compact">
-      <div class="step-col-compact active" id="stepCol1" onclick="goToStep(1)">
-        <div class="step-circle-compact" id="circle1">1</div>
-        <div class="step-name-compact" data-i18n="step_name_1">Commodity</div>
-      </div>
-      <div class="step-col-compact" id="stepCol2" onclick="goToStep(2)">
-        <div class="step-circle-compact" id="circle2">2</div>
-        <div class="step-name-compact" data-i18n="step_name_2">Centre</div>
-      </div>
-      <div class="step-col-compact" id="stepCol3" onclick="goToStep(3)">
-        <div class="step-circle-compact" id="circle3">3</div>
-        <div class="step-name-compact" data-i18n="step_name_3">Date</div>
-      </div>
-      <div class="step-col-compact" id="stepCol4" onclick="goToStep(4)">
-        <div class="step-circle-compact" id="circle4">4</div>
-        <div class="step-name-compact" data-i18n="step_name_4">Time Slot</div>
-      </div>
-    </div>
-
-    <!-- Main 2-Column Booking Layout -->
+    <!-- 2-Column Main Workspace -->
     <div class="booking-layout">
-      <!-- Left Card: Interactive Wizard -->
-      <div class="card booking-left-card" style="padding: 1.15rem 1.25rem; margin: 0; box-shadow: var(--shadow-sm);">
+      
+      <!-- Left Column: Interactive Wizard Steps -->
+      <div class="card booking-left-card" style="padding: 1.25rem 1.35rem; margin: 0; box-shadow: var(--shadow-sm);">
         
         <!-- STEP 1: Select Commodity -->
         <div class="step-section active" id="stepSection1">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: baseline;">
-              <h3 style="font-size: 1.12rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_step1">
+              <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_step1">
                 Step 1: Select Commodity
               </h3>
-              <span style="font-size: 0.8rem; color: var(--text-muted);">Step 1 of 4</span>
+              <span class="badge badge-yellow" style="font-size: 0.75rem;">Step 1 of 4</span>
             </div>
-            <p style="color: var(--text-muted); font-size: 0.84rem; margin: 0.2rem 0 0.5rem;" data-i18n="step1_sub">
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0.2rem 0 0.5rem;" data-i18n="step1_sub">
               Choose crop to deliver for government MSP procurement:
             </p>
 
             <div class="selection-grid-compact">
-              <div class="select-card select-card-compact selected" onclick="selectCommodity('Rice', 'MSP: ₹2,320/Qtl', this)">
+              <div class="select-card selected" onclick="selectCommodity('Rice', 'MSP: ₹2,320/Qtl', this)">
                 <div class="icon">🌾</div>
                 <div class="title" data-i18n="crop_rice">Rice (Paddy)</div>
                 <div class="sub">MSP ₹2,320 / Qtl</div>
               </div>
-              <div class="select-card select-card-compact" onclick="selectCommodity('Wheat', 'MSP: ₹2,275/Qtl', this)">
+              <div class="select-card" onclick="selectCommodity('Wheat', 'MSP: ₹2,275/Qtl', this)">
                 <div class="icon">🌿</div>
                 <div class="title" data-i18n="crop_wheat">Wheat</div>
                 <div class="sub">MSP ₹2,275 / Qtl</div>
               </div>
-              <div class="select-card select-card-compact" onclick="selectCommodity('Maize', 'MSP: ₹2,090/Qtl', this)">
+              <div class="select-card" onclick="selectCommodity('Maize', 'MSP: ₹2,090/Qtl', this)">
                 <div class="icon">🌽</div>
                 <div class="title" data-i18n="crop_maize">Maize</div>
                 <div class="sub">MSP ₹2,090 / Qtl</div>
               </div>
-              <div class="select-card select-card-compact" onclick="selectCommodity('Cotton', 'MSP: ₹7,121/Qtl', this)">
+              <div class="select-card" onclick="selectCommodity('Cotton', 'MSP: ₹7,121/Qtl', this)">
                 <div class="icon">☁️</div>
                 <div class="title" data-i18n="crop_cotton">Cotton</div>
                 <div class="sub">MSP ₹7,121 / Qtl</div>
               </div>
-              <div class="select-card select-card-compact" onclick="selectCommodity('Soybean', 'MSP: ₹4,892/Qtl', this)">
+              <div class="select-card" onclick="selectCommodity('Soybean', 'MSP: ₹4,892/Qtl', this)">
                 <div class="icon">🌱</div>
                 <div class="title" data-i18n="crop_soybean">Soybean</div>
                 <div class="sub">MSP ₹4,892 / Qtl</div>
               </div>
-              <div class="select-card select-card-compact" onclick="selectCommodity('Pulses', 'MSP: ₹7,550/Qtl', this)">
+              <div class="select-card" onclick="selectCommodity('Pulses', 'MSP: ₹7,550/Qtl', this)">
                 <div class="icon">🥣</div>
                 <div class="title" data-i18n="crop_pulses">Pulses (Arhar)</div>
                 <div class="sub">MSP ₹7,550 / Qtl</div>
@@ -349,19 +362,19 @@
             </div>
 
             <!-- Compact Quantity Bar -->
-            <div style="display: flex; align-items: center; justify-content: space-between; background: var(--bg-main); padding: 0.45rem 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
-              <label style="font-weight: 700; font-size: 0.85rem; color: var(--secondary); margin: 0;" data-i18n="est_qty_label">
+            <div style="display: flex; align-items: center; justify-content: space-between; background: var(--bg-main); padding: 0.5rem 0.95rem; border-radius: var(--radius-md); border: 1px solid var(--border); margin-top: 0.4rem;">
+              <label style="font-weight: 700; font-size: 0.88rem; color: var(--secondary); margin: 0;" data-i18n="est_qty_label">
                 Estimated Quantity:
               </label>
-              <div style="display: flex; align-items: center; gap: 0.4rem;">
-                <input type="number" id="inputQuantity" class="form-control" value="40" min="1" max="500" style="width: 85px; padding: 0.3rem 0.5rem; font-weight: 800; font-size: 0.95rem; text-align: center; color: var(--primary);">
-                <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted);">Quintals</span>
+              <div style="display: flex; align-items: center; gap: 0.45rem;">
+                <input type="number" id="inputQuantity" class="form-control" value="40" min="1" max="500" style="width: 85px; padding: 0.35rem 0.5rem; font-weight: 800; font-size: 0.98rem; text-align: center; color: var(--primary);">
+                <span style="font-size: 0.84rem; font-weight: 700; color: var(--text-muted);">Quintals</span>
               </div>
             </div>
           </div>
 
-          <div style="display: flex; justify-content: flex-end; margin-top: 0.6rem;">
-            <button onclick="goToStep(2)" class="btn btn-primary btn-sm" style="padding: 0.5rem 1.25rem; font-weight: 700;">
+          <div style="display: flex; justify-content: flex-end; margin-top: 0.65rem;">
+            <button onclick="goToStep(2)" class="btn btn-primary" style="padding: 0.55rem 1.4rem; font-weight: 700;">
               Next: Select Centre &rarr;
             </button>
           </div>
@@ -371,57 +384,57 @@
         <div class="step-section" id="stepSection2">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: baseline;">
-              <h3 style="font-size: 1.12rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_step2">
+              <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_step2">
                 Step 2: Select Procurement Centre
               </h3>
-              <span style="font-size: 0.8rem; color: var(--text-muted);">Step 2 of 4</span>
+              <span class="badge badge-yellow" style="font-size: 0.75rem;">Step 2 of 4</span>
             </div>
-            <p style="color: var(--text-muted); font-size: 0.84rem; margin: 0.2rem 0 0.5rem;" data-i18n="step2_sub">
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0.2rem 0 0.5rem;" data-i18n="step2_sub">
               Select authorized APMC procurement mandi in your district:
             </p>
 
             <div class="centre-list-compact">
-              <div class="centre-card-compact selected select-card" onclick="selectCentre('Central Procurement Centre (APMC Yard)', 'Badnera Road, Amravati', this)">
+              <div class="centre-card selected select-card" onclick="selectCentre('Central Procurement Centre (APMC Yard)', 'Badnera Road, Amravati', this)">
                 <div>
-                  <div style="font-size: 0.94rem; font-weight: 800; color: var(--secondary);">Central Procurement Centre (APMC Yard)</div>
-                  <div style="color: var(--text-muted); font-size: 0.78rem;">Badnera Road, Main Grain Market, Amravati</div>
-                  <div style="display: flex; gap: 0.4rem; margin-top: 0.25rem;">
-                    <span class="badge badge-green" style="font-size: 0.7rem; padding: 0.1rem 0.4rem;">🟢 Operational</span>
-                    <span class="badge badge-blue" style="font-size: 0.7rem; padding: 0.1rem 0.4rem;">Capacity: 100/day</span>
+                  <div style="font-size: 0.96rem; font-weight: 800; color: var(--secondary);">Central Procurement Centre (APMC Yard)</div>
+                  <div style="color: var(--text-muted); font-size: 0.8rem;">Badnera Road, Main Grain Market, Amravati</div>
+                  <div style="display: flex; gap: 0.4rem; margin-top: 0.3rem;">
+                    <span class="badge badge-green" style="font-size: 0.72rem; padding: 0.15rem 0.45rem;">🟢 Operational</span>
+                    <span class="badge badge-blue" style="font-size: 0.72rem; padding: 0.15rem 0.45rem;">Capacity: 100/day</span>
                   </div>
                 </div>
-                <div style="font-size: 1.5rem;">🏢</div>
+                <span style="font-size: 1.6rem;">🏢</span>
               </div>
 
-              <div class="centre-card-compact select-card" onclick="selectCentre('Chandur Sub-Mandi Procurement Depot', 'Chandur Railway', this)">
+              <div class="centre-card select-card" onclick="selectCentre('Chandur Sub-Mandi Procurement Depot', 'Chandur Railway', this)">
                 <div>
-                  <div style="font-size: 0.94rem; font-weight: 800; color: var(--secondary);">Chandur Sub-Mandi Procurement Depot</div>
-                  <div style="color: var(--text-muted); font-size: 0.78rem;">Station Road, Chandur Railway</div>
-                  <div style="display: flex; gap: 0.4rem; margin-top: 0.25rem;">
-                    <span class="badge badge-green" style="font-size: 0.7rem; padding: 0.1rem 0.4rem;">🟢 Operational</span>
-                    <span class="badge badge-blue" style="font-size: 0.7rem; padding: 0.1rem 0.4rem;">Capacity: 60/day</span>
+                  <div style="font-size: 0.96rem; font-weight: 800; color: var(--secondary);">Chandur Sub-Mandi Procurement Depot</div>
+                  <div style="color: var(--text-muted); font-size: 0.8rem;">Station Road, Chandur Railway</div>
+                  <div style="display: flex; gap: 0.4rem; margin-top: 0.3rem;">
+                    <span class="badge badge-green" style="font-size: 0.72rem; padding: 0.15rem 0.45rem;">🟢 Operational</span>
+                    <span class="badge badge-blue" style="font-size: 0.72rem; padding: 0.15rem 0.45rem;">Capacity: 60/day</span>
                   </div>
                 </div>
-                <div style="font-size: 1.5rem;">🏢</div>
+                <span style="font-size: 1.6rem;">🏢</span>
               </div>
 
-              <div class="centre-card-compact select-card" onclick="selectCentre('Morshi Taluka Procurement Hub', 'Morshi APMC', this)">
+              <div class="centre-card select-card" onclick="selectCentre('Morshi Taluka Procurement Hub', 'Morshi APMC', this)">
                 <div>
-                  <div style="font-size: 0.94rem; font-weight: 800; color: var(--secondary);">Morshi Taluka Procurement Hub</div>
-                  <div style="color: var(--text-muted); font-size: 0.78rem;">Near Bus Stand, Morshi</div>
-                  <div style="display: flex; gap: 0.4rem; margin-top: 0.25rem;">
-                    <span class="badge badge-yellow" style="font-size: 0.7rem; padding: 0.1rem 0.4rem;">🟡 Moderate Load</span>
-                    <span class="badge badge-blue" style="font-size: 0.7rem; padding: 0.1rem 0.4rem;">Capacity: 50/day</span>
+                  <div style="font-size: 0.96rem; font-weight: 800; color: var(--secondary);">Morshi Taluka Procurement Hub</div>
+                  <div style="color: var(--text-muted); font-size: 0.8rem;">Near Bus Stand, Morshi</div>
+                  <div style="display: flex; gap: 0.4rem; margin-top: 0.3rem;">
+                    <span class="badge badge-yellow" style="font-size: 0.72rem; padding: 0.15rem 0.45rem;">🟡 Moderate Load</span>
+                    <span class="badge badge-blue" style="font-size: 0.72rem; padding: 0.15rem 0.45rem;">Capacity: 50/day</span>
                   </div>
                 </div>
-                <div style="font-size: 1.5rem;">🏢</div>
+                <span style="font-size: 1.6rem;">🏢</span>
               </div>
             </div>
           </div>
 
-          <div style="display: flex; justify-content: space-between; margin-top: 0.6rem;">
+          <div style="display: flex; justify-content: space-between; margin-top: 0.65rem;">
             <button onclick="goToStep(1)" class="btn btn-outline btn-sm">&larr; Back</button>
-            <button onclick="goToStep(3)" class="btn btn-primary btn-sm" style="padding: 0.5rem 1.25rem; font-weight: 700;">
+            <button onclick="goToStep(3)" class="btn btn-primary" style="padding: 0.55rem 1.4rem; font-weight: 700;">
               Next: Select Date &rarr;
             </button>
           </div>
@@ -431,32 +444,32 @@
         <div class="step-section" id="stepSection3">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: baseline;">
-              <h3 style="font-size: 1.12rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_step3">
+              <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_step3">
                 Step 3: Select Date
               </h3>
-              <span style="font-size: 0.8rem; color: var(--text-muted);">Step 3 of 4</span>
+              <span class="badge badge-yellow" style="font-size: 0.75rem;">Step 3 of 4</span>
             </div>
-            <p style="color: var(--text-muted); font-size: 0.84rem; margin: 0.2rem 0 0.5rem;" data-i18n="step3_sub">
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin: 0.2rem 0 0.5rem;" data-i18n="step3_sub">
               Choose procurement delivery appointment date:
             </p>
 
             <div class="date-grid-compact">
-              <div class="select-card-compact selected select-card" onclick="selectDate('19 September 2026', 'Tomorrow', this)">
+              <div class="select-card selected" onclick="selectDate('19 September 2026', 'Tomorrow', this)">
                 <div class="icon">📅</div>
                 <div class="title">19 Sep 2026</div>
-                <div class="sub"><span class="badge badge-green" style="font-size:0.68rem; padding:0.1rem 0.3rem;">Recommended</span></div>
+                <div class="sub"><span class="badge badge-green" style="font-size:0.7rem; padding:0.12rem 0.35rem;">Recommended</span></div>
               </div>
-              <div class="select-card-compact select-card" onclick="selectDate('20 September 2026', 'Sunday', this)">
+              <div class="select-card" onclick="selectDate('20 September 2026', 'Sunday', this)">
                 <div class="icon">📅</div>
                 <div class="title">20 Sep 2026</div>
-                <div class="sub">Weekend</div>
+                <div class="sub">Weekend Window</div>
               </div>
-              <div class="select-card-compact select-card" onclick="selectDate('21 September 2026', 'Monday', this)">
+              <div class="select-card" onclick="selectDate('21 September 2026', 'Monday', this)">
                 <div class="icon">📅</div>
                 <div class="title">21 Sep 2026</div>
                 <div class="sub">Open Schedule</div>
               </div>
-              <div class="select-card-compact select-card" onclick="selectDate('22 September 2026', 'Tuesday', this)">
+              <div class="select-card" onclick="selectDate('22 September 2026', 'Tuesday', this)">
                 <div class="icon">📅</div>
                 <div class="title">22 Sep 2026</div>
                 <div class="sub">Open Schedule</div>
@@ -464,9 +477,9 @@
             </div>
           </div>
 
-          <div style="display: flex; justify-content: space-between; margin-top: 0.6rem;">
+          <div style="display: flex; justify-content: space-between; margin-top: 0.65rem;">
             <button onclick="goToStep(2)" class="btn btn-outline btn-sm">&larr; Back</button>
-            <button onclick="goToStep(4)" class="btn btn-primary btn-sm" style="padding: 0.5rem 1.25rem; font-weight: 700;">
+            <button onclick="goToStep(4)" class="btn btn-primary" style="padding: 0.55rem 1.4rem; font-weight: 700;">
               Next: Select Time Slot &rarr;
             </button>
           </div>
@@ -476,13 +489,13 @@
         <div class="step-section" id="stepSection4">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: baseline;">
-              <h3 style="font-size: 1.12rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_step4">
+              <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_step4">
                 Step 4: Select Time Slot
               </h3>
-              <span style="font-size: 0.8rem; color: var(--text-muted);">Step 4 of 4</span>
+              <span class="badge badge-yellow" style="font-size: 0.75rem;">Step 4 of 4</span>
             </div>
             
-            <div style="display: flex; gap: 0.8rem; margin: 0.3rem 0 0.5rem; font-size: 0.78rem;">
+            <div style="display: flex; gap: 0.85rem; margin: 0.3rem 0 0.55rem; font-size: 0.8rem;">
               <span>🟢 Available</span>
               <span>🟡 Few Slots Left</span>
               <span>🔴 Full</span>
@@ -493,9 +506,9 @@
             </div>
           </div>
 
-          <div style="display: flex; justify-content: space-between; margin-top: 0.6rem;">
+          <div style="display: flex; justify-content: space-between; margin-top: 0.65rem;">
             <button onclick="goToStep(3)" class="btn btn-outline btn-sm">&larr; Back</button>
-            <button onclick="confirmSlotBooking()" class="btn btn-accent btn-sm" id="btnConfirmSlot" style="padding: 0.5rem 1.25rem; font-weight: 700;">
+            <button onclick="confirmSlotBooking()" class="btn btn-accent" id="btnConfirmSlot" style="padding: 0.55rem 1.4rem; font-weight: 700;">
               Confirm Slot 🚜
             </button>
           </div>
@@ -503,51 +516,51 @@
 
       </div>
 
-      <!-- Right Card: Live Booking Summary Panel -->
-      <div class="card booking-right-card" style="padding: 1.15rem 1.25rem; margin: 0; box-shadow: var(--shadow-sm); background: #FFFFFF;">
+      <!-- Right Column: Live Booking Summary Card -->
+      <div class="card booking-right-card" style="padding: 1.25rem 1.35rem; margin: 0; box-shadow: var(--shadow-sm); background: #FFFFFF;">
         <div>
-          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-light); padding-bottom: 0.6rem; margin-bottom: 0.75rem;">
-            <h4 style="font-size: 1.08rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_summary">Booking Summary</h4>
-            <span class="badge badge-blue" style="font-size: 0.72rem;">Live Preview</span>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-light); padding-bottom: 0.65rem; margin-bottom: 0.85rem;">
+            <h4 style="font-size: 1.12rem; font-weight: 800; color: var(--secondary); margin: 0;" data-i18n="book_summary">Booking Summary</h4>
+            <span class="badge badge-blue" style="font-size: 0.75rem;">Live Preview</span>
           </div>
 
-          <div style="display: flex; flex-direction: column; gap: 0.55rem; font-size: 0.88rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.9rem;">
             <div>
-              <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="sum_centre_label">Procurement Centre</div>
-              <div style="font-weight: 800; color: var(--secondary); line-height: 1.2;" id="sumCentre">Central Procurement Centre (APMC Yard)</div>
+              <div style="font-size: 0.74rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="sum_centre_label">Procurement Centre</div>
+              <div style="font-weight: 800; color: var(--secondary); line-height: 1.25;" id="sumCentre">Central Procurement Centre (APMC Yard)</div>
             </div>
 
             <div>
-              <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="sum_crop_label">Selected Crop & Quota</div>
+              <div style="font-size: 0.74rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="sum_crop_label">Selected Crop & Quota</div>
               <div style="font-weight: 800; color: var(--primary);" id="sumCommodity">Rice (Paddy) (~40 Qtl)</div>
             </div>
 
             <div style="display: flex; gap: 1rem;">
               <div style="flex: 1;">
-                <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="sum_date_label">Date</div>
+                <div style="font-size: 0.74rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="sum_date_label">Delivery Date</div>
                 <div style="font-weight: 800; color: var(--secondary);" id="sumDate">19 September 2026</div>
               </div>
               <div style="flex: 1;">
-                <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="sum_slot_label">Time Slot</div>
+                <div style="font-size: 0.74rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="sum_slot_label">Time Window</div>
                 <div style="font-weight: 800; color: var(--secondary);" id="sumSlot">11:00 AM</div>
               </div>
             </div>
 
-            <div style="background: var(--bg-main); border-radius: var(--radius-md); padding: 0.55rem 0.75rem; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; margin-top: 0.2rem;">
+            <div style="background: var(--bg-main); border-radius: var(--radius-md); padding: 0.65rem 0.85rem; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; margin-top: 0.35rem;">
               <div>
-                <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="est_token_label">Estimated Queue Token</div>
-                <div style="font-size: 0.78rem; color: var(--text-muted);">Est. Wait: <strong>~10 minutes</strong></div>
+                <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="est_token_label">Estimated Queue Token</div>
+                <div style="font-size: 0.82rem; color: var(--text-muted);">Est. Mandi Wait: <strong>~10 minutes</strong></div>
               </div>
-              <div style="font-size: 1.5rem; font-weight: 900; color: var(--accent);" id="sumEstQueue">~#19</div>
+              <div style="font-size: 1.6rem; font-weight: 900; color: var(--accent);" id="sumEstQueue">~#19</div>
             </div>
           </div>
         </div>
 
-        <div style="margin-top: 0.75rem; border-top: 1px solid var(--border-light); padding-top: 0.65rem;">
-          <button onclick="confirmSlotBooking()" class="btn btn-primary btn-block" style="padding: 0.65rem 1rem; font-size: 1rem; font-weight: 800;">
+        <div style="margin-top: 0.85rem; border-top: 1px solid var(--border-light); padding-top: 0.75rem;">
+          <button onclick="confirmSlotBooking()" class="btn btn-primary btn-block" style="padding: 0.75rem 1rem; font-size: 1.05rem; font-weight: 800;">
             Confirm Slot 🚜
           </button>
-          <div style="font-size: 0.72rem; color: var(--text-muted); text-align: center; margin-top: 0.35rem;">
+          <div style="font-size: 0.74rem; color: var(--text-muted); text-align: center; margin-top: 0.4rem;">
             Instant SMS confirmation & digital token pass issued.
           </div>
         </div>

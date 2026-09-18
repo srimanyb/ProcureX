@@ -146,18 +146,20 @@ body {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
   list-style: none;
+  flex-wrap: nowrap;
 }
 
 .nav-links a {
   text-decoration: none;
   color: var(--text-main);
   font-weight: 600;
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   padding: 0.5rem 0.75rem;
   border-radius: var(--radius-sm);
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .nav-links a:hover, .nav-links a.active {
