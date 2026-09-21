@@ -2,8 +2,43 @@
  * ProcureX - Procurement Timeline Renderer
  */
 
+// Require farmer authentication
+Session.requireFarmerAuth('procurement.html');
+
 async function loadProcurementTimeline() {
-  const bookingId = Session.getActiveBookingId() || 'PX10245';
+  const user = Session.getUser();
+  if (!user) return;
+
+  let bookingId = Session.getActiveBookingId();
+  if (!bookingId) {
+    try {
+      const profRes = await fetch(`${API_BASE}/farmers/profile/${user.farmerId}`);
+      const profData = await profRes.json();
+      if (profData.success && profData.latestBooking) {
+        bookingId = profData.latestBooking.bookingId;
+        Session.setActiveBookingId(bookingId);
+      }
+    } catch (e) {}
+  }
+
+  if (!bookingId) {
+    const container = document.getElementById('timelineContainer');
+    if (container) {
+      container.innerHTML = `
+        <div class="card" style="text-align: center; padding: 3rem 1.5rem;">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🚜</div>
+          <h3 style="font-weight: 800; color: var(--secondary);">No Active Procurement In Progress</h3>
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">You do not have an active mandi procurement appointment yet.</p>
+          <a href="booking.html" class="btn btn-primary">Book a Procurement Slot Now</a>
+        </div>
+      `;
+    }
+    document.getElementById('procCommodity').textContent = user.commodity || 'Not Selected';
+    document.getElementById('procWeight').textContent = '--';
+    document.getElementById('procGrade').textContent = 'Pending Inspection';
+    document.getElementById('procMoisture').textContent = '--';
+    return;
+  }
 
   try {
     const res = await fetch(`${API_BASE}/procurement/${bookingId}`);

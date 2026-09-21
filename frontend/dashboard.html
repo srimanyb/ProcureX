@@ -191,7 +191,7 @@
     <div class="container">
       <div class="footer-bottom">
         <div>© 2026 ProcureX – Smart Agricultural Procurement Platform. SIH 2026.</div>
-        <div><a href="javascript:void(0)" onclick="resetDemoData()" style="color:#94A3B8;">Reset Demo Data</a></div>
+        <div><a href="booking.html" style="color:#94A3B8;">Book a Slot</a> • <a href="login.html" onclick="logout()" style="color:#94A3B8;">Sign Out</a></div>
       </div>
     </div>
   </footer>
@@ -199,26 +199,22 @@
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
   <script>
+    // Enforce authentication: Farmer MUST be logged in
+    const user = Session.requireFarmerAuth();
+
     async function changeFarmerLanguage(newLang) {
       await I18N.setLang(newLang);
-      const user = Session.getUser();
-      if (user) {
-        user.language = newLang;
-        Session.setUser(user);
-        document.getElementById('farmerWelcomeTitle').textContent = `${I18N.t('dash_welcome')}, ${user.name}`;
+      const activeUser = Session.getUser();
+      if (activeUser) {
+        activeUser.language = newLang;
+        Session.setUser(activeUser);
+        document.getElementById('farmerWelcomeTitle').textContent = `${I18N.t('dash_welcome')}, ${activeUser.name}`;
       }
       showToast('Language Updated', `Website display updated to ${newLang.toUpperCase()}`, 'success');
     }
 
     async function loadDashboardData() {
-      const user = Session.getUser() || {
-        name: 'Ramesh Kumar',
-        farmerId: 'FARM1024',
-        village: 'Chandur Railway',
-        district: 'Amravati',
-        commodity: 'Rice',
-        language: 'en'
-      };
+      if (!user) return;
 
       // Set language dropdown to user's saved preference
       const activeLang = user.language || I18N.getLang() || 'en';
@@ -227,9 +223,40 @@
 
       // Set user title
       document.getElementById('farmerWelcomeTitle').textContent = `${I18N.t('dash_welcome')}, ${user.name}`;
-      document.getElementById('farmerProfileSubtitle').innerHTML = `Farmer ID: <strong>${user.farmerId}</strong> • Village: ${user.village || 'Chandur Railway'} • District: ${user.district || 'Amravati'}`;
+      document.getElementById('farmerProfileSubtitle').innerHTML = `Farmer ID: <strong>${user.farmerId}</strong> • Village: ${user.village || 'Registered Mandi Region'} • District: ${user.district || 'APMC Jurisdiction'}`;
 
-      const bookingId = Session.getActiveBookingId() || 'PX10245';
+      let bookingId = Session.getActiveBookingId();
+
+      // If no active booking in session, query the farmer's profile from the server
+      if (!bookingId) {
+        try {
+          const profRes = await fetch(`${API_BASE}/farmers/profile/${user.farmerId}`);
+          const profData = await profRes.json();
+          if (profData.success && profData.latestBooking) {
+            bookingId = profData.latestBooking.bookingId;
+            Session.setActiveBookingId(bookingId);
+          }
+        } catch (e) {
+          console.warn('Profile fetch notice:', e);
+        }
+      }
+
+      if (!bookingId) {
+        // Farmer has no bookings yet
+        document.getElementById('cardBookingId').textContent = 'No Active Slot';
+        document.getElementById('activeBookingBadge').textContent = 'No Booking Yet';
+        document.getElementById('cardCentreName').textContent = user.preferredCentre || 'Select a centre';
+        document.getElementById('cardCommodity').textContent = user.commodity || 'Select produce';
+        document.getElementById('cardSlotTime').textContent = 'Click Book New Slot to schedule';
+        document.getElementById('summarySlotTime').textContent = 'Not Scheduled';
+        document.getElementById('summarySlotHour').textContent = 'Book your harvest slot';
+        document.getElementById('summaryQueuePos').textContent = '--';
+        document.getElementById('summaryQueueAhead').textContent = 'No queue assigned yet';
+        document.getElementById('summaryProcStatus').textContent = 'Pending Booking';
+        document.getElementById('summaryPayStatus').textContent = 'Pending';
+        document.getElementById('summaryPayAmt').textContent = '₹0.00 • Post Procurement';
+        return;
+      }
 
       try {
         // 1. Fetch booking info
@@ -243,7 +270,7 @@
           document.getElementById('cardCommodity').textContent = b.commodity;
           document.getElementById('cardSlotTime').textContent = `${b.date}, ${b.slot}`;
           document.getElementById('summarySlotTime').textContent = b.date;
-          document.getElementById('summarySlotHour').textContent = `${b.slot} • Morning Window`;
+          document.getElementById('summarySlotHour').textContent = `${b.slot} • Allocated Window`;
         }
 
         // 2. Fetch live queue
@@ -269,7 +296,7 @@
           document.getElementById('summaryPayAmt').textContent = `₹${payData.payment.totalAmount.toLocaleString('en-IN')} • ${payData.payment.paymentMode}`;
         }
       } catch (err) {
-        console.warn('Backend fetch note:', err);
+        console.warn('Backend fetch notice:', err);
       }
     }
 

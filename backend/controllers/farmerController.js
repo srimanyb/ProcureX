@@ -81,7 +81,7 @@ exports.loginFarmer = async (req, res) => {
     if (!farmer) {
       return res.status(404).json({
         success: false,
-        message: 'Farmer not found. Please register first or use Demo Farmer login.'
+        message: 'Farmer not found. Please check your Mobile Number or Farmer ID, or register first.'
       });
     }
 

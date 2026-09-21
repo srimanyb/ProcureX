@@ -55,24 +55,6 @@
   </header>
 
   <div class="login-container">
-    <!-- 1-Click Demo Login Box -->
-    <div class="card" style="background: #FEF3C7; border-color: #FCD34D; margin-bottom: 1.5rem; text-align: center;">
-      <div style="font-weight: 800; color: #92400E; margin-bottom: 0.35rem; font-size: 1.05rem;">
-        ⚡ Instant SIH Demo Login
-      </div>
-      <p style="font-size: 0.88rem; color: #78350F; margin-bottom: 0.85rem;">
-        One-click access with pre-configured live booking data
-      </p>
-      <div style="display: flex; gap: 0.5rem; flex-direction: column;">
-        <button onclick="loginAsDemoFarmer()" class="btn btn-primary btn-block">
-          👤 Log In as Demo Farmer (Ramesh Kumar)
-        </button>
-        <button onclick="loginAsDemoCentre()" class="btn btn-secondary btn-block">
-          🏢 Log In as Centre Staff (Central Procurement)
-        </button>
-      </div>
-    </div>
-
     <!-- Login Form Card -->
     <div class="card">
       <div class="login-tabs">
@@ -84,8 +66,8 @@
       <form id="farmerLoginForm">
         <div class="form-group">
           <label class="form-label" for="farmerIdentifier">Mobile Number or Farmer ID</label>
-          <input type="text" id="farmerIdentifier" class="form-control" placeholder="e.g. 9876543210 or FARM1024" required>
-          <div class="form-help">Demo ID: <code>FARM1024</code> or Mobile: <code>9876543210</code></div>
+          <input type="text" id="farmerIdentifier" class="form-control" placeholder="Enter Mobile Number (e.g. 9876543210) or Farmer ID" required autofocus>
+          <div class="form-help">Enter your registered 10-digit mobile number or unique Farmer ID</div>
         </div>
 
         <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 1.5rem;">
@@ -109,12 +91,12 @@
 
         <div class="form-group">
           <label class="form-label">Staff Officer ID</label>
-          <input type="text" class="form-control" id="staffId" value="STAFF-AMR-09" required>
+          <input type="text" class="form-control" id="staffId" placeholder="e.g. STAFF-AMR-09" required>
         </div>
 
         <div class="form-group">
           <label class="form-label">Password / PIN</label>
-          <input type="password" class="form-control" id="staffPassword" value="demo123" required>
+          <input type="password" class="form-control" id="staffPassword" placeholder="Enter staff security PIN" required>
         </div>
 
         <button type="submit" class="btn btn-secondary btn-block btn-lg" style="margin-top: 1.5rem;">
@@ -152,6 +134,11 @@
       switchLoginTab('centre');
     }
 
+    // Check if redirected from a protected page
+    if (urlParams.get('msg') === 'login_required') {
+      showToast('Login Required', 'Please log in with your farmer credentials to continue.', 'warning');
+    }
+
     // Handle Farmer Login Form
     document.getElementById('farmerLoginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -166,9 +153,15 @@
         if (data.success) {
           Session.setUser(data.farmer);
           Session.setRole('farmer');
-          if (data.activeBookingId) Session.setActiveBookingId(data.activeBookingId);
+          if (data.activeBookingId) {
+            Session.setActiveBookingId(data.activeBookingId);
+          } else {
+            Session.setActiveBookingId(null);
+          }
           showToast('Success', `Welcome back, ${data.farmer.name}!`, 'success');
-          setTimeout(() => { window.location.href = 'dashboard.html'; }, 500);
+          const postRedirect = urlParams.get('redirect') || sessionStorage.getItem('post_login_redirect') || 'dashboard.html';
+          sessionStorage.removeItem('post_login_redirect');
+          setTimeout(() => { window.location.href = postRedirect; }, 400);
         } else {
           showToast('Login Failed', data.message, 'warning');
         }
@@ -180,7 +173,14 @@
     // Handle Centre Login Form
     document.getElementById('centreLoginForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      loginAsDemoCentre();
+      const centreId = document.getElementById('centreSelect').value;
+      const staffId = document.getElementById('staffId').value.trim();
+      Session.setUser({ name: staffId || 'Officer', centreId: centreId, role: 'centre' });
+      Session.setRole('centre');
+      showToast('Success', 'Logged in as Centre Staff', 'success');
+      const postRedirect = urlParams.get('redirect') || sessionStorage.getItem('post_login_redirect') || 'centre-dashboard.html';
+      sessionStorage.removeItem('post_login_redirect');
+      setTimeout(() => { window.location.href = postRedirect; }, 400);
     });
   </script>
 </body>

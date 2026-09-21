@@ -1065,37 +1065,249 @@ body {
 /* ==========================================================================
    Receipt / Pass Card (Confirmation)
    ========================================================================== */
+.pass-page-container {
+  padding-top: 2.5rem;
+  padding-bottom: 3.5rem;
+}
+
 .procurement-pass {
   background: #FFFFFF;
   border: 2px dashed var(--primary);
   border-radius: var(--radius-xl);
-  padding: 2.5rem;
+  padding: 2rem 2.25rem;
   box-shadow: var(--shadow-lg);
-  max-width: 650px;
+  max-width: 680px;
   margin: 0 auto;
   position: relative;
 }
 
-.pass-header {
-  text-align: center;
+.pass-brand-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border-bottom: 2px solid var(--border-light);
-  padding-bottom: 1.5rem;
-  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+}
+
+.pass-brand-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pass-brand-icon {
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: #DCFCE7;
+  border-radius: var(--radius-md);
+  border: 1px solid #86EFAC;
+}
+
+.pass-brand-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--secondary);
+  line-height: 1.2;
+}
+
+.pass-brand-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.pass-gate-pill {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 0.35rem 0.85rem;
+  background: #F0FDF4;
+  color: var(--primary);
+  border: 1.5px solid #86EFAC;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pass-status-row {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.pass-status-badge {
+  font-size: 1rem;
+  padding: 0.35rem 1.25rem;
+}
+
+.pass-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--secondary);
+  margin-top: 0.6rem;
+  margin-bottom: 0.25rem;
+}
+
+.pass-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.pass-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.15rem;
+  margin-bottom: 1.35rem;
+  background: var(--bg-main);
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.pass-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.pass-cell-wide {
+  grid-column: 1 / -1;
+}
+
+.pass-cell-highlight {
+  background: #FFFFFF;
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid #E2E8F0;
+}
+
+.pass-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.pass-val {
+  font-weight: 700;
+  color: var(--secondary);
+  font-size: 1.05rem;
+}
+
+.pass-val-booking {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.pass-val-token {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+.pass-verification-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.pass-qr-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .pass-qr-box {
-  width: 140px;
-  height: 140px;
+  width: 96px;
+  height: 96px;
   border: 2px solid var(--secondary);
   border-radius: var(--radius-md);
-  margin: 1.5rem auto 1rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #F8FAFC;
-  font-size: 0.8rem;
+  background: #FFFFFF;
+  padding: 4px;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.pass-qr-box svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.qr-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+.pass-qr-info {
+  max-width: 280px;
+}
+
+.pass-instructions-block {
+  background: #FFFBEB;
+  border: 1px solid #FDE68A;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.1rem;
+  margin-top: 1.25rem;
+}
+
+.instructions-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #92400E;
+  margin-bottom: 0.3rem;
+}
+
+.instructions-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.78rem;
+  color: #78350F;
+  line-height: 1.45;
+}
+
+.pass-security-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px dashed var(--border);
+  padding-top: 0.75rem;
+  margin-top: 1.25rem;
+  font-size: 0.74rem;
   color: var(--text-muted);
+}
+
+.security-barcode {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 0.82rem;
+  color: #334155;
+}
+
+.pass-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 /* ==========================================================================
@@ -1302,5 +1514,269 @@ body {
   }
   .booking-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Print Stylesheet - One-Page Vertical Appointment Pass
+   ========================================================================== */
+@page {
+  size: portrait;
+  margin: 8mm 10mm;
+}
+
+@media print {
+  /* 1. Hide non-printable layout elements */
+  .site-header,
+  .site-footer,
+  .no-print,
+  .pass-actions,
+  .pass-print-btn-holder,
+  #navAuthContainer,
+  .notification-bell-btn,
+  .notification-drawer,
+  .notification-overlay,
+  .floating-controls,
+  button,
+  .btn {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* 2. Reset html and body */
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+    width: 100% !important;
+    height: auto !important;
+    font-size: 9.5pt !important;
+    line-height: 1.25 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .pass-page-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* 3. The Appointment Pass Card: guaranteed 1-page fit */
+  .procurement-pass {
+    box-shadow: none !important;
+    border: 2px solid #166534 !important;
+    border-radius: 8px !important;
+    padding: 12px 16px !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    background: #FFFFFF !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    page-break-after: avoid !important;
+    page-break-before: avoid !important;
+  }
+
+  .pass-brand-banner {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding-bottom: 6px !important;
+    margin-bottom: 8px !important;
+    border-bottom: 1.5px solid #CBD5E1 !important;
+  }
+
+  .pass-brand-icon {
+    font-size: 1.3rem !important;
+    width: 32px !important;
+    height: 32px !important;
+    background: #DCFCE7 !important;
+    border: 1px solid #86EFAC !important;
+  }
+
+  .pass-brand-title {
+    font-size: 1.05rem !important;
+    color: #166534 !important;
+    font-weight: 800 !important;
+    line-height: 1.15 !important;
+  }
+
+  .pass-brand-subtitle {
+    font-size: 0.68rem !important;
+    color: #64748B !important;
+  }
+
+  .pass-gate-pill {
+    font-size: 0.68rem !important;
+    padding: 2px 8px !important;
+    background: #DCFCE7 !important;
+    color: #166534 !important;
+    border: 1px solid #86EFAC !important;
+    border-radius: 9999px !important;
+  }
+
+  .pass-status-row {
+    text-align: center !important;
+    margin-bottom: 8px !important;
+  }
+
+  .pass-status-badge {
+    font-size: 0.8rem !important;
+    padding: 2px 10px !important;
+    background: #DCFCE7 !important;
+    color: #15803D !important;
+    border: 1px solid #86EFAC !important;
+  }
+
+  .pass-title {
+    font-size: 1.3rem !important;
+    font-weight: 800 !important;
+    color: #0F172A !important;
+    margin: 4px 0 2px 0 !important;
+  }
+
+  .pass-subtitle {
+    font-size: 0.76rem !important;
+    color: #64748B !important;
+    margin: 0 !important;
+  }
+
+  .pass-details-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 6px 12px !important;
+    margin-bottom: 8px !important;
+    background: #F8FAFC !important;
+    padding: 8px 12px !important;
+    border-radius: 6px !important;
+    border: 1px solid #CBD5E1 !important;
+  }
+
+  .pass-cell {
+    padding: 1px 0 !important;
+  }
+
+  .pass-cell-wide {
+    grid-column: 1 / -1 !important;
+  }
+
+  .pass-cell-highlight {
+    background: #F0FDF4 !important;
+    border: 1px solid #BBF7D0 !important;
+    padding: 3px 6px !important;
+  }
+
+  .pass-label {
+    font-size: 0.66rem !important;
+    color: #64748B !important;
+    font-weight: 700 !important;
+    margin-bottom: 1px !important;
+  }
+
+  .pass-val {
+    font-size: 0.88rem !important;
+    font-weight: 700 !important;
+    color: #0F172A !important;
+  }
+
+  .pass-val-booking {
+    font-size: 1.15rem !important;
+    font-weight: 900 !important;
+    color: #15803D !important;
+  }
+
+  .pass-val-token {
+    font-size: 1.15rem !important;
+    font-weight: 900 !important;
+    color: #C2410C !important;
+  }
+
+  .pass-verification-section {
+    display: flex !important;
+    align-items: center !important;
+    border-top: 1px solid #CBD5E1 !important;
+    padding-top: 6px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .pass-qr-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .pass-qr-box {
+    width: 76px !important;
+    height: 76px !important;
+    padding: 2px !important;
+    border: 1.5px solid #166534 !important;
+    background: #FFFFFF !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+  }
+
+  .pass-qr-box svg {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+  }
+
+  .pass-qr-info strong {
+    font-size: 0.85rem !important;
+  }
+
+  .pass-qr-info p {
+    font-size: 0.72rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .pass-instructions-block {
+    display: block !important;
+    background: #FFFBEB !important;
+    border: 1px solid #FDE68A !important;
+    border-radius: 6px !important;
+    padding: 6px 10px !important;
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .instructions-title {
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    color: #92400E !important;
+    margin-bottom: 2px !important;
+  }
+
+  .instructions-list {
+    margin: 0 !important;
+    padding-left: 14px !important;
+    font-size: 0.68rem !important;
+    color: #78350F !important;
+    line-height: 1.3 !important;
+  }
+
+  .pass-security-footer {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    border-top: 1px dashed #CBD5E1 !important;
+    padding-top: 4px !important;
+    margin-top: 6px !important;
+    font-size: 0.64rem !important;
+    color: #64748B !important;
+  }
+
+  .security-barcode {
+    font-size: 0.7rem !important;
+    letter-spacing: 2px !important;
+    color: #1E293B !important;
   }
 }

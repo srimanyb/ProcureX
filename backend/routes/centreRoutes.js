@@ -8,5 +8,9 @@ router.post('/start-procurement', centreController.startProcurement);
 router.post('/complete-procurement', centreController.completeProcurement);
 router.post('/update-payment', centreController.updatePaymentStatusFromCentre);
 router.get('/analytics', centreController.getCentreAnalytics);
+router.get('/scan-pass/:bookingId', centreController.scanVerifyPass);
+router.get('/scan-pass', centreController.scanVerifyPass);
+router.post('/scan-pass', centreController.scanVerifyPass);
+router.post('/admit-farmer', centreController.admitFarmer);
 
 module.exports = router;

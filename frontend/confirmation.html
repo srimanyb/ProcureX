@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Booking Confirmation – ProcureX</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    @page {
+      size: portrait;
+      margin: 8mm 10mm;
+    }
+  </style>
 </head>
 <body>
 
@@ -22,89 +28,129 @@
     </div>
   </header>
 
-  <div class="container" style="padding-top: 3rem; padding-bottom: 4rem;">
+  <div class="container pass-page-container">
     <!-- Visual Procurement Pass / Ticket Card -->
     <div class="procurement-pass">
-      <div class="pass-header">
-        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎉</div>
-        <span class="badge badge-green" style="font-size: 1.1rem; padding: 0.4rem 1.25rem;">
+      <!-- Official Pass Branding Header (Both Screen & Print) -->
+      <div class="pass-brand-banner">
+        <div class="pass-brand-left">
+          <div class="pass-brand-icon">🌾</div>
+          <div>
+            <div class="pass-brand-title">ProcureX Mandi Token System</div>
+            <div class="pass-brand-subtitle">Govt. Agricultural Procurement & Queue Management</div>
+          </div>
+        </div>
+        <div class="pass-brand-right">
+          <span class="pass-gate-pill">GATE ENTRY PASS</span>
+        </div>
+      </div>
+
+      <!-- Confirmation Status Row -->
+      <div class="pass-status-row">
+        <span class="badge badge-green pass-status-badge">
           ✓ SLOT CONFIRMED
         </span>
-        <h2 style="font-size: 1.85rem; font-weight: 800; color: var(--secondary); margin-top: 0.75rem;">
+        <h2 class="pass-title">
           Procurement Appointment Pass
         </h2>
-        <p style="color: var(--text-muted); font-size: 0.95rem;">
-          Please carry this digital pass or SMS confirmation when arriving at the mandi.
+        <p class="pass-subtitle">
+          Please carry this digital pass or printed copy when arriving at the mandi.
         </p>
       </div>
 
       <!-- Pass Key Grid -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; background: var(--bg-main); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border);">
-        <div>
-          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Booking ID</div>
-          <div style="font-size: 1.4rem; font-weight: 900; color: var(--primary);" id="confBookingId">PX10245</div>
+      <div class="pass-details-grid">
+        <div class="pass-cell pass-cell-highlight">
+          <span class="pass-label">Booking ID</span>
+          <span class="pass-val pass-val-booking" id="confBookingId">PX10245</span>
         </div>
 
-        <div>
-          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Queue Token Number</div>
-          <div style="font-size: 1.4rem; font-weight: 900; color: var(--accent);" id="confQueueNumber">#18</div>
+        <div class="pass-cell pass-cell-highlight">
+          <span class="pass-label">Queue Token Number</span>
+          <span class="pass-val pass-val-token" id="confQueueNumber">#18</span>
         </div>
 
-        <div>
-          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Farmer Name</div>
-          <div style="font-weight: 700; color: var(--secondary); font-size: 1.05rem;" id="confFarmerName">Ramesh Kumar</div>
+        <div class="pass-cell">
+          <span class="pass-label">Farmer Name</span>
+          <span class="pass-val" id="confFarmerName">Ramesh Kumar</span>
         </div>
 
-        <div>
-          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Commodity</div>
-          <div style="font-weight: 700; color: var(--secondary); font-size: 1.05rem;" id="confCommodity">Rice</div>
+        <div class="pass-cell">
+          <span class="pass-label">Commodity</span>
+          <span class="pass-val" id="confCommodity">Rice</span>
         </div>
 
-        <div style="grid-column: 1 / -1;">
-          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Procurement Centre</div>
-          <div style="font-weight: 700; color: var(--secondary); font-size: 1.05rem;" id="confCentre">Central Procurement Centre</div>
+        <div class="pass-cell pass-cell-wide">
+          <span class="pass-label">Procurement Centre</span>
+          <span class="pass-val" id="confCentre">Central Procurement Centre</span>
         </div>
 
-        <div>
-          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Scheduled Date</div>
-          <div style="font-weight: 700; color: var(--secondary); font-size: 1.05rem;" id="confDate">19 September 2026</div>
+        <div class="pass-cell">
+          <span class="pass-label">Scheduled Date</span>
+          <span class="pass-val" id="confDate">19 September 2026</span>
         </div>
 
-        <div>
-          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Allocated Time Slot</div>
-          <div style="font-weight: 700; color: var(--secondary); font-size: 1.05rem;" id="confTime">10:00 AM</div>
+        <div class="pass-cell">
+          <span class="pass-label">Allocated Time Slot</span>
+          <span class="pass-val" id="confTime">10:00 AM</span>
         </div>
 
-        <div>
-          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Booking Status</div>
-          <div><span class="badge badge-green" id="confStatus">Confirmed</span></div>
+        <div class="pass-cell">
+          <span class="pass-label">Booking Status</span>
+          <span class="pass-val"><span class="badge badge-green" id="confStatus">Confirmed</span></span>
         </div>
 
-        <div>
-          <div style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Estimated Quantity</div>
-          <div style="font-weight: 700; color: var(--secondary); font-size: 1.05rem;" id="confQuantity">42.5 Quintals</div>
+        <div class="pass-cell">
+          <span class="pass-label">Estimated Quantity</span>
+          <span class="pass-val" id="confQuantity">42.5 Quintals</span>
         </div>
       </div>
 
       <!-- QR Representation & Verification Note -->
-      <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 1.5rem; flex-wrap: wrap; gap: 1rem;">
-        <div style="display: flex; align-items: center; gap: 1rem;">
-          <div class="pass-qr-box" style="margin: 0; width: 100px; height: 100px;">
-            <div style="font-size: 2rem;">📲</div>
-            <div style="font-weight: 700;">Mandi QR</div>
+      <div class="pass-verification-section">
+        <div class="pass-qr-wrapper">
+          <div class="pass-qr-box" id="passQrContainer" title="ProcureX Mandi Token QR">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" shape-rendering="crispEdges">
+              <path fill="#ffffff" d="M0 0h35v35H0z"/>
+              <path stroke="#000000" d="M1 1.5h7m5 0h1m3 0h1m1 0h2m3 0h1m2 0h7M1 2.5h1m5 0h1m3 0h1m1 0h1m2 0h2m1 0h1m2 0h1m2 0h1m1 0h1m5 0h1M1 3.5h1m1 0h3m1 0h1m1 0h3m1 0h1m1 0h3m4 0h1m2 0h1m1 0h1m1 0h3m1 0h1M1 4.5h1m1 0h3m1 0h1m1 0h1m9 0h1m2 0h1m1 0h1m2 0h1m1 0h3m1 0h1M1 5.5h1m1 0h3m1 0h1m1 0h5m1 0h4m2 0h1m1 0h1m3 0h1m1 0h3m1 0h1M1 6.5h1m5 0h1m1 0h1m8 0h1m1 0h1m2 0h1m1 0h1m1 0h1m5 0h1M1 7.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M9 8.5h1m5 0h1m1 0h1m2 0h4m1 0h1M1 9.5h1m1 0h5m5 0h3m2 0h1m1 0h2m1 0h1m1 0h1m1 0h5M1 10.5h1m1 0h1m1 0h2m1 0h3m1 0h4m1 0h4m1 0h3m2 0h1m2 0h2m1 0h1M1 11.5h1m5 0h1m2 0h3m1 0h3m1 0h1m3 0h1m2 0h3m1 0h1m1 0h2M1 12.5h1m1 0h1m2 0h1m2 0h2m2 0h2m3 0h2m2 0h1m6 0h5M2 13.5h1m4 0h3m1 0h1m1 0h1m1 0h3m3 0h2m1 0h1m3 0h3m1 0h2M5 14.5h2m1 0h7m1 0h1m2 0h1m2 0h2m2 0h2m2 0h1m1 0h2M1 15.5h1m3 0h1m1 0h1m1 0h5m1 0h5m1 0h1m4 0h2m4 0h1M1 16.5h1m1 0h2m1 0h1m1 0h1m1 0h2m1 0h1m1 0h2m5 0h2m5 0h1m1 0h1M1 17.5h2m2 0h4m2 0h3m1 0h4m2 0h1m1 0h4m1 0h2m3 0h1M1 18.5h3m2 0h1m1 0h1m3 0h1m1 0h1m2 0h1m1 0h2m1 0h3m2 0h2m1 0h2m1 0h1M1 19.5h1m2 0h2m1 0h3m1 0h2m1 0h4m1 0h1m2 0h2m2 0h2m1 0h1m1 0h2M2 20.5h3m1 0h1m1 0h3m1 0h1m1 0h1m1 0h1m5 0h1m2 0h3m1 0h4M1 21.5h1m2 0h2m1 0h1m1 0h3m1 0h3m3 0h1m3 0h1m2 0h1m1 0h3m2 0h1M1 22.5h2m1 0h2m3 0h1m1 0h2m1 0h1m1 0h3m2 0h2m1 0h2m1 0h1m2 0h1m2 0h1M1 23.5h1m1 0h1m1 0h3m1 0h2m7 0h1m1 0h1m1 0h2m1 0h4m3 0h1M1 24.5h1m2 0h2m2 0h1m1 0h4m3 0h1m2 0h3m3 0h2m2 0h3M1 25.5h1m1 0h2m2 0h1m4 0h3m3 0h1m1 0h2m3 0h5m2 0h2M9 26.5h1m2 0h3m2 0h4m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1M1 27.5h7m2 0h1m1 0h2m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m1 0h1m1 0h2M1 28.5h1m5 0h1m1 0h1m4 0h1m2 0h3m1 0h2m1 0h2m3 0h1m1 0h1M1 29.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m4 0h2m1 0h6m1 0h1M1 30.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h4m1 0h2m3 0h2m1 0h1m1 0h2m3 0h1M1 31.5h1m1 0h3m1 0h1m1 0h2m1 0h7m6 0h1m1 0h2m2 0h1M1 32.5h1m5 0h1m2 0h1m1 0h1m2 0h2m2 0h2m1 0h1m4 0h5M1 33.5h7m1 0h4m2 0h2m1 0h1m1 0h2m2 0h3m1 0h3m1 0h1"/>
+            </svg>
           </div>
-          <div style="font-size: 0.85rem; color: var(--text-muted); max-width: 260px;">
-            Scan at APMC Security Gate 2 for automated barrier entry & token validation.
+          <div class="pass-qr-info">
+            <strong style="color: var(--secondary); display: block; font-size: 0.95rem; margin-bottom: 2px;">Automated Gate & Weighbridge Token</strong>
+            <p style="margin: 0; color: var(--text-muted); font-size: 0.85rem; line-height: 1.35;">
+              Official Mandi QR Code: Scan at Security Gate 2 for automated barrier entry & token validation.
+            </p>
           </div>
         </div>
 
-        <button onclick="window.print()" class="btn btn-outline btn-sm">
-          🖨️ Print Pass
-        </button>
+        <div class="pass-print-btn-holder no-print">
+          <button onclick="window.print()" class="btn btn-outline btn-sm">
+            🖨️ Print Pass
+          </button>
+        </div>
       </div>
 
-      <!-- Action Buttons -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
+      <!-- Mandatory Arrival Guidelines Block -->
+      <div class="pass-instructions-block">
+        <div class="instructions-title">📋 Important Instructions for Mandi Arrival:</div>
+        <ol class="instructions-list">
+          <li><strong>Reporting Time:</strong> Please arrive 15 minutes prior to your allocated slot at Mandi Gate 2.</li>
+          <li><strong>Verification Documents:</strong> Carry Aadhaar Card/Farmer ID and land/crop registration records.</li>
+          <li><strong>Procurement Entry:</strong> Show this digital or printed pass for weighbridge entry clearance.</li>
+        </ol>
+      </div>
+
+      <!-- Security / System Footer on Pass -->
+      <div class="pass-security-footer">
+        <div class="security-meta">
+          <span>Official E-Token • ProcureX APMC Network</span> •
+          <span>No Physical Signature Required</span>
+        </div>
+        <div class="security-barcode" aria-hidden="true">||| | |||| | ||||| || ||| |||| | ||| |||||</div>
+      </div>
+
+      <!-- Action Buttons (Screen Only) -->
+      <div class="pass-actions no-print">
         <a href="queue.html" class="btn btn-primary btn-lg" style="text-align: center;">
           View Live Queue ⚡
         </a>
@@ -126,10 +172,37 @@
 
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/qrcode.min.js"></script>
   <script>
+    function renderPassQRCode(bookingId) {
+      const qrContainer = document.getElementById('passQrContainer');
+      if (!qrContainer) return;
+      const targetId = bookingId || 'PX10245';
+      const qrData = `${window.location.origin}/confirmation.html?id=${encodeURIComponent(targetId)}`;
+
+      if (typeof QRCode !== 'undefined' && QRCode.toString) {
+        QRCode.toString(qrData, {
+          type: 'svg',
+          margin: 1,
+          color: {
+            dark: '#000000',
+            light: '#FFFFFF'
+          },
+          errorCorrectionLevel: 'M'
+        }, function (err, svg) {
+          if (!err && svg) {
+            qrContainer.innerHTML = svg;
+          }
+        });
+      }
+    }
+
     async function loadConfirmation() {
       const urlParams = new URLSearchParams(window.location.search);
       const bookingId = urlParams.get('id') || Session.getActiveBookingId() || 'PX10245';
+
+      // Generate accurate QR code for this booking
+      renderPassQRCode(bookingId);
 
       try {
         const res = await fetch(`${API_BASE}/bookings/${bookingId}`);
@@ -145,6 +218,7 @@
           document.getElementById('confTime').textContent = b.slot;
           document.getElementById('confStatus').textContent = b.status;
           document.getElementById('confQuantity').textContent = `${b.estimatedQuantity || 42.5} Quintals`;
+          renderPassQRCode(b.bookingId);
         }
       } catch (err) {
         console.error(err);

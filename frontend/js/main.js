@@ -16,24 +16,63 @@ const Session = {
     }
   },
   setUser(user) {
-    localStorage.setItem('procurex_user', JSON.stringify(user));
+    if (user) {
+      localStorage.setItem('procurex_user', JSON.stringify(user));
+    } else {
+      localStorage.removeItem('procurex_user');
+    }
   },
   getRole() {
-    return localStorage.getItem('procurex_role') || (this.getUser() ? 'farmer' : null);
+    const user = this.getUser();
+    return localStorage.getItem('procurex_role') || (user ? (user.role || 'farmer') : null);
   },
   setRole(role) {
-    localStorage.setItem('procurex_role', role);
+    if (role) {
+      localStorage.setItem('procurex_role', role);
+    } else {
+      localStorage.removeItem('procurex_role');
+    }
   },
   getActiveBookingId() {
-    return localStorage.getItem('procurex_booking_id') || 'PX10245';
+    return localStorage.getItem('procurex_booking_id') || null;
   },
   setActiveBookingId(id) {
-    localStorage.setItem('procurex_booking_id', id);
+    if (id) {
+      localStorage.setItem('procurex_booking_id', id);
+    } else {
+      localStorage.removeItem('procurex_booking_id');
+    }
   },
   clear() {
     localStorage.removeItem('procurex_user');
     localStorage.removeItem('procurex_role');
     localStorage.removeItem('procurex_booking_id');
+    sessionStorage.removeItem('post_login_redirect');
+  },
+  isLoggedIn() {
+    return !!this.getUser();
+  },
+  requireFarmerAuth(target) {
+    const user = this.getUser();
+    const role = this.getRole();
+    if (!user || role !== 'farmer') {
+      const current = target || (window.location.pathname.split('/').pop() || 'dashboard.html');
+      sessionStorage.setItem('post_login_redirect', current);
+      window.location.replace(`login.html?msg=login_required&redirect=${encodeURIComponent(current)}`);
+      return null;
+    }
+    return user;
+  },
+  requireCentreAuth(target) {
+    const user = this.getUser();
+    const role = this.getRole();
+    if (!user || role !== 'centre') {
+      const current = target || (window.location.pathname.split('/').pop() || 'centre-dashboard.html');
+      sessionStorage.setItem('post_login_redirect', current);
+      window.location.replace(`login.html?tab=centre&msg=login_required&redirect=${encodeURIComponent(current)}`);
+      return null;
+    }
+    return user;
   }
 };
 
@@ -118,82 +157,15 @@ function showToast(title, message, type = 'info') {
   }
 }
 
-// 1-Click Demo Actions
-async function loginAsDemoFarmer() {
-  try {
-    const res = await fetch(`${API_BASE}/farmers/login`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ identifier: 'FARM1024' })
-    });
-    const data = await res.json();
-    if (data.success) {
-      Session.setUser(data.farmer);
-      Session.setRole('farmer');
-      Session.setActiveBookingId('PX10245');
-      showToast('Welcome!', 'Logged in as Demo Farmer: Ramesh Kumar', 'success');
-      setTimeout(() => {
-        window.location.href = 'dashboard.html';
-      }, 500);
-    } else {
-      showToast('Error', data.message || 'Could not load demo farmer', 'warning');
-    }
-  } catch (err) {
-    console.error(err);
-    // Offline / fallback fallback
-    Session.setUser({
-      name: 'Ramesh Kumar',
-      farmerId: 'FARM1024',
-      mobile: '9876543210',
-      commodity: 'Rice',
-      preferredCentre: 'Central Procurement Centre (APMC Yard)'
-    });
-    Session.setRole('farmer');
-    Session.setActiveBookingId('PX10245');
-    window.location.href = 'dashboard.html';
-  }
-}
-
-function loginAsDemoCentre() {
-  Session.setUser({
-    name: 'Officer Rajesh Deshmukh',
-    role: 'centre_staff',
-    centreId: 'CPC-01',
-    centreName: 'Central Procurement Centre (APMC Yard)'
-  });
-  Session.setRole('centre');
-  showToast('Welcome!', 'Logged in as Central Procurement Staff', 'success');
-  setTimeout(() => {
-    window.location.href = 'centre-dashboard.html';
-  }, 500);
-}
-
+// Standard Authentication Actions
 function logout() {
   Session.clear();
   showToast('Logged Out', 'You have been logged out successfully', 'info');
   setTimeout(() => {
-    window.location.href = 'index.html';
+    window.location.href = 'login.html';
   }, 400);
 }
 
-async function resetDemoData() {
-  if (!confirm('Reset all demo data (bookings, queue, procurement status) to initial SIH 2026 state?')) {
-    return;
-  }
-  try {
-    const res = await fetch(`${API_BASE}/demo/reset`, { method: 'POST' });
-    const data = await res.json();
-    if (data.success) {
-      showToast('Demo Reset', 'System dataset restored to initial state.', 'success');
-      setTimeout(() => {
-        window.location.reload();
-      }, 800);
-    }
-  } catch (err) {
-    console.error(err);
-    showToast('Reset Notice', 'Demo data refreshed.', 'info');
-  }
-}
 
 // Update Top Navigation Bar Based on Role & Session
 function setupNavbar() {
@@ -209,11 +181,41 @@ function setupNavbar() {
     });
   }
 
+  // Dynamic Navigation Links based on session:
+  // Anonymous/Unauthenticated users ONLY see public links (Home, How It Works).
+  // Functional portal links (Book Slot, Live Queue, Procurement Status, Dashboard, Payment)
+  // are ONLY visible and accessible after the user logs in!
+  if (navLinks) {
+    if (user && role === 'farmer') {
+      navLinks.innerHTML = `
+        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+        <li><a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a></li>
+        <li><a href="booking.html" data-i18n="nav_book_slot">Book Slot</a></li>
+        <li><a href="queue.html" data-i18n="nav_live_queue">Live Queue</a></li>
+        <li><a href="procurement.html" data-i18n="nav_procurement">Procurement Status</a></li>
+        <li><a href="payment.html" data-i18n="nav_payment">Payment Status</a></li>
+      `;
+    } else if (user && role === 'centre') {
+      navLinks.innerHTML = `
+        <li><a href="centre-dashboard.html" data-i18n="nav_centre_dash">Centre Dashboard</a></li>
+        <li><a href="centre-dashboard.html#queue-table-section" data-i18n="nav_curr_queue">Current Queue</a></li>
+        <li><a href="centre-dashboard.html#analytics-section" data-i18n="nav_cap_analytics">Capacity Analytics</a></li>
+        <li><a href="dashboard.html" data-i18n="nav_farmer_view">Farmer View</a></li>
+      `;
+    } else {
+      // Unauthenticated / Guest: Only show public information links
+      navLinks.innerHTML = `
+        <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+        <li><a href="index.html#how-it-works" data-i18n="nav_how_it_works">How It Works</a></li>
+      `;
+    }
+  }
+
   // Active page indicator
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-links a').forEach(a => {
     const href = a.getAttribute('href');
-    if (href === currentPath) {
+    if (href === currentPath || (currentPath === '' && href === 'index.html') || (href && href.startsWith(currentPath) && currentPath !== 'index.html')) {
       a.classList.add('active');
     }
   });
@@ -258,10 +260,6 @@ function setupNavbar() {
     } else {
       navAuthContainer.innerHTML = `
         ${langSelectorHtml}
-        <button id="notifBellBtn" class="notification-bell-btn" title="View Notifications" onclick="toggleNotificationDrawer()">
-          🔔
-          <span id="notifBadge" class="notif-badge-count" style="display:none;">0</span>
-        </button>
         <a href="login.html" class="btn btn-outline-primary btn-sm" data-i18n="nav_farmer_login">Farmer Login</a>
         <a href="login.html?tab=centre" class="btn btn-secondary btn-sm" data-i18n="nav_centre_login">Centre Login</a>
       `;

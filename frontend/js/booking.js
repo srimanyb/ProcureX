@@ -135,12 +135,15 @@ function updateSummary() {
   document.getElementById('sumEstQueue').textContent = `~#${bookingState.estimatedQueue}`;
 }
 
+// Require farmer login before accessing booking page
+const currentFarmer = Session.requireFarmerAuth('booking.html');
+
 async function confirmSlotBooking() {
-  const user = Session.getUser() || {
-    name: 'Ramesh Kumar',
-    farmerId: 'FARM1024',
-    mobile: '9876543210'
-  };
+  const user = Session.getUser();
+  if (!user) {
+    Session.requireFarmerAuth('booking.html');
+    return;
+  }
 
   const payload = {
     farmerId: user.farmerId,
@@ -177,6 +180,10 @@ async function confirmSlotBooking() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  if (currentFarmer) {
+    if (currentFarmer.commodity) bookingState.commodity = currentFarmer.commodity;
+    if (currentFarmer.preferredCentre) bookingState.centre = currentFarmer.preferredCentre;
+  }
   updateSummary();
   const qtyInput = document.getElementById('inputQuantity');
   if (qtyInput) {

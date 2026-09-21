@@ -1,9 +1,47 @@
-/**
- * ProcureX - Payment Status & History Renderer
- */
+// Require farmer authentication
+Session.requireFarmerAuth('payment.html');
 
 async function loadPaymentDetails() {
-  const bookingId = Session.getActiveBookingId() || 'PX10245';
+  const user = Session.getUser();
+  if (!user) return;
+
+  let bookingId = Session.getActiveBookingId();
+  if (!bookingId) {
+    try {
+      const profRes = await fetch(`${API_BASE}/farmers/profile/${user.farmerId}`);
+      const profData = await profRes.json();
+      if (profData.success && profData.latestBooking) {
+        bookingId = profData.latestBooking.bookingId;
+        Session.setActiveBookingId(bookingId);
+      }
+    } catch (e) {}
+  }
+
+  if (!bookingId) {
+    document.getElementById('payTxnId').textContent = 'None';
+    document.getElementById('payCommodity').textContent = user.commodity || 'Produce';
+    document.getElementById('payQuantity').textContent = '0 Quintals';
+    document.getElementById('payRate').textContent = 'MSP Benchmark';
+    document.getElementById('payTotalAmount').textContent = '₹0.00';
+    document.getElementById('payAccountInfo').textContent = 'Aadhaar / DBT Linked Account';
+    document.getElementById('payExpectedDate').textContent = 'Pending Slot Completion';
+    const badge = document.getElementById('payStatusBadge');
+    if (badge) {
+      badge.className = 'badge';
+      badge.textContent = '⚪ No Active Payment Due';
+    }
+    const tbody = document.getElementById('paymentHistoryTableBody');
+    if (tbody) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="7" style="text-align:center; padding: 2rem; color: var(--text-muted);">
+            No procurement payment records found for this account.
+          </td>
+        </tr>
+      `;
+    }
+    return;
+  }
 
   try {
     const res = await fetch(`${API_BASE}/payment/${bookingId}`);
@@ -51,3 +89,4 @@ async function loadPaymentDetails() {
 }
 
 document.addEventListener('DOMContentLoaded', loadPaymentDetails);
+

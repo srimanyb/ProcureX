@@ -66,6 +66,95 @@
       box-shadow: var(--shadow-lg);
       position: relative;
     }
+    /* QR Scanner & Verification Modal Styles */
+    .scanner-tabs {
+      display: flex;
+      border-bottom: 2px solid var(--border);
+      gap: 0.25rem;
+    }
+    .scanner-tabs .tab-btn {
+      background: none;
+      border: none;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s;
+    }
+    .scanner-tabs .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      background: rgba(46, 125, 50, 0.08);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    }
+    .scanner-viewfinder {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      background: #0F172A;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .qr-target-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 190px;
+      height: 190px;
+      pointer-events: none;
+    }
+    .qr-target-corner {
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      border: 3px solid #10B981;
+    }
+    .qr-target-corner.tl { top: 0; left: 0; border-right: none; border-bottom: none; border-top-left-radius: 6px; }
+    .qr-target-corner.tr { top: 0; right: 0; border-left: none; border-bottom: none; border-top-right-radius: 6px; }
+    .qr-target-corner.bl { bottom: 0; left: 0; border-right: none; border-top: none; border-bottom-left-radius: 6px; }
+    .qr-target-corner.br { bottom: 0; right: 0; border-left: none; border-top: none; border-bottom-right-radius: 6px; }
+    .qr-laser-line {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #10B981, #34D399, transparent);
+      box-shadow: 0 0 10px #10B981;
+      animation: qrScanLaser 2s infinite ease-in-out;
+    }
+    @keyframes qrScanLaser {
+      0% { top: 15px; opacity: 0.8; }
+      50% { top: 170px; opacity: 1; }
+      100% { top: 15px; opacity: 0.8; }
+    }
+    .camera-status-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15, 23, 42, 0.85);
+      color: #E2E8F0;
+      font-size: 0.9rem;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .file-drop-zone {
+      border: 2px dashed #94A3B8;
+      border-radius: var(--radius-md);
+      padding: 2.25rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      background: #F8FAFC;
+      transition: all 0.2s;
+    }
+    .file-drop-zone:hover {
+      border-color: var(--primary);
+      background: #F0FDF4;
+    }
   </style>
 </head>
 <body>
@@ -167,42 +256,45 @@
     <div class="grid-2" style="margin-bottom: 2rem;">
       <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
         <div>
-          <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Average Waiting Time" data-i18n="stat_avg_wait_label</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="stat_avg_wait_label">Average Waiting Time</div>
           <div style="font-size: 1.8rem; font-weight: 800; color: var(--secondary);" id="statAvgWait">~28 min</div>
-          <div style="font-size: 0.8rem; color: var(--primary); font-weight: 600;">⚡ Down from traditional 8-12 hours wait" data-i18n="stat_avg_wait_sub</div>
+          <div style="font-size: 0.8rem; color: var(--primary); font-weight: 600;" data-i18n="stat_avg_wait_sub">⚡ Down from traditional 8-12 hours wait</div>
         </div>
         <div style="font-size: 2.5rem;">⏱️</div>
       </div>
 
       <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
         <div>
-          <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Centre Capacity Utilization" data-i18n="stat_capacity_label</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;" data-i18n="stat_capacity_label">Centre Capacity Utilization</div>
           <div style="font-size: 1.8rem; font-weight: 800; color: var(--secondary);" id="statCapacity">78%</div>
-          <div style="font-size: 0.8rem; color: var(--text-muted);">78 / 100 daily quota allocated" data-i18n="stat_capacity_sub</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);" data-i18n="stat_capacity_sub">78 / 100 daily quota allocated</div>
         </div>
         <div style="font-size: 2.5rem;">📊</div>
       </div>
     </div>
 
-    <!-- Operator Action Bar (Call Next, Start, Complete, Update Payment) -->
+    <!-- Operator Action Bar (Scan QR, Call Next, Start, Complete, Update Payment) -->
     <div class="operator-action-bar">
-      <div style="font-weight: 800; color: var(--secondary); font-size: 1.05rem; margin-right: 0.5rem;">
-        ⚡ Centre Actions:" data-i18n="centre_actions_title
+      <div style="font-weight: 800; color: var(--secondary); font-size: 1.05rem; margin-right: 0.5rem;" data-i18n="centre_actions_title">
+        ⚡ Centre Actions:
       </div>
-      <button onclick="handleCallNextFarmer()" class="btn btn-accent" id="btnCallNext">
-        📢 Call Next Farmer" data-i18n="btn_call_next
+      <button onclick="openQrScannerModal()" class="btn btn-primary" id="btnScanQR" style="background: #059669; border-color: #059669; font-weight: 700; display: inline-flex; align-items: center; gap: 0.4rem;">
+        <span>📷</span> <span data-i18n="btn_scan_qr">Scan Farmer Pass (QR)</span>
       </button>
-      <button onclick="handleStartProcurement()" class="btn btn-primary" id="btnStartProc">
-        ⚖️ Start Procurement" data-i18n="btn_start_proc
+      <button onclick="handleCallNextFarmer()" class="btn btn-accent" id="btnCallNext" data-i18n="btn_call_next">
+        📢 Call Next Farmer
       </button>
-      <button onclick="handleCompleteProcurement()" class="btn btn-secondary" id="btnCompleteProc">
-        ✅ Complete Procurement" data-i18n="btn_complete_proc
+      <button onclick="handleStartProcurement()" class="btn btn-primary" id="btnStartProc" data-i18n="btn_start_proc">
+        ⚖️ Start Procurement
       </button>
-      <button onclick="handleUpdatePayment()" class="btn btn-outline-primary" id="btnUpdatePay">
-        💰 Update Payment (PFMS DBT)" data-i18n="btn_update_pay
+      <button onclick="handleCompleteProcurement()" class="btn btn-secondary" id="btnCompleteProc" data-i18n="btn_complete_proc">
+        ✅ Complete Procurement
       </button>
-      <button onclick="openCustomFarmerModal()" class="btn btn-outline btn-sm" style="margin-left: auto;">
-        🔍 View Farmer Details" data-i18n="btn_view_farmer_details
+      <button onclick="handleUpdatePayment()" class="btn btn-outline-primary" id="btnUpdatePay" data-i18n="btn_update_pay">
+        💰 Update Payment (PFMS DBT)
+      </button>
+      <button onclick="openCustomFarmerModal()" class="btn btn-outline btn-sm" style="margin-left: auto;" data-i18n="btn_view_farmer_details">
+        🔍 View Farmer Details
       </button>
     </div>
 
@@ -210,8 +302,8 @@
     <div class="card" style="padding: 0; overflow: hidden; margin-bottom: 3rem;" id="queue-table-section">
       <div style="padding: 1.25rem 1.5rem; background: var(--bg-main); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
         <div>
-          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--secondary);">Current Mandi Queue & Staging" data-i18n="queue_table_title</h3>
-          <p style="font-size: 0.88rem; color: var(--text-muted);">Real-time vehicle sequence at APMC Gate 2." data-i18n="queue_table_sub</p>
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--secondary);" data-i18n="queue_table_title">Current Mandi Queue & Staging</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted);" data-i18n="queue_table_sub">Real-time vehicle sequence at APMC Gate 2.</p>
         </div>
         <div>
           <span class="badge badge-green" id="centreQueueCountBadge">Active Queue</span>
@@ -241,15 +333,15 @@
     <!-- Centre Load / Analytics Section -->
     <div id="analytics-section" style="margin-top: 2rem;">
       <div class="section-header" style="text-align: left; margin-bottom: 1.5rem;">
-        <span class="section-tag">Queue Telemetry & Utilization" data-i18n="analytics_tag</span>
-        <h3 style="font-size: 1.75rem; font-weight: 800; color: var(--secondary);">Centre Load & Operational Analytics" data-i18n="analytics_title</h3>
+        <span class="section-tag" data-i18n="analytics_tag">Queue Telemetry & Utilization</span>
+        <h3 style="font-size: 1.75rem; font-weight: 800; color: var(--secondary);" data-i18n="analytics_title">Centre Load & Operational Analytics</h3>
         <p style="color: var(--text-muted);">Visual distribution of procurement volume, bottleneck detection, and waiting trends.</p>
       </div>
 
       <div class="grid-3" style="margin-bottom: 2rem;">
-        <!-- Card 1: Today's Centre Load" data-i18n="load_card_title by Time Window -->
+        <!-- Card 1: Today's Centre Load by Time Window -->
         <div class="card">
-          <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--secondary); margin-bottom: 1rem;">
+          <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--secondary); margin-bottom: 1rem;" data-i18n="load_card_title">
             Today's Centre Load
           </h4>
 
@@ -285,8 +377,8 @@
 
         <!-- Card 2: Queue Bottlenecks -->
         <div class="card">
-          <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--secondary); margin-bottom: 1rem;">
-            Queue Bottleneck Monitor" data-i18n="bottleneck_title
+          <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--secondary); margin-bottom: 1rem;" data-i18n="bottleneck_title">
+            Queue Bottleneck Monitor
           </h4>
           <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             <div style="display: flex; justify-content: space-between; padding: 0.6rem 0.8rem; background: var(--bg-main); border-radius: var(--radius-sm); border: 1px solid var(--border);">
@@ -317,8 +409,8 @@
 
         <!-- Card 3: Hourly Waiting Trends -->
         <div class="card">
-          <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--secondary); margin-bottom: 1rem;">
-            Waiting Trends by Hour" data-i18n="trends_title
+          <h4 style="font-size: 1.15rem; font-weight: 700; color: var(--secondary); margin-bottom: 1rem;" data-i18n="trends_title">
+            Waiting Trends by Hour
           </h4>
           <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.88rem;">
             <div style="display: flex; justify-content: space-between;">
@@ -350,6 +442,168 @@
             Average mandi dwell time: <strong>28.4 minutes</strong>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: QR Code Scanner for Farmer Appointment Pass -->
+  <div class="modal-overlay" id="qrScannerModal" style="display: none;">
+    <div class="modal-box" style="max-width: 580px; padding: 1.75rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 0.65rem;">
+          <div style="font-size: 1.5rem; background: #E6F4EA; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #059669;">📷</div>
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--secondary); margin: 0;">Scan Farmer Appointment Pass</h3>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Mandi Gate 2 Intake & Digital Token Verification</p>
+          </div>
+        </div>
+        <button onclick="closeQrScannerModal()" style="background:none; border:none; font-size:1.6rem; cursor:pointer; color:var(--text-muted);">&times;</button>
+      </div>
+
+      <!-- Scanner Mode Tabs -->
+      <div class="scanner-tabs" style="margin-bottom: 1rem;">
+        <button type="button" class="tab-btn active" id="tabCamera" onclick="switchScanTab('camera')">
+          🎥 Live Camera
+        </button>
+        <button type="button" class="tab-btn" id="tabUpload" onclick="switchScanTab('upload')">
+          🖼️ Upload Pass Image
+        </button>
+        <button type="button" class="tab-btn" id="tabManual" onclick="switchScanTab('manual')">
+          ⌨️ Barcode Gun / Manual
+        </button>
+      </div>
+
+      <!-- Tab Content 1: Live Camera Scanner -->
+      <div id="scanModeCamera" class="scan-mode-panel">
+        <div class="scanner-viewfinder" id="scannerViewfinder">
+          <video id="qrVideo" playsinline muted style="width:100%; height: 260px; object-fit: cover; border-radius: var(--radius-md); background: #0F172A;"></video>
+          <canvas id="qrCanvas" style="display:none;"></canvas>
+          <div class="qr-target-overlay">
+            <div class="qr-target-corner tl"></div>
+            <div class="qr-target-corner tr"></div>
+            <div class="qr-target-corner bl"></div>
+            <div class="qr-target-corner br"></div>
+            <div class="qr-laser-line"></div>
+          </div>
+          <div class="camera-status-overlay" id="cameraStatusOverlay" style="display: none;">
+            <div id="cameraStatusMsg">Initializing Camera...</div>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.75rem;">
+          <span style="font-size: 0.8rem; color: var(--text-muted);">💡 Point camera at farmer's QR code on pass or screen</span>
+          <button type="button" onclick="restartCameraStream()" class="btn btn-outline btn-sm" id="btnRestartCam">🔄 Restart Cam</button>
+        </div>
+      </div>
+
+      <!-- Tab Content 2: Upload Pass Photo -->
+      <div id="scanModeUpload" class="scan-mode-panel" style="display: none;">
+        <div class="file-drop-zone" id="fileDropZone" onclick="document.getElementById('qrImageFileInput').click()">
+          <input type="file" id="qrImageFileInput" accept="image/*" style="display:none;" onchange="handlePassImageUpload(event)">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📥</div>
+          <div style="font-weight: 700; color: var(--secondary); margin-bottom: 0.25rem;">Click to upload or drag & drop pass image</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">Supports PNG, JPG, SVG, or screenshot files</div>
+        </div>
+        <div id="fileUploadFeedback" style="margin-top: 0.75rem; font-size: 0.85rem; text-align: center; color: var(--text-muted);"></div>
+      </div>
+
+      <!-- Tab Content 3: Manual / USB Scanner Gun -->
+      <div id="scanModeManual" class="scan-mode-panel" style="display: none;">
+        <div style="padding: 1rem; background: var(--bg-main); border: 1px solid var(--border); border-radius: var(--radius-md);">
+          <label style="display: block; font-weight: 700; font-size: 0.88rem; margin-bottom: 0.4rem; color: var(--secondary);">
+            Booking ID or QR Code Payload:
+          </label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="text" id="manualBookingInput" class="form-input" placeholder="e.g. PX10245 or scanned URL" style="flex: 1; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: var(--radius-sm);" onkeydown="if(event.key==='Enter') handleManualPassVerify()">
+            <button type="button" onclick="handleManualPassVerify()" class="btn btn-primary" id="btnManualVerify">
+              Verify Pass
+            </button>
+          </div>
+          <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.5rem; margin-bottom: 0;">
+            ⚡ USB barcode & 2D scanner guns will auto-submit when scanned into this field.
+          </p>
+        </div>
+      </div>
+
+      <div style="margin-top: 1.25rem; display: flex; justify-content: flex-end;">
+        <button type="button" onclick="closeQrScannerModal()" class="btn btn-outline">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Scanned Appointment Pass Verification Details -->
+  <div class="modal-overlay" id="scannedPassVerifyModal" style="display: none;">
+    <div class="modal-box" style="max-width: 580px; border-top: 5px solid #059669; padding: 1.75rem;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border); padding-bottom: 0.75rem;">
+        <div>
+          <div class="badge badge-green" style="margin-bottom: 0.35rem; display: inline-flex; align-items: center; gap: 0.3rem;">
+            <span>✓</span> <span>Mandi Gate Pass Verified</span>
+          </div>
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--secondary); margin: 0;" id="verifiedModalTitle">
+            Official Mandi Appointment Pass
+          </h3>
+          <p style="font-size: 0.8rem; color: var(--text-muted); margin: 2px 0 0 0;">Validated against Central Mandi Electronic Registry</p>
+        </div>
+        <button onclick="closeVerifiedPassModal()" style="background:none; border:none; font-size:1.6rem; cursor:pointer; color:var(--text-muted);">&times;</button>
+      </div>
+
+      <!-- Pass Card Details Grid -->
+      <div style="background: var(--bg-main); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border); margin-bottom: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed var(--border); padding-bottom: 0.75rem; margin-bottom: 0.75rem;">
+          <div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Booking ID</div>
+            <div style="font-size: 1.25rem; font-weight: 800; color: var(--primary);" id="verifiedBookingId">PX10245</div>
+          </div>
+          <div style="text-align: right;">
+            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Queue Token</div>
+            <div style="font-size: 1.6rem; font-weight: 900; color: #D97706; line-height: 1;" id="verifiedTokenNumber">#18</div>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; font-size: 0.9rem;">
+          <div>
+            <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; display: block;">Farmer Name</span>
+            <strong style="color: var(--secondary);" id="verifiedFarmerName">Ramesh Kumar</strong>
+          </div>
+          <div>
+            <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; display: block;">Farmer ID & Mobile</span>
+            <strong style="color: var(--secondary);" id="verifiedFarmerId">FARM1024</strong> <span style="font-size:0.8rem; color:var(--text-muted);" id="verifiedFarmerMobile">(9876543210)</span>
+          </div>
+          <div>
+            <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; display: block;">Commodity</span>
+            <strong style="color: var(--secondary);" id="verifiedCommodity">Rice (Paddy)</strong>
+          </div>
+          <div>
+            <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; display: block;">Estimated Quantity</span>
+            <strong style="color: var(--secondary);" id="verifiedQuantity">42.5 Qtl</strong>
+          </div>
+          <div>
+            <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; display: block;">Date & Slot</span>
+            <strong style="color: var(--secondary);" id="verifiedDateSlot">19 Sep 2026 • 10:00 AM</strong>
+          </div>
+          <div>
+            <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; display: block;">Pass Status</span>
+            <span class="badge badge-green" id="verifiedStatusBadge">Confirmed</span>
+          </div>
+          <div>
+            <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; display: block;">Land Record (7/12)</span>
+            <span style="color: var(--primary); font-weight: 700;">✓ Verified (Sur. 42/1)</span>
+          </div>
+          <div>
+            <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; display: block;">Moisture Content</span>
+            <span style="color: var(--secondary); font-weight: 700;" id="verifiedMoisture">13.2% (Approved)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons for Verified Pass -->
+      <div style="display: flex; gap: 0.6rem; justify-content: flex-end; flex-wrap: wrap;">
+        <button type="button" onclick="closeVerifiedPassModal()" class="btn btn-outline">Close</button>
+        <button type="button" onclick="handleAdmitScannedFarmer()" class="btn btn-primary" id="btnAdmitFarmer" style="background: #059669; border-color: #059669;">
+          ✓ Admit Farmer (Mark Arrived)
+        </button>
+        <button type="button" onclick="handleStartProcurementFromScan()" class="btn btn-accent" id="btnStartProcScan">
+          ⚖️ Send to Weighbridge
+        </button>
       </div>
     </div>
   </div>
@@ -410,6 +664,7 @@
 
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/jsQR.js"></script>
   <script src="js/centre.js"></script>
 </body>
 </html>

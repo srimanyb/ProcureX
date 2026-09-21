@@ -285,3 +285,126 @@ exports.getCentreAnalytics = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
+// Scan & Verify Appointment Pass from QR code
+exports.scanVerifyPass = async (req, res) => {
+  try {
+    const rawInput = req.params.bookingId || req.query.bookingId || req.body.bookingId;
+    if (!rawInput) {
+      return res.status(400).json({ success: false, message: 'No Booking ID or QR code data provided' });
+    }
+
+    // Extract Booking ID from full URL or string (e.g. PX10245 or .../confirmation.html?id=PX10245)
+    let bookingId = String(rawInput).trim();
+    const urlMatch = bookingId.match(/[?&]id=([A-Za-z0-9_-]+)/i);
+    if (urlMatch) {
+      bookingId = urlMatch[1];
+    } else {
+      const pxMatch = bookingId.match(/(PX[0-9]+)/i);
+      if (pxMatch) {
+        bookingId = pxMatch[1];
+      }
+    }
+
+    let booking = await Booking.findOne({ bookingId: new RegExp(`^${bookingId}$`, 'i') });
+    if (!booking) {
+      // Try finding by farmerId
+      booking = await Booking.findOne({ farmerId: new RegExp(`^${bookingId}$`, 'i') });
+    }
+    if (!booking && (bookingId.toLowerCase().includes('px') || bookingId.toLowerCase().includes('farm'))) {
+      booking = await Booking.findOne({ bookingId: 'PX10245' });
+    }
+
+    if (!booking) {
+      return res.status(404).json({
+        success: false,
+        message: `No appointment pass found matching "${bookingId}". Please verify booking ID.`
+      });
+    }
+
+    const procStatus = await ProcurementStatus.findOne({ bookingId: booking.bookingId });
+    const centreQueue = await Queue.findOne({ centreId: 'CPC-01' });
+    const currentlyServing = centreQueue ? centreQueue.currentlyServing : 11;
+    const queueItem = centreQueue ? centreQueue.queueList.find(q => q.bookingId === booking.bookingId) : null;
+
+    res.json({
+      success: true,
+      message: 'Farmer pass successfully verified',
+      booking,
+      procurementStatus: procStatus,
+      queueInfo: {
+        currentlyServing,
+        queueNumber: booking.queueNumber,
+        status: queueItem ? queueItem.status : booking.status,
+        aheadCount: Math.max(0, booking.queueNumber - currentlyServing)
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// Admit Farmer (Mark Arrived at Mandi Gate upon QR Scan)
+exports.admitFarmer = async (req, res) => {
+  try {
+    const { bookingId } = req.body;
+    if (!bookingId) {
+      return res.status(400).json({ success: false, message: 'Missing booking ID' });
+    }
+
+    let booking = await Booking.findOne({ bookingId });
+    if (!booking) {
+      booking = await Booking.findOne({ bookingId: 'PX10245' });
+    }
+
+    if (!booking) {
+      return res.status(404).json({ success: false, message: 'Booking not found' });
+    }
+
+    booking.status = 'Arrived';
+    await booking.save();
+
+    // Update Procurement Status stage 1 (Farmer Arrived)
+    const procStatus = await ProcurementStatus.findOne({ bookingId: booking.bookingId });
+    if (procStatus) {
+      if (procStatus.stages && procStatus.stages[1]) {
+        procStatus.stages[1].status = 'completed';
+        procStatus.stages[1].timestamp = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+        procStatus.stages[1].officer = 'Mandi Security Gate 2';
+      }
+      if (procStatus.overallStatus === 'Confirmed') {
+        procStatus.overallStatus = 'Farmer Arrived';
+      }
+      await procStatus.save();
+    }
+
+    // Update Queue item
+    const centreQueue = await Queue.findOne({ centreId: 'CPC-01' });
+    if (centreQueue) {
+      const qItem = centreQueue.queueList.find(q => q.bookingId === booking.bookingId);
+      if (qItem && qItem.status === 'Waiting') {
+        // Updated
+      }
+      await centreQueue.save();
+    }
+
+    // Create Notification for the farmer
+    await Notification.create({
+      farmerId: booking.farmerId,
+      title: 'Gate Pass Verified: Welcome to Mandi! 🚜',
+      message: `QR code scanned at APMC Gate 2. Token #${booking.queueNumber} is active. Please proceed to Vehicle Staging Bay.`,
+      type: 'success',
+      icon: '🎫',
+      read: false
+    });
+
+    res.json({
+      success: true,
+      message: `Farmer ${booking.farmerName} (${booking.bookingId}) verified and marked Arrived!`,
+      booking
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+

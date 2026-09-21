@@ -1,11 +1,39 @@
-/**
- * ProcureX - Live Queue Tracking & Interactive Simulation Engine
- */
+// Require farmer authentication
+Session.requireFarmerAuth('queue.html');
 
 let pollInterval = null;
 
 async function fetchQueueTelemetry() {
-  const bookingId = Session.getActiveBookingId() || 'PX10245';
+  const user = Session.getUser();
+  if (!user) return;
+
+  if (document.getElementById('qFarmerName')) {
+    document.getElementById('qFarmerName').textContent = user.name;
+  }
+
+  let bookingId = Session.getActiveBookingId();
+  if (!bookingId) {
+    try {
+      const profRes = await fetch(`${API_BASE}/farmers/profile/${user.farmerId}`);
+      const profData = await profRes.json();
+      if (profData.success && profData.latestBooking) {
+        bookingId = profData.latestBooking.bookingId;
+        Session.setActiveBookingId(bookingId);
+      }
+    } catch (e) {}
+  }
+
+  if (!bookingId) {
+    document.getElementById('qYourNumber').textContent = '#--';
+    document.getElementById('qCurrentPosition').textContent = 'No Active Slot';
+    document.getElementById('qFarmersAhead').textContent = '00';
+    document.getElementById('qEstimatedWait').textContent = 'Not In Queue';
+    const prog = document.getElementById('qProgressLabel');
+    if (prog) {
+      prog.innerHTML = `<a href="booking.html" class="btn btn-primary btn-sm" style="margin-top:0.5rem; display:inline-block;">Book a Slot to Join Queue 🚜</a>`;
+    }
+    return;
+  }
 
   try {
     const res = await fetch(`${API_BASE}/queue/${bookingId}`);
