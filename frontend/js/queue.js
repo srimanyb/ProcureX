@@ -48,20 +48,21 @@ async function fetchQueueTelemetry() {
 }
 
 function renderQueueDisplay(data) {
-  document.getElementById('qCentreName').textContent = data.centreName;
-  document.getElementById('qCentreStatus').textContent = `🟢 ${data.centreStatus}`;
-  document.getElementById('qLastUpdated').textContent = data.lastUpdated;
+  document.getElementById('qCentreName').textContent = I18N.translateText(data.centreName);
+  document.getElementById('qCentreStatus').textContent = `🟢 ${I18N.translateStatus(data.centreStatus)}`;
+  document.getElementById('qLastUpdated').textContent = I18N.translateDate(data.lastUpdated);
   document.getElementById('qYourNumber').textContent = `#${data.yourQueueNumber}`;
-  document.getElementById('qCurrentPosition').textContent = data.currentPosition;
+  document.getElementById('qCurrentPosition').textContent = I18N.translateStatus(data.currentPosition);
   document.getElementById('qFarmersAhead').textContent = String(data.farmersAhead).padStart(2, '0');
   document.getElementById('qCurrentlyServing').textContent = `#${data.currentlyServing}`;
-  document.getElementById('qEstimatedWait').textContent = data.estimatedWaiting;
+  document.getElementById('qEstimatedWait').textContent = I18N.translateDuration(data.estimatedWaiting);
 
   // Progress Bar
   let progressPercent = 30;
   if (data.currentPosition === 'YOUR TURN' || data.farmersAhead === 0) {
     progressPercent = 100;
-    document.getElementById('qProgressLabel').innerHTML = `<span style="color:var(--primary); font-weight:800;">🚨 YOUR TURN: Please proceed directly to Weighbridge Bay 3!</span>`;
+    const yourTurnText = I18N.translateStatus('YOUR TURN');
+    document.getElementById('qProgressLabel').innerHTML = `<span style="color:var(--primary); font-weight:800;">🚨 ${yourTurnText}: Please proceed directly to Weighbridge Bay 3!</span>`;
     document.getElementById('qCurrentPosition').style.color = 'var(--primary)';
   } else {
     // scale between 20% and 90%
@@ -94,16 +95,19 @@ function renderQueueDisplay(data) {
 
       const farmerDisplayName = isYou ? `${item.farmerName} <span class="badge badge-yellow" style="margin-left:6px;">YOU 🚜</span>` : item.farmerName;
       const rowClass = isYou ? 'user-row' : '';
+      const translatedStatus = I18N.translateStatus(item.status);
+      const translatedCommodity = I18N.translateCommodity(item.commodity);
+      const subInfo = item.status === 'Processing' ? I18N.translateText('At Bay #3') : (item.status === 'Completed' ? I18N.translateText('Finished') : I18N.translateDuration('~10 min'));
 
       return `
         <tr class="${rowClass}">
           <td style="font-weight: 800; color: var(--secondary); font-size: 1.1rem;">#${item.queueNumber}</td>
           <td><strong style="color: var(--secondary);">${farmerDisplayName}</strong></td>
-          <td>${item.commodity}</td>
+          <td>${translatedCommodity}</td>
           <td>${item.slot}</td>
-          <td><span class="badge ${badgeClass}">${icon} ${item.status}</span></td>
+          <td><span class="badge ${badgeClass}">${icon} ${translatedStatus}</span></td>
           <td style="text-align: right; color: var(--text-muted); font-size: 0.88rem;">
-            ${item.status === 'Processing' ? 'At Bay #3' : (item.status === 'Completed' ? 'Finished' : '~10 min')}
+            ${subInfo}
           </td>
         </tr>
       `;
@@ -111,9 +115,11 @@ function renderQueueDisplay(data) {
 
     const badgeCount = document.getElementById('qListSummaryBadge');
     if (badgeCount) {
-      badgeCount.textContent = `${data.queueList.length} Farmers in Active Schedule`;
+      badgeCount.textContent = `${data.queueList.length} ${I18N.t('stat_today_farmers') || 'Farmers in Active Schedule'}`;
     }
   }
+
+  I18N.apply();
 }
 
 // Demo Simulation Button Trigger

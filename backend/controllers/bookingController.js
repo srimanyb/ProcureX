@@ -21,11 +21,16 @@ exports.getAvailableSlots = async (req, res) => {
       { time: '04:00 PM', maxCapacity: 15, booked: 2, status: 'Available', estimatedWait: '~5 min' }
     ];
 
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const dynamicDefaultDate = `${tomorrow.getDate()} ${months[tomorrow.getMonth()]} ${tomorrow.getFullYear()}`;
+
     res.json({
       success: true,
       centre: centre || 'Central Procurement Centre (APMC Yard)',
       commodity: commodity || 'Rice',
-      date: date || '19 September 2026',
+      date: date || dynamicDefaultDate,
       slots: standardSlots
     });
   } catch (error) {

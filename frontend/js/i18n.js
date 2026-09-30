@@ -36,8 +36,8 @@ const translations = {
     nav_dashboard: 'Dashboard',
     nav_book_slot: 'Book Slot',
     nav_live_queue: 'Live Queue',
-    nav_procurement: 'Procurement Status',
-    nav_payment: 'Payment Status',
+    nav_procurement: 'Procurement',
+    nav_payment: 'Payment',
     nav_farmer_login: 'Farmer Login',
     nav_centre_login: 'Centre Login',
     nav_logout: 'Logout',
@@ -134,7 +134,7 @@ const translations = {
     reg_submit: 'Complete Registration & Go to Dashboard 🚜',
 
     // Dashboard
-    dash_welcome: 'Welcome, Farmer',
+    dash_welcome: 'Welcome',
     dash_profile_tag: 'Verified Farmer Profile',
     dash_upcoming_slot: 'Upcoming Slot',
     dash_queue_pos: 'Queue Position',
@@ -185,9 +185,97 @@ const translations = {
     book_step1: 'Select Commodity',
     book_step2: 'Select Centre',
     book_step3: 'Select Date',
+    step3_heading: 'Step 3: Select Date',
+    step3_sub: 'Choose procurement delivery appointment date:',
+    custom_date_title: 'Or Choose Another Date',
+    custom_date_sub: 'Pick any upcoming procurement date within next 30 days',
+    recommended: 'Recommended',
+    weekend_window: 'Weekend Window',
+    open_schedule: 'Open Schedule',
+    tomorrow: 'Tomorrow',
+    sunday: 'Sunday',
+    monday: 'Monday',
+    tuesday: 'Tuesday',
+    wednesday: 'Wednesday',
+    thursday: 'Thursday',
+    friday: 'Friday',
+    saturday: 'Saturday',
     book_step4: 'Select Available Time Slot',
     book_summary: 'Booking Summary',
-    book_confirm: 'Confirm Slot 🚜'
+    book_confirm: 'Confirm Slot 🚜',
+
+    // Dynamic & Pass Keys
+    label_farmer_id: 'Farmer ID',
+    label_village: 'Village',
+    label_district: 'District',
+    allocated_window: 'Allocated Window',
+    morning_window: 'Morning Window',
+    afternoon_window: 'Afternoon Window',
+    evening_window: 'Evening Window',
+    farmers_ahead: 'Farmers Ahead',
+    minutes: 'minutes',
+    min: 'min',
+    status_confirmed: 'Confirmed',
+    status_initiated: 'Initiated',
+    status_in_progress: 'In Progress',
+    status_processing: 'Processing',
+    status_completed: 'Completed',
+    status_pending: 'Pending',
+    status_cancelled: 'Cancelled',
+    status_arrived: 'Arrived',
+    status_called: 'Called',
+    status_waiting: 'Waiting',
+    status_paid: 'Paid',
+    status_pending_booking: 'Pending Booking',
+    status_not_scheduled: 'Not Scheduled',
+    status_no_active_slot: 'No Active Slot',
+    status_no_booking_yet: 'No Booking Yet',
+    active_mandi_appointment: 'Active Mandi Appointment',
+    booking_id: 'Booking ID',
+    centre: 'Centre',
+    commodity: 'Commodity',
+    date_time_slot: 'Date & Time Slot',
+    token_number_label: 'Token Number',
+    present_gate_ref: 'Please present this booking reference at Gate 2 along with your 7/12 crop land record.',
+    watch_live_queue: 'Watch Live Queue ⚡',
+    view_digital_pass: 'View Digital Pass 🎫',
+    book_harvest_slot: 'Book your harvest slot',
+    no_queue_yet: 'No queue assigned yet',
+    post_procurement: 'Post Procurement',
+    stage_produce_weighing: 'Produce Weighing',
+    stage_slot_booked: 'Slot Booked',
+    stage_farmer_arrived: 'Farmer Arrived',
+    stage_verification_completed: 'Verification Completed',
+    stage_proc_completed: 'Procurement Completed',
+    stage_pay_processed: 'Payment Processed',
+    payment_mode_dbt: 'Aadhaar-Linked DBT (PFMS)',
+    payment_mode_direct: 'Direct DBT PFMS',
+    payment_credited_completed: 'Payment Credited (Completed)',
+    settlement_processing: 'Settlement Processing',
+    no_active_payment_due: 'No Active Payment Due',
+    pass_brand_title: 'ProcureX Mandi Token System',
+    pass_brand_subtitle: 'Govt. Agricultural Procurement & Queue Management',
+    pass_gate_pill: 'GATE ENTRY PASS',
+    pass_status_confirmed: '✓ SLOT CONFIRMED',
+    pass_title: 'Procurement Appointment Pass',
+    pass_subtitle: 'Please carry this digital pass or printed copy when arriving at the mandi.',
+    pass_queue_token: 'Queue Token Number',
+    pass_farmer_name: 'Farmer Name',
+    pass_scheduled_date: 'Scheduled Date',
+    pass_allocated_slot: 'Allocated Time Slot',
+    pass_booking_status: 'Booking Status',
+    pass_estimated_qty: 'Estimated Quantity',
+    pass_qr_title: 'Automated Gate & Weighbridge Token',
+    pass_qr_desc: 'Official Mandi QR Code: Scan at Security Gate 2 for automated barrier entry & token validation.',
+    pass_instructions_title: '📋 Important Instructions for Mandi Arrival:',
+    pass_instr_1: 'Reporting Time: Please arrive 15 minutes prior to your allocated slot at Mandi Gate 2.',
+    pass_instr_2: 'Verification Documents: Carry Aadhaar Card/Farmer ID and land/crop registration records.',
+    pass_instr_3: 'Procurement Entry: Show this digital or printed pass for weighbridge entry clearance.',
+    pass_footer_etoken: 'Official E-Token • ProcureX APMC Network',
+    pass_footer_nosig: 'No Physical Signature Required',
+    print_pass: '🖨️ Print Pass',
+    go_to_dashboard: 'Go to Dashboard 🏠',
+    back_to_dashboard: 'Back to Farmer Dashboard'
   },
 
   te: {
@@ -222,8 +310,8 @@ const translations = {
     nav_dashboard: 'డ్యాష్‌బోర్డ్',
     nav_book_slot: 'స్లాట్ బుక్ చేయండి',
     nav_live_queue: 'లైవ్ క్యూ',
-    nav_procurement: 'సేకరణ స్థితి',
-    nav_payment: 'చెల్లింపు స్థితి',
+    nav_procurement: 'సేకరణ',
+    nav_payment: 'చెల్లింపు',
     nav_farmer_login: 'రైతు లాగిన్',
     nav_centre_login: 'కేంద్రం లాగిన్',
     nav_logout: 'లాగౌట్',
@@ -315,7 +403,7 @@ const translations = {
     reg_commodity: 'అమ్మకానికి ప్రధాన పంట *',
     reg_submit: 'నమోదు పూర్తి చేసి డ్యాష్‌బోర్డ్‌కు వెళ్లండి 🚜',
 
-    dash_welcome: 'స్వాగతం, రైతు',
+    dash_welcome: 'స్వాగతం',
     dash_profile_tag: 'ధృవీకరించబడిన రైతు ప్రొఫైల్',
     dash_upcoming_slot: 'రాబోయే స్లాట్',
     dash_queue_pos: 'క్యూ స్థానం',
@@ -362,9 +450,97 @@ const translations = {
     book_step1: 'పంటను ఎంచుకోండి',
     book_step2: 'సేకరణ కేంద్రాన్ని ఎంచుకోండి',
     book_step3: 'తేదీని ఎంచుకోండి',
+    step3_heading: 'దశ 3: తేదీని ఎంచుకోండి',
+    step3_sub: 'సేకరణ డెలివరీ అపాయింట్‌మెంట్ తేదీని ఎంచుకోండి:',
+    custom_date_title: 'లేదా మరొక తేదీని ఎంచుకోండి',
+    custom_date_sub: 'రాబోయే 30 రోజుల్లో ఏదైనా సేకరణ తేదీని ఎంచుకోండి',
+    recommended: 'సిఫార్సు చేయబడింది',
+    weekend_window: 'వీకెండ్ విండో',
+    open_schedule: 'ఓపెన్ షెడ్యూల్',
+    tomorrow: 'రేపు',
+    sunday: 'ఆదివారం',
+    monday: 'సోమవారం',
+    tuesday: 'మంగళవారం',
+    wednesday: 'బుధవారం',
+    thursday: 'గురువారం',
+    friday: 'శుక్రవారం',
+    saturday: 'శనివారం',
     book_step4: 'అందుబాటులో ఉన్న సమయ స్లాట్‌ను ఎంచుకోండి',
     book_summary: 'బుకింగ్ సారాంశం',
-    book_confirm: 'స్లాట్‌ను నిర్ధారించండి 🚜'
+    book_confirm: 'స్లాట్‌ను నిర్ధారించండి 🚜',
+
+    // Dynamic & Pass Keys
+    label_farmer_id: 'రైతు ID',
+    label_village: 'గ్రామం',
+    label_district: 'జిల్లా',
+    allocated_window: 'కేటాయించిన సమయం',
+    morning_window: 'ఉదయం సమయం',
+    afternoon_window: 'మధ్యాహ్నం సమయం',
+    evening_window: 'సాయంత్రం సమయం',
+    farmers_ahead: 'రైతులు ముందున్నారు',
+    minutes: 'నిమిషాలు',
+    min: 'నిమి',
+    status_confirmed: 'ధృవీకరించబడింది',
+    status_initiated: 'ప్రారంభించబడింది',
+    status_in_progress: 'పురోగతిలో ఉంది',
+    status_processing: 'ప్రాసెసింగ్‌లో ఉంది',
+    status_completed: 'పూర్తయింది',
+    status_pending: 'పెండింగ్‌లో ఉంది',
+    status_cancelled: 'రద్దు చేయబడింది',
+    status_arrived: 'చేరుకున్నారు',
+    status_called: 'పిలువబడింది',
+    status_waiting: 'నిరీక్షణలో ఉంది',
+    status_paid: 'చెల్లించబడింది',
+    status_pending_booking: 'బుకింగ్ పెండింగ్‌లో ఉంది',
+    status_not_scheduled: 'షెడ్యూల్ చేయబడలేదు',
+    status_no_active_slot: 'క్రియాశీల స్లాట్ లేదు',
+    status_no_booking_yet: 'ఇంకా బుకింగ్ లేదు',
+    active_mandi_appointment: 'క్రియాశీల మార్కెట్ అపాయింట్‌మెంట్',
+    booking_id: 'బుకింగ్ ID',
+    centre: 'కేంద్రం',
+    commodity: 'పంట',
+    date_time_slot: 'తేదీ & సమయ స్లాట్',
+    token_number_label: 'టోకెన్ సంఖ్య',
+    present_gate_ref: 'దయచేసి మీ 7/12 పంట భూమి రికార్డుతో పాటు గేట్ 2 వద్ద ఈ బుకింగ్ రిఫరెన్స్‌ను సమర్పించండి.',
+    watch_live_queue: 'లైవ్ క్యూ చూడండి ⚡',
+    view_digital_pass: 'డిజిటల్ పాస్ చూడండి 🎫',
+    book_harvest_slot: 'మీ పంట స్లాట్‌ను బుక్ చేయండి',
+    no_queue_yet: 'ఇంకా క్యూ కేటాయించబడలేదు',
+    post_procurement: 'సేకరణ తర్వాత',
+    stage_produce_weighing: 'పంట తూకం',
+    stage_slot_booked: 'స్లాట్ బుక్ చేయబడింది',
+    stage_farmer_arrived: 'రైతు చేరుకున్నారు',
+    stage_verification_completed: 'ధృవీకరణ పూర్తయింది',
+    stage_proc_completed: 'సేకరణ పూర్తయింది',
+    stage_pay_processed: 'చెల్లింపు ప్రక్రియ పూర్తయింది',
+    payment_mode_dbt: 'ఆధార్ అనుసంధానిత DBT (PFMS)',
+    payment_mode_direct: 'డైరెక్ట్ DBT PFMS',
+    payment_credited_completed: 'చెల్లింపు జమయింది (పూర్తయింది)',
+    settlement_processing: 'చెల్లింపు ప్రాసెసింగ్‌లో ఉంది',
+    no_active_payment_due: 'ఎటువంటి చెల్లింపు బాకీ లేదు',
+    pass_brand_title: 'ప్రొక్యూర్ ఎక్స్ మార్కెట్ టోకెన్ సిస్టమ్',
+    pass_brand_subtitle: 'ప్రభుత్వ వ్యవసాయ సేకరణ & క్యూ నిర్వహణ',
+    pass_gate_pill: 'గేట్ ప్రవేశ పాస్',
+    pass_status_confirmed: '✓ స్లాట్ నిర్ధారించబడింది',
+    pass_title: 'సేకరణ అపాయింట్‌మెంట్ పాస్',
+    pass_subtitle: 'మార్కెట్‌కు వచ్చేటప్పుడు దయచేసి ఈ డిజిటల్ పాస్ లేదా ముద్రిత ప్రతిని వెంట ఉంచుకోండి.',
+    pass_queue_token: 'క్యూ టోకెన్ సంఖ్య',
+    pass_farmer_name: 'రైతు పేరు',
+    pass_scheduled_date: 'షెడ్యూల్ చేసిన తేదీ',
+    pass_allocated_slot: 'కేటాయించిన సమయ స్లాట్',
+    pass_booking_status: 'బుకింగ్ స్థితి',
+    pass_estimated_qty: 'అంచనా పరిమాణం',
+    pass_qr_title: 'స్వయంచాలక గేట్ & వేబ్రిడ్జ్ టోకెన్',
+    pass_qr_desc: 'అధికారిక మార్కెట్ QR కోడ్: ఆటోమేటెడ్ బారియర్ ప్రవేశం & టోకెన్ ధృవీకరణ కోసం సెక్యూరిటీ గేట్ 2 వద్ద స్కాన్ చేయండి.',
+    pass_instructions_title: '📋 మార్కెట్‌కు రాక కోసం ముఖ్యమైన సూచనలు:',
+    pass_instr_1: 'హాజరు సమయం: దయచేసి మార్కెట్ గేట్ 2 వద్ద మీ కేటాయించిన స్లాట్‌కు 15 నిమిషాల ముందు చేరుకోండి.',
+    pass_instr_2: 'ధృవీకరణ పత్రాలు: ఆధార్ కార్డు/రైతు ID మరియు భూమి/పంట రిజిస్ట్రేషన్ రికార్డులను వెంట ఉంచుకోండి.',
+    pass_instr_3: 'సేకరణ ప్రవేశం: వేబ్రిడ్జ్ ప్రవేశ అనుమతి కోసం ఈ డిజిటల్ లేదా ముద్రిత పాస్‌ను చూపించండి.',
+    pass_footer_etoken: 'అధికారిక ఇ-టోకెన్ • ప్రొక్యూర్ ఎక్స్ APMC నెట్‌వర్క్',
+    pass_footer_nosig: 'భౌతిక సంతకం అవసరం లేదు',
+    print_pass: '🖨️ పాస్ ముద్రించండి',
+    go_to_dashboard: 'డ్యాష్‌బోర్డ్‌కు వెళ్లండి 🏠',
+    back_to_dashboard: 'రైతు డ్యాష్‌బోర్డ్‌కు తిరిగి వెళ్లండి'
   },
 
   hi: {
@@ -399,8 +575,8 @@ const translations = {
     nav_dashboard: 'डैशबोर्ड',
     nav_book_slot: 'स्लॉट बुक करें',
     nav_live_queue: 'लाइव कतार',
-    nav_procurement: 'खरीद स्थिति',
-    nav_payment: 'भुगतान स्थिति',
+    nav_procurement: 'खरीद',
+    nav_payment: 'भुगतान',
     nav_farmer_login: 'किसान लॉगिन',
     nav_centre_login: 'केन्द्र लॉगिन',
     nav_logout: 'लॉगआउट',
@@ -492,7 +668,7 @@ const translations = {
     reg_commodity: 'बेचने हेतु मुख्य फसल *',
     reg_submit: 'पंजीकरण पूरा करें और डैशबोर्ड पर जाएं 🚜',
 
-    dash_welcome: 'स्वागत है, किसान',
+    dash_welcome: 'स्वागत',
     dash_profile_tag: 'सत्यापित किसान प्रोफ़ाइल',
     dash_upcoming_slot: 'आगामी स्लॉट',
     dash_queue_pos: 'कतार में स्थान',
@@ -539,9 +715,97 @@ const translations = {
     book_step1: 'फसल चुनें',
     book_step2: 'खरीद केन्द्र चुनें',
     book_step3: 'तारीख चुनें',
+    step3_heading: 'चरण 3: तारीख चुनें',
+    step3_sub: 'खरीद वितरण नियुक्ति तिथि चुनें:',
+    custom_date_title: 'या कोई अन्य तिथि चुनें',
+    custom_date_sub: 'अगले 30 दिनों में कोई भी खरीद तिथि चुनें',
+    recommended: 'अनुशंसित',
+    weekend_window: 'वीकेंड विंडो',
+    open_schedule: 'ओपन शेड्यूल',
+    tomorrow: 'कल',
+    sunday: 'रविवार',
+    monday: 'सोमवार',
+    tuesday: 'मंगलवार',
+    wednesday: 'बुधवार',
+    thursday: 'गुरुवार',
+    friday: 'शुक्रवार',
+    saturday: 'शनिवार',
     book_step4: 'उपलब्ध समय स्लॉट चुनें',
     book_summary: 'बुकिंग सारांश',
-    book_confirm: 'स्लॉट पक्का करें 🚜'
+    book_confirm: 'स्लॉट पक्का करें 🚜',
+
+    // Dynamic & Pass Keys
+    label_farmer_id: 'किसान आईडी',
+    label_village: 'गाँव',
+    label_district: 'ज़िला',
+    allocated_window: 'आवंटित विंडो',
+    morning_window: 'सुबह की विंडो',
+    afternoon_window: 'दोपहर की विंडो',
+    evening_window: 'शाम की विंडो',
+    farmers_ahead: 'किसान आगे हैं',
+    minutes: 'मिनट',
+    min: 'मिनट',
+    status_confirmed: 'पुष्ट',
+    status_initiated: 'प्रारंभिक',
+    status_in_progress: 'प्रगति पर',
+    status_processing: 'प्रक्रियाधीन',
+    status_completed: 'पूर्ण हुआ',
+    status_pending: 'लंबित',
+    status_cancelled: 'रद्द',
+    status_arrived: 'पहुंच गए',
+    status_called: 'बुलाया गया',
+    status_waiting: 'प्रतीक्षारत',
+    status_paid: 'भुगतान हुआ',
+    status_pending_booking: 'बुकिंग लंबित',
+    status_not_scheduled: 'शेड्यूल नहीं',
+    status_no_active_slot: 'कोई सक्रिय स्लॉट नहीं',
+    status_no_booking_yet: 'कोई बुकिंग नहीं',
+    active_mandi_appointment: 'सक्रिय मंडी अपॉइंटमेंट',
+    booking_id: 'बुकिंग आईडी',
+    centre: 'केन्द्र',
+    commodity: 'फसल',
+    date_time_slot: 'तारीख एवं समय स्लॉट',
+    token_number_label: 'टोकन संख्या',
+    present_gate_ref: 'कृपया अपने 7/12 फसल भूमि रिकॉर्ड के साथ गेट 2 पर यह संदर्भ प्रस्तुत करें।',
+    watch_live_queue: 'लाइव कतार देखें ⚡',
+    view_digital_pass: 'डिजिटल पास देखें 🎫',
+    book_harvest_slot: 'अपना स्लॉट बुक करें',
+    no_queue_yet: 'अभी कोई कतार नहीं',
+    post_procurement: 'खरीद के बाद',
+    stage_produce_weighing: 'उपज तौल',
+    stage_slot_booked: 'स्लॉट बुक हुआ',
+    stage_farmer_arrived: 'किसान का आगमन',
+    stage_verification_completed: 'सत्यापन पूर्ण',
+    stage_proc_completed: 'खरीद पूर्ण',
+    stage_pay_processed: 'भुगतान संसाधित',
+    payment_mode_dbt: 'आधार-लिंक्ड डीबीटी (पीएफएमएस)',
+    payment_mode_direct: 'डायरेक्ट डीबीटी पीएफएमएस',
+    payment_credited_completed: 'भुगतान जमा हुआ (पूर्ण)',
+    settlement_processing: 'निपटान प्रक्रियाधीन',
+    no_active_payment_due: 'कोई देय भुगतान नहीं',
+    pass_brand_title: 'प्रोक्योरएक्स मंडी टोकन प्रणाली',
+    pass_brand_subtitle: 'सरकारी कृषि खरीद एवं कतार प्रबंधन',
+    pass_gate_pill: 'गेट प्रवेश पास',
+    pass_status_confirmed: '✓ स्लॉट पुष्ट',
+    pass_title: 'खरीद अपॉइंटमेंट पास',
+    pass_subtitle: 'मंडी में आते समय कृपया इस डिजिटल पास या मुद्रित प्रति को साथ रखें।',
+    pass_queue_token: 'कतार टोकन संख्या',
+    pass_farmer_name: 'किसान का नाम',
+    pass_scheduled_date: 'निर्धारित तारीख',
+    pass_allocated_slot: 'आवंटित समय स्लॉट',
+    pass_booking_status: 'बुकिंग स्थिति',
+    pass_estimated_qty: 'अनुमानित मात्रा',
+    pass_qr_title: 'स्वचालित गेट एवं वेब्रिज टोकन',
+    pass_qr_desc: 'आधिकारिक मंडी क्यूआर कोड: स्वचालित बैरियर प्रवेश और टोकन सत्यापन के लिए सुरक्षा गेट 2 पर स्कैन करें।',
+    pass_instructions_title: '📋 मंडी आगमन हेतु महत्वपूर्ण निर्देश:',
+    pass_instr_1: 'उपस्थिति समय: कृपया मंडी गेट 2 पर अपने आवंटित स्लॉट से 15 मिनट पहले पहुंचें।',
+    pass_instr_2: 'सत्यापन दस्तावेज: आधार कार्ड/किसान आईडी और भूमि/फसल पंजीकरण रिकॉर्ड साथ रखें।',
+    pass_instr_3: 'खरीद प्रवेश: वेब्रिज प्रवेश मंजूरी के लिए यह डिजिटल या मुद्रित पास दिखाएं।',
+    pass_footer_etoken: 'आधिकारिक ई-टोकन • प्रोक्योरएक्स एपीएमसी नेटवर्क',
+    pass_footer_nosig: 'किसी भौतिक हस्ताक्षर की आवश्यकता नहीं',
+    print_pass: '🖨️ पास प्रिंट करें',
+    go_to_dashboard: 'डैशबोर्ड पर जाएं 🏠',
+    back_to_dashboard: 'किसान डैशबोर्ड पर वापस जाएं'
   },
 
   mr: {
@@ -576,8 +840,8 @@ const translations = {
     nav_dashboard: 'डॅशबोर्ड',
     nav_book_slot: 'स्लॉट बुक करा',
     nav_live_queue: 'थेट रांग',
-    nav_procurement: 'खरेदी स्थिती',
-    nav_payment: 'पेमेंट स्थिती',
+    nav_procurement: 'खरेदी',
+    nav_payment: 'पेमेंट',
     nav_farmer_login: 'शेतकरी लॉगिन',
     nav_centre_login: 'केंद्र लॉगिन',
     nav_logout: 'लॉगआउट',
@@ -669,7 +933,7 @@ const translations = {
     reg_commodity: 'विक्रीसाठी मुख्य पीक *',
     reg_submit: 'नोंदणी पूर्ण करा आणि डॅशबोर्डवर जा 🚜',
 
-    dash_welcome: 'स्वागत आहे, शेतकरी',
+    dash_welcome: 'स्वागत',
     dash_profile_tag: 'सत्यापित शेतकरी प्रोफाइल',
     dash_upcoming_slot: 'आगामी स्लॉट',
     dash_queue_pos: 'रांगेतील स्थान',
@@ -716,9 +980,97 @@ const translations = {
     book_step1: 'पीक निवडा',
     book_step2: 'खरेदी केंद्र निवडा',
     book_step3: 'तारीख निवडा',
+    step3_heading: 'टप्पा ३: तारीख निवडा',
+    step3_sub: 'खरेदी वितरण अपॉइंटमेंट तारीख निवडा:',
+    custom_date_title: 'किंवा दुसरी तारीख निवडा',
+    custom_date_sub: 'पुढील ३० दिवसांतील कोणतीही खरेदी तारीख निवडा',
+    recommended: 'शिफारस केलेले',
+    weekend_window: 'वीकेंड विंडो',
+    open_schedule: 'ओपन वेळापत्रक',
+    tomorrow: 'उद्या',
+    sunday: 'रविवार',
+    monday: 'सोमवार',
+    tuesday: 'मंगळवार',
+    wednesday: 'बुधवार',
+    thursday: 'गुरुवार',
+    friday: 'शुक्रवार',
+    saturday: 'शनिवार',
     book_step4: 'उपलब्ध वेळ स्लॉट निवडा',
     book_summary: 'बुकिंग सारांश',
-    book_confirm: 'स्लॉट निश्चित करा 🚜'
+    book_confirm: 'स्लॉट निश्चित करा 🚜',
+
+    // Dynamic & Pass Keys
+    label_farmer_id: 'शेतकरी आयडी',
+    label_village: 'गाव',
+    label_district: 'जिल्हा',
+    allocated_window: 'वाटप केलेली विंडो',
+    morning_window: 'सकाळची विंडो',
+    afternoon_window: 'दुपारची विंडो',
+    evening_window: 'संध्याकाळची विंडो',
+    farmers_ahead: 'शेतकरी पुढे आहेत',
+    minutes: 'मिनिटे',
+    min: 'मि.',
+    status_confirmed: 'निश्चित',
+    status_initiated: 'सुरू झाले',
+    status_in_progress: 'प्रगतीपथावर',
+    status_processing: 'प्रक्रियेत',
+    status_completed: 'पूर्ण झाले',
+    status_pending: 'प्रलंबित',
+    status_cancelled: 'रद्द',
+    status_arrived: 'पोहोचले',
+    status_called: 'बोलावले',
+    status_waiting: 'प्रतीक्षेत',
+    status_paid: 'देय झाले',
+    status_pending_booking: 'बुकिंग प्रलंबित',
+    status_not_scheduled: 'शेड्यूल नाही',
+    status_no_active_slot: 'कोणताही सक्रिय स्लॉट नाही',
+    status_no_booking_yet: 'अद्याप बुकिंग नाही',
+    active_mandi_appointment: 'सक्रिय कृषी उत्पन्न बाजार अपॉइंटमेंट',
+    booking_id: 'बुकिंग आयडी',
+    centre: 'केंद्र',
+    commodity: 'पीक',
+    date_time_slot: 'तारीख व वेळ स्लॉट',
+    token_number_label: 'टोकन क्रमांक',
+    present_gate_ref: 'कृपया आपल्या 7/12 पीक जमिनीच्या नोंदीसह गेट 2 वर हा बुकिंग संदर्भ सादर करा.',
+    watch_live_queue: 'थेट रांग पहा ⚡',
+    view_digital_pass: 'डिजिटल पास पहा 🎫',
+    book_harvest_slot: 'आपला स्लॉट बुक करा',
+    no_queue_yet: 'अद्याप कोणतीही रांग नाही',
+    post_procurement: 'खरेदीनंतर',
+    stage_produce_weighing: 'शेतमाल वजन',
+    stage_slot_booked: 'स्लॉट बुक झाला',
+    stage_farmer_arrived: 'शेतकरी पोहोचले',
+    stage_verification_completed: 'पडताळणी पूर्ण',
+    stage_proc_completed: 'खरेदी पूर्ण',
+    stage_pay_processed: 'पेमेंट प्रक्रिया पूर्ण',
+    payment_mode_dbt: 'आधार-लिंक्ड डीबीटी (पीएफएमएस)',
+    payment_mode_direct: 'डायरेक्ट डीबीटी पीएफएमएस',
+    payment_credited_completed: 'पेमेंट जमा झाले (पूर्ण)',
+    settlement_processing: 'निपटारा प्रक्रियेत',
+    no_active_payment_due: 'कोणतेही पेमेंट बाकी नाही',
+    pass_brand_title: 'प्रोक्योरएक्स कृषी उत्पन्न बाजार टोकन प्रणाली',
+    pass_brand_subtitle: 'शासकीय कृषी खरेदी व रांग व्यवस्थापन',
+    pass_gate_pill: 'गेट प्रवेश पास',
+    pass_status_confirmed: '✓ स्लॉट निश्चित',
+    pass_title: 'खरेदी अपॉइंटमेंट पास',
+    pass_subtitle: 'मार्केटमध्ये येताना कृपया हा डिजिटल पास किंवा छापील प्रत सोबत ठेवा.',
+    pass_queue_token: 'रांग टोकन क्रमांक',
+    pass_farmer_name: 'शेतकऱ्याचे नाव',
+    pass_scheduled_date: 'नियोजित तारीख',
+    pass_allocated_slot: 'वाटप केलेला वेळ स्लॉट',
+    pass_booking_status: 'बुकिंग स्थिती',
+    pass_estimated_qty: 'अंदाजे प्रमाण',
+    pass_qr_title: 'स्वयंचलित गेट व वेब्रिज टोकन',
+    pass_qr_desc: 'अधिकृत मार्केट क्यूआर कोड: स्वयंचलित बॅरियर प्रवेश आणि टोकन पडताळणीसाठी सुरक्षा गेट 2 वर स्कॅन करा.',
+    pass_instructions_title: '📋 मार्केट आगमनासाठी महत्त्वाच्या सूचना:',
+    pass_instr_1: 'उपस्थिती वेळ: कृपया मार्केट गेट 2 वर आपल्या वाटप केलेल्या स्लॉटच्या 15 मिनिटे आधी पोहोचा.',
+    pass_instr_2: 'पडताळणी कागदपत्रे: आधार कार्ड/शेतकरी आयडी आणि जमीन/पीक नोंदणी कागदपत्रे सोबत ठेवा.',
+    pass_instr_3: 'खरेदी प्रवेश: वेब्रिज प्रवेश मंजुरीसाठी हा डिजिटल किंवा छापील पास दाखवा.',
+    pass_footer_etoken: 'अधिकृत ई-टोकन • प्रोक्योरएक्स एपीएमसी नेटवर्क',
+    pass_footer_nosig: 'कोणत्याही भौतिक स्वाक्षरीची आवश्यकता नाही',
+    print_pass: '🖨️ पास प्रिंट करा',
+    go_to_dashboard: 'डॅशबोर्डवर जा 🏠',
+    back_to_dashboard: 'शेतकरी डॅशबोर्डवर परत जा'
   }
 };
 
@@ -1133,10 +1485,94 @@ const phraseMap = [
     mr: 'सत्यापित शेतकरी प्रोफाइल'
   },
   {
+    en: 'Welcome',
+    te: 'స్వాగతం',
+    hi: 'स्वागत',
+    mr: 'स्वागत'
+  },
+  {
     en: 'Welcome, Farmer',
-    te: 'స్వాగతం, రైతు',
-    hi: 'स्वागत है, किसान',
-    mr: 'स्वागत आहे, शेतकरी'
+    te: 'స్వాగతం',
+    hi: 'स्वागत',
+    mr: 'स्वागत'
+  },
+  {
+    en: 'Or Choose Another Date',
+    te: 'లేదా మరొక తేదీని ఎంచుకోండి',
+    hi: 'या कोई अन्य तिथि चुनें',
+    mr: 'किंवा दुसरी तारीख निवडा'
+  },
+  {
+    en: 'Pick any upcoming procurement date within next 30 days',
+    te: 'రాబోయే 30 రోజుల్లో ఏదైనా సేకరణ తేదీని ఎంచుకోండి',
+    hi: 'अगले 30 दिनों में कोई भी खरीद तिथि चुनें',
+    mr: 'पुढील ३० दिवसांतील कोणतीही खरेदी तारीख निवडा'
+  },
+  {
+    en: 'Recommended',
+    te: 'సిఫార్సు చేయబడింది',
+    hi: 'अनुशंसित',
+    mr: 'शिफारस केलेले'
+  },
+  {
+    en: 'Weekend Window',
+    te: 'వీకెండ్ విండో',
+    hi: 'वीकेंड विंडो',
+    mr: 'वीकेंड विंडो'
+  },
+  {
+    en: 'Open Schedule',
+    te: 'ఓపెన్ షెడ్యూల్',
+    hi: 'ओपन शेड्यूल',
+    mr: 'ओपन वेळापत्रक'
+  },
+  {
+    en: 'Tomorrow',
+    te: 'రేపు',
+    hi: 'कल',
+    mr: 'उद्या'
+  },
+  {
+    en: 'Sunday',
+    te: 'ఆదివారం',
+    hi: 'रविवार',
+    mr: 'रविवार'
+  },
+  {
+    en: 'Monday',
+    te: 'సోమవారం',
+    hi: 'सोमवार',
+    mr: 'सोमवार'
+  },
+  {
+    en: 'Tuesday',
+    te: 'మంగళవారం',
+    hi: 'मंगलवार',
+    mr: 'मंगळवार'
+  },
+  {
+    en: 'Wednesday',
+    te: 'బుధవారం',
+    hi: 'बुधवार',
+    mr: 'बुधवार'
+  },
+  {
+    en: 'Thursday',
+    te: 'గురువారం',
+    hi: 'गुरुवार',
+    mr: 'गुरुवार'
+  },
+  {
+    en: 'Friday',
+    te: 'శుక్రవారం',
+    hi: 'शुक्रवार',
+    mr: 'शुक्रवार'
+  },
+  {
+    en: 'Saturday',
+    te: 'శనివారం',
+    hi: 'शनिवार',
+    mr: 'शनिवार'
   },
   {
     en: 'Website Language Preference',
@@ -1395,11 +1831,670 @@ const phraseMap = [
     te: 'పంటను ప్రాసెస్ చేయండి',
     hi: 'उपज प्रक्रिया करें',
     mr: 'माल प्रक्रिया करा'
+  },
+  {
+    en: 'Smart Agricultural Procurement',
+    te: 'స్మార్ట్ వ్యవసాయ సేకరణ వేదిక',
+    hi: 'स्मार्ट कृषि खरीद मंच',
+    mr: 'स्मार्ट कृषी खरेदी व्यासपीठ'
+  },
+  {
+    en: 'Active Mandi Appointment',
+    te: 'క్రియాశీల మార్కెట్ అపాయింట్‌మెంట్',
+    hi: 'सक्रिय मंडी अपॉइंटमेंट',
+    mr: 'सक्रिय कृषी उत्पन्न बाजार अपॉइंटमेंट'
+  },
+  {
+    en: 'Allocated Window',
+    te: 'కేటాయించిన సమయం',
+    hi: 'आवंटित विंडो',
+    mr: 'वाटप केलेली विंडो'
+  },
+  {
+    en: 'Morning Window',
+    te: 'ఉదయం సమయం',
+    hi: 'सुबह की विंडो',
+    mr: 'सकाळची विंडो'
+  },
+  {
+    en: 'Afternoon Window',
+    te: 'మధ్యాహ్నం సమయం',
+    hi: 'दोपहर की विंडो',
+    mr: 'दुपारची विंडो'
+  },
+  {
+    en: 'Evening Window',
+    te: 'సాయంత్రం సమయం',
+    hi: 'शाम की विंडो',
+    mr: 'संध्याकाळची विंडो'
+  },
+  {
+    en: 'Farmers Ahead',
+    te: 'రైతులు ముందున్నారు',
+    hi: 'किसान आगे हैं',
+    mr: 'शेतकरी पुढे आहेत'
+  },
+  {
+    en: 'Farmer ID',
+    te: 'రైతు ID',
+    hi: 'किसान आईडी',
+    mr: 'शेतकरी आयडी'
+  },
+  {
+    en: 'Village',
+    te: 'గ్రామం',
+    hi: 'गाँव',
+    mr: 'गाव'
+  },
+  {
+    en: 'District',
+    te: 'జిల్లా',
+    hi: 'ज़िला',
+    mr: 'जिल्हा'
+  },
+  {
+    en: 'Booking ID',
+    te: 'బుకింగ్ ID',
+    hi: 'बुकिंग आईडी',
+    mr: 'बुकिंग आयडी'
+  },
+  {
+    en: 'Centre',
+    te: 'కేంద్రం',
+    hi: 'केन्द्र',
+    mr: 'केंद्र'
+  },
+  {
+    en: 'Commodity',
+    te: 'పంట',
+    hi: 'फसल',
+    mr: 'पीक'
+  },
+  {
+    en: 'Date & Time Slot',
+    te: 'తేదీ & సమయ స్లాట్',
+    hi: 'तारीख एवं समय स्लॉट',
+    mr: 'तारीख व वेळ स्लॉट'
+  },
+  {
+    en: 'Token Number',
+    te: 'టోకెన్ సంఖ్య',
+    hi: 'टोकन संख्या',
+    mr: 'टोकन क्रमांक'
+  },
+  {
+    en: 'Please present this booking reference at Gate 2 along with your 7/12 crop land record.',
+    te: 'దయచేసి మీ 7/12 పంట భూమి రికార్డుతో పాటు గేట్ 2 వద్ద ఈ బుకింగ్ రిఫరెన్స్‌ను సమర్పించండి.',
+    hi: 'कृपया अपने 7/12 फसल भूमि रिकॉर्ड के साथ गेट 2 पर यह संदर्भ प्रस्तुत करें।',
+    mr: 'कृपया आपल्या 7/12 पीक जमिनीच्या नोंदीसह गेट 2 वर हा संदर्भ सादर करा.'
+  },
+  {
+    en: 'Watch Live Queue ⚡',
+    te: 'లైవ్ క్యూ చూడండి ⚡',
+    hi: 'लाइव कतार देखें ⚡',
+    mr: 'थेट रांग पहा ⚡'
+  },
+  {
+    en: 'View Digital Pass 🎫',
+    te: 'డిజిటల్ పాస్ చూడండి 🎫',
+    hi: 'डिजिटल पास देखें 🎫',
+    mr: 'डिजिटल पास पहा 🎫'
+  },
+  {
+    en: 'Book New Slot 🚜',
+    te: 'కొత్త స్లాట్ బుక్ చేయండి 🚜',
+    hi: 'नया स्लॉट बुक करें 🚜',
+    mr: 'नवीन स्लॉट बुक करा 🚜'
+  },
+  {
+    en: 'Book New Slot',
+    te: 'కొత్త స్లాట్ బుక్ చేయండి',
+    hi: 'नया स्लॉट बुक करें',
+    mr: 'नवीन स्लॉट बुक करा'
+  },
+  {
+    en: 'View Live Queue',
+    te: 'లైవ్ క్యూ చూడండి',
+    hi: 'लाइव कतार देखें',
+    mr: 'थेट रांग पहा'
+  },
+  {
+    en: 'Track Procurement',
+    te: 'సేకరణ ట్రాక్ చేయండి',
+    hi: 'खरीद ट्रैक करें',
+    mr: 'खरेदी ट्रॅक करा'
+  },
+  {
+    en: 'Payment History',
+    te: 'చెల్లింపు చరిత్ర',
+    hi: 'भुगतान इतिहास',
+    mr: 'पेमेंट इतिहास'
+  },
+  {
+    en: 'Confirmed',
+    te: 'ధృవీకరించబడింది',
+    hi: 'पुष्ट',
+    mr: 'निश्चित'
+  },
+  {
+    en: 'Initiated',
+    te: 'ప్రారంభించబడింది',
+    hi: 'प्रारंभिक',
+    mr: 'सुरू झाले'
+  },
+  {
+    en: 'In Progress',
+    te: 'పురోగతిలో ఉంది',
+    hi: 'प्रगति पर',
+    mr: 'प्रगतीपथावर'
+  },
+  {
+    en: 'Processing',
+    te: 'ప్రాసెసింగ్‌లో ఉంది',
+    hi: 'प्रक्रियाधीन',
+    mr: 'प्रक्रियेत'
+  },
+  {
+    en: 'Completed',
+    te: 'పూర్తయింది',
+    hi: 'पूर्ण हुआ',
+    mr: 'पूर्ण झाले'
+  },
+  {
+    en: 'Pending',
+    te: 'పెండింగ్‌లో ఉంది',
+    hi: 'लंबित',
+    mr: 'प्रलंबित'
+  },
+  {
+    en: 'Cancelled',
+    te: 'రద్దు చేయబడింది',
+    hi: 'रद्द',
+    mr: 'रद्द'
+  },
+  {
+    en: 'Arrived',
+    te: 'చేరుకున్నారు',
+    hi: 'पहुंच गए',
+    mr: 'पोहोचले'
+  },
+  {
+    en: 'Called',
+    te: 'పిలువబడింది',
+    hi: 'बुलाया गया',
+    mr: 'बोलावले'
+  },
+  {
+    en: 'Waiting',
+    te: 'నిరీక్షణలో ఉంది',
+    hi: 'प्रतीक्षारत',
+    mr: 'प्रतीक्षेत'
+  },
+  {
+    en: 'Paid',
+    te: 'చెల్లించబడింది',
+    hi: 'भुगतान हुआ',
+    mr: 'देय झाले'
+  },
+  {
+    en: 'Pending Booking',
+    te: 'బుకింగ్ పెండింగ్‌లో ఉంది',
+    hi: 'बुकिंग लंबित',
+    mr: 'बुकिंग प्रलंबित'
+  },
+  {
+    en: 'Not Scheduled',
+    te: 'షెడ్యూల్ చేయబడలేదు',
+    hi: 'शेड्यूल नहीं',
+    mr: 'शेड्यूल नाही'
+  },
+  {
+    en: 'No Active Slot',
+    te: 'క్రియాశీల స్లాట్ లేదు',
+    hi: 'कोई सक्रिय स्लॉट नहीं',
+    mr: 'कोणताही सक्रिय स्लॉट नाही'
+  },
+  {
+    en: 'No Booking Yet',
+    te: 'ఇంకా బుకింగ్ లేదు',
+    hi: 'कोई बुकिंग नहीं',
+    mr: 'अद्याप बुकिंग नाही'
+  },
+  {
+    en: 'Few Slots Left',
+    te: 'కొన్ని స్లాట్లు మాత్రమే మిగిలి ఉన్నాయి',
+    hi: 'कुछ ही स्लॉट शेष',
+    mr: 'काहीच जागा शिल्लक'
+  },
+  {
+    en: 'Slot Full',
+    te: 'స్లాట్ పూర్తయింది',
+    hi: 'स्लॉट भर चुका है',
+    mr: 'स्लॉट भरला आहे'
+  },
+  {
+    en: 'Direct DBT PFMS',
+    te: 'డైరెక్ట్ DBT PFMS',
+    hi: 'डायरेक्ट डीबीटी पीएफएमएस',
+    mr: 'डायरेक्ट डीबीटी पीएफएमएस'
+  },
+  {
+    en: 'Aadhaar-Linked DBT (PFMS)',
+    te: 'ఆధార్ అనుసంధానిత DBT (PFMS)',
+    hi: 'आधार-लिंक्ड डीबीटी (पीएफएमएस)',
+    mr: 'आधार-लिंक्ड डीबीटी (पीएफएमएस)'
+  },
+  {
+    en: 'Direct Benefit Transfer',
+    te: 'డైరెక్ట్ బెనిఫిట్ ట్రాన్స్‌ఫర్',
+    hi: 'प्रत्यक्ष लाभ अंतरण',
+    mr: 'थेट लाभ हस्तांतरण'
+  },
+  {
+    en: 'Post Procurement',
+    te: 'సేకరణ తర్వాత',
+    hi: 'खरीद के बाद',
+    mr: 'खरेदीनंतर'
+  },
+  {
+    en: 'Produce Weighing',
+    te: 'పంట తూకం',
+    hi: 'उपज तौल',
+    mr: 'शेतमाल वजन'
+  },
+  {
+    en: 'Stage 4: Produce Weighing',
+    te: 'దశ 4: పంట తూకం',
+    hi: 'चरण 4: उपज तौल',
+    mr: 'टप्पा 4: शेतमाल वजन'
+  },
+  {
+    en: 'Slot Booked',
+    te: 'స్లాట్ బుక్ చేయబడింది',
+    hi: 'स्लॉट बुक हुआ',
+    mr: 'स्लॉट बुक झाला'
+  },
+  {
+    en: 'Farmer Arrived',
+    te: 'రైతు చేరుకున్నారు',
+    hi: 'किसान का आगमन',
+    mr: 'शेतकरी पोहोचले'
+  },
+  {
+    en: 'Verification Completed',
+    te: 'ధృవీకరణ పూర్తయింది',
+    hi: 'सत्यापन पूर्ण',
+    mr: 'पडताळणी पूर्ण'
+  },
+  {
+    en: 'Procurement In Progress',
+    te: 'సేకరణ పురోగతిలో ఉంది',
+    hi: 'खरीद प्रगति पर',
+    mr: 'खरेदी प्रगतीपथावर'
+  },
+  {
+    en: 'Procurement Completed',
+    te: 'సేకరణ పూర్తయింది',
+    hi: 'खरीद पूर्ण',
+    mr: 'खरेदी पूर्ण'
+  },
+  {
+    en: 'Payment Processed',
+    te: 'చెల్లింపు ప్రక్రియ పూర్తయింది',
+    hi: 'भुगतान संसाधित',
+    mr: 'पेमेंट प्रक्रिया पूर्ण'
+  },
+  {
+    en: 'Stage 1: Slot Booked',
+    te: 'దశ 1: స్లాట్ బుక్ చేయబడింది',
+    hi: 'चरण 1: स्लॉट बुक हुआ',
+    mr: 'टप्पा 1: स्लॉट बुक झाला'
+  },
+  {
+    en: 'Stage 2: Farmer Arrived',
+    te: 'దశ 2: రైతు చేరుకున్నారు',
+    hi: 'चरण 2: किसान का आगमन',
+    mr: 'टप्पा 2: शेतकरी पोहोचले'
+  },
+  {
+    en: 'Stage 3: Verification Completed',
+    te: 'దశ 3: ధృవీకరణ పూర్తయింది',
+    hi: 'चरण 3: सत्यापन पूर्ण',
+    mr: 'टप्पा 3: पडताळणी पूर्ण'
+  },
+  {
+    en: 'Stage 5: Procurement Completed',
+    te: 'దశ 5: సేకరణ పూర్తయింది',
+    hi: 'चरण 5: खरीद पूर्ण',
+    mr: 'टप्पा 5: खरेदी पूर्ण'
+  },
+  {
+    en: 'Stage 6: Payment Processed',
+    te: 'దశ 6: చెల్లింపు ప్రక్రియ పూర్తయింది',
+    hi: 'चरण 6: भुगतान संसाधित',
+    mr: 'टप्पा 6: पेमेंट प्रक्रिया पूर्ण'
+  },
+  {
+    en: 'Procurement slot scheduled via ProcureX platform.',
+    te: 'ప్రొక్యూర్ ఎక్స్ ప్లాట్‌ఫామ్ ద్వారా సేకరణ స్లాట్ షెడ్యూల్ చేయబడింది.',
+    hi: 'प्रोक्योरएक्स प्लेटफॉर्म के माध्यम से खरीद स्लॉट निर्धारित किया गया।',
+    mr: 'प्रोक्योरएक्स प्लॅटफॉर्मद्वारे खरेदी स्लॉट नियोजित केला गेला.'
+  },
+  {
+    en: 'Vehicle gate entry logged at APMC Yard Gate 2.',
+    te: 'APMC యార్డ్ గేట్ 2 వద్ద వాహన ప్రవేశం నమోదు చేయబడింది.',
+    hi: 'एपीएमसी यार्ड गेट 2 पर वाहन प्रवेश दर्ज किया गया।',
+    mr: 'एपीएमसी यार्ड गेट 2 वर वाहन प्रवेश नोंदवला गेला.'
+  },
+  {
+    en: 'Land record 7/12 verified and initial moisture test (13.2%) approved.',
+    te: '7/12 భూమి రికార్డు ధృవీకరించబడింది మరియు ప్రాథమిక తేమ పరీక్ష (13.2%) ఆమోదించబడింది.',
+    hi: 'भूमि रिकॉर्ड 7/12 सत्यापित एवं प्रारंभिक नमी परीक्षण (13.2%) स्वीकृत।',
+    mr: 'जमीन नोंद 7/12 पडताळणी व प्राथमिक ओलावा चाचणी (13.2%) मंजूर.'
+  },
+  {
+    en: 'Your produce is currently being weighed at weighbridge Bay #3.',
+    te: 'మీ పంట ప్రస్తుతం వేబ్రిడ్జ్ బే #3 వద్ద తూకం వేయబడుతోంది.',
+    hi: 'आपकी उपज वर्तमान में वेब्रिज बे #3 पर तौली जा रही है।',
+    mr: 'आपल्या मालाचे सध्या वेब्रिज बे #3 वर वजन केले जात आहे.'
+  },
+  {
+    en: 'Electronic weighment slip generated and final acceptance signed.',
+    te: 'ఎలక్ట్రానిక్ తూకం స్లిప్ రూపొందించబడింది మరియు తుది ఆమోదం సంతకం చేయబడింది.',
+    hi: 'इलेक्ट्रॉनिक तौल पर्ची तैयार और अंतिम स्वीकृति पर हस्ताक्षर किए गए।',
+    mr: 'इलेक्ट्रॉनिक वजन पावती तयार व अंतिम स्वीकृती स्वाक्षरी केली.'
+  },
+  {
+    en: 'Direct Benefit Transfer (DBT) credit into registered bank account.',
+    te: 'రిజిస్టర్డ్ బ్యాంక్ ఖాతాలో డైరెక్ట్ బెనిఫిట్ ట్రాన్స్‌ఫర్ (DBT) జమ చేయబడుతుంది.',
+    hi: 'पंजीकृत बैंक खाते में प्रत्यक्ष लाभ अंतरण (डीबीटी) जमा।',
+    mr: 'नोंदणीकृत बँक खात्यात थेट लाभ हस्तांतरण (DBT) जमा.'
+  },
+  {
+    en: 'Central Procurement Centre (APMC Yard)',
+    te: 'కేంద్ర సేకరణ కేంద్రం (APMC యార్డ్)',
+    hi: 'केंद्रीय खरीद केन्द्र (एपीएमसी यार्ड)',
+    mr: 'केंद्रीय खरेदी केंद्र (एपीएमसी यार्ड)'
+  },
+  {
+    en: 'Central Procurement Centre',
+    te: 'కేంద్ర సేకరణ కేంద్రం',
+    hi: 'केंद्रीय खरीद केन्द्र',
+    mr: 'केंद्रीय खरेदी केंद्र'
+  },
+  {
+    en: 'Rice (Paddy)',
+    te: 'వరి (ధాన్యం)',
+    hi: 'धान (चावल)',
+    mr: 'भात (धान)'
+  },
+  {
+    en: 'Rice',
+    te: 'వరి',
+    hi: 'धान',
+    mr: 'भात'
+  },
+  {
+    en: 'Wheat',
+    te: 'గోధుమలు',
+    hi: 'गेहूं',
+    mr: 'गहू'
+  },
+  {
+    en: 'Maize',
+    te: 'మొక్కజొన్న',
+    hi: 'मक्का',
+    mr: 'मका'
+  },
+  {
+    en: 'Cotton',
+    te: 'పత్తి',
+    hi: 'कपास',
+    mr: 'कापूस'
+  },
+  {
+    en: 'Soybean',
+    te: 'సోయాబీన్',
+    hi: 'सोयाबीन',
+    mr: 'सोयाबीन'
+  },
+  {
+    en: 'Pulses (Arhar)',
+    te: 'పప్పుధాన్యాలు (కందులు)',
+    hi: 'दालें (अरहर)',
+    mr: 'डाळी (तूर)'
+  },
+  {
+    en: 'Pulses',
+    te: 'పప్పుధాన్యాలు',
+    hi: 'दालें',
+    mr: 'डाळी'
+  },
+  {
+    en: 'Quintals',
+    te: 'క్వింటాళ్ళు',
+    hi: 'क्विंटल',
+    mr: 'क्विंटल'
+  },
+  {
+    en: 'Qtl',
+    te: 'క్విం.',
+    hi: 'क्विं.',
+    mr: 'क्विं.'
+  },
+  {
+    en: 'Within 24-48 Hours',
+    te: '24-48 గంటల్లో',
+    hi: '24-48 घंटों के भीतर',
+    mr: '24-48 तासांच्या आत'
+  },
+  {
+    en: 'Estimated Within 24-48 hrs',
+    te: 'అంచనా 24-48 గంటల్లో',
+    hi: 'अनुमानित 24-48 घंटों में',
+    mr: 'अंदाजे 24-48 तासांत'
+  },
+  {
+    en: 'Payment Credited (Completed)',
+    te: 'చెల్లింపు జమయింది (పూర్తయింది)',
+    hi: 'भुगतान जमा हुआ (पूर्ण)',
+    mr: 'पेमेंट जमा झाले (पूर्ण)'
+  },
+  {
+    en: 'Settlement Processing',
+    te: 'చెల్లింపు ప్రాసెసింగ్‌లో ఉంది',
+    hi: 'निपटान प्रक्रियाधीन',
+    mr: 'निपटारा प्रक्रियेत'
+  },
+  {
+    en: 'No Active Payment Due',
+    te: 'ఎటువంటి చెల్లింపు బాకీ లేదు',
+    hi: 'कोई देय भुगतान नहीं',
+    mr: 'कोणतेही पेमेंट बाकी नाही'
+  },
+  {
+    en: 'ProcureX Mandi Token System',
+    te: 'ప్రొక్యూర్ ఎక్స్ మార్కెట్ టోకెన్ సిస్టమ్',
+    hi: 'प्रोक्योरएक्स मंडी टोकन प्रणाली',
+    mr: 'प्रोक्योरएक्स कृषी उत्पन्न बाजार टोकन प्रणाली'
+  },
+  {
+    en: 'Govt. Agricultural Procurement & Queue Management',
+    te: 'ప్రభుత్వ వ్యవసాయ సేకరణ & క్యూ నిర్వహణ',
+    hi: 'सरकारी कृषि खरीद एवं कतार प्रबंधन',
+    mr: 'शासकीय कृषी खरेदी व रांग व्यवस्थापन'
+  },
+  {
+    en: 'GATE ENTRY PASS',
+    te: 'గేట్ ప్రవేశ పాస్',
+    hi: 'गेट प्रवेश पास',
+    mr: 'गेट प्रवेश पास'
+  },
+  {
+    en: 'SLOT CONFIRMED',
+    te: 'స్లాట్ నిర్ధారించబడింది',
+    hi: 'स्लॉट पुष्ट',
+    mr: 'स्लॉट निश्चित'
+  },
+  {
+    en: 'Procurement Appointment Pass',
+    te: 'సేకరణ అపాయింట్‌మెంట్ పాస్',
+    hi: 'खरीद अपॉइंटमेंट पास',
+    mr: 'खरेदी अपॉइंटमेंट पास'
+  },
+  {
+    en: 'Please carry this digital pass or printed copy when arriving at the mandi.',
+    te: 'మార్కెట్‌కు వచ్చేటప్పుడు దయచేసి ఈ డిజిటల్ పాస్ లేదా ముద్రిత ప్రతిని వెంట ఉంచుకోండి.',
+    hi: 'मंडी में आते समय कृपया इस डिजिटल पास या मुद्रित प्रति को साथ रखें।',
+    mr: 'मार्केटमध्ये येताना कृपया हा डिजिटल पास किंवा छापील प्रत सोबत ठेवा.'
+  },
+  {
+    en: 'Queue Token Number',
+    te: 'క్యూ టోకెన్ సంఖ్య',
+    hi: 'कतार टोकन संख्या',
+    mr: 'रांग टोकन क्रमांक'
+  },
+  {
+    en: 'Farmer Name',
+    te: 'రైతు పేరు',
+    hi: 'किसान का नाम',
+    mr: 'शेतकऱ्याचे नाव'
+  },
+  {
+    en: 'Scheduled Date',
+    te: 'షెడ్యూల్ చేసిన తేదీ',
+    hi: 'निर्धारित तारीख',
+    mr: 'नियोजित तारीख'
+  },
+  {
+    en: 'Allocated Time Slot',
+    te: 'కేటాయించిన సమయ స్లాట్',
+    hi: 'आवंटित समय स्लॉट',
+    mr: 'वाटप केलेला वेळ स्लॉट'
+  },
+  {
+    en: 'Booking Status',
+    te: 'బుకింగ్ స్థితి',
+    hi: 'बुकिंग स्थिति',
+    mr: 'बुकिंग स्थिती'
+  },
+  {
+    en: 'Estimated Quantity',
+    te: 'అంచనా పరిమాణం',
+    hi: 'अनुमानित मात्रा',
+    mr: 'अंदाजे प्रमाण'
+  },
+  {
+    en: 'Automated Gate & Weighbridge Token',
+    te: 'స్వయంచాలక గేట్ & వేబ్రిడ్జ్ టోకెన్',
+    hi: 'स्वचालित गेट एवं वेब्रिज टोकन',
+    mr: 'स्वयंचलित गेट व वेब्रिज टोकन'
+  },
+  {
+    en: 'Official Mandi QR Code: Scan at Security Gate 2 for automated barrier entry & token validation.',
+    te: 'అధికారిక మార్కెట్ QR కోడ్: ఆటోమేటెడ్ బారియర్ ప్రవేశం & టోకెన్ ధృవీకరణ కోసం సెక్యూరిటీ గేట్ 2 వద్ద స్కాన్ చేయండి.',
+    hi: 'आधिकारिक मंडी क्यूआर कोड: स्वचालित बैरियर प्रवेश और टोकन सत्यापन के लिए सुरक्षा गेट 2 पर स्कैन करें।',
+    mr: 'अधिकृत मार्केट क्यूआर कोड: स्वयंचलित बॅरियर प्रवेश आणि टोकन पडताळणीसाठी सुरक्षा गेट 2 वर स्कॅन करा.'
+  },
+  {
+    en: 'Important Instructions for Mandi Arrival:',
+    te: 'మార్కెట్‌కు రాక కోసం ముఖ్యమైన సూచనలు:',
+    hi: 'मंडी आगमन हेतु महत्वपूर्ण निर्देश:',
+    mr: 'मार्केट आगमनासाठी महत्त्वाच्या सूचना:'
+  },
+  {
+    en: 'Reporting Time: Please arrive 15 minutes prior to your allocated slot at Mandi Gate 2.',
+    te: 'హాజరు సమయం: దయచేసి మార్కెట్ గేట్ 2 వద్ద మీ కేటాయించిన స్లాట్‌కు 15 నిమిషాల ముందు చేరుకోండి.',
+    hi: 'उपस्थिति समय: कृपया मंडी गेट 2 पर अपने आवंटित स्लॉट से 15 मिनट पहले पहुंचें।',
+    mr: 'उपस्थिती वेळ: कृपया मार्केट गेट 2 वर आपल्या वाटप केलेल्या स्लॉटच्या 15 मिनिटे आधी पोहोचा.'
+  },
+  {
+    en: 'Verification Documents: Carry Aadhaar Card/Farmer ID and land/crop registration records.',
+    te: 'ధృవీకరణ పత్రాలు: ఆధార్ కార్డు/రైతు ID మరియు భూమి/పంట రిజిస్ట్రేషన్ రికార్డులను వెంట ఉంచుకోండి.',
+    hi: 'सत्यापन दस्तावेज: आधार कार्ड/किसान आईडी और भूमि/फसल पंजीकरण रिकॉर्ड साथ रखें।',
+    mr: 'पडताळणी कागदपत्रे: आधार कार्ड/शेतकरी आयडी आणि जमीन/पीक नोंदणी कागदपत्रे सोबत ठेवा.'
+  },
+  {
+    en: 'Procurement Entry: Show this digital or printed pass for weighbridge entry clearance.',
+    te: 'సేకరణ ప్రవేశం: వేబ్రిడ్జ్ ప్రవేశ అనుమతి కోసం ఈ డిజిటల్ లేదా ముద్రిత పాస్‌ను చూపించండి.',
+    hi: 'खरीद प्रवेश: वेब्रिज प्रवेश मंजूरी के लिए यह डिजिटल या मुद्रित पास दिखाएं।',
+    mr: 'खरेदी प्रवेश: वेब्रिज प्रवेश मंजुरीसाठी हा डिजिटल किंवा छापील पास दाखवा.'
+  },
+  {
+    en: 'Official E-Token • ProcureX APMC Network',
+    te: 'అధికారిక ఇ-టోకెన్ • ప్రొక్యూర్ ఎక్స్ APMC నెట్‌వర్క్',
+    hi: 'आधिकारिक ई-टोकन • प्रोक्योरएक्स एपीएमसी नेटवर्क',
+    mr: 'अधिकृत ई-टोकन • प्रोक्योरएक्स एपीएमसी नेटवर्क'
+  },
+  {
+    en: 'No Physical Signature Required',
+    te: 'భౌతిక సంతకం అవసరం లేదు',
+    hi: 'किसी भौतिक हस्ताक्षर की आवश्यकता नहीं',
+    mr: 'कोणत्याही भौतिक स्वाक्षरीची आवश्यकता नाही'
+  },
+  {
+    en: 'Print Pass',
+    te: 'పాస్ ముద్రించండి',
+    hi: 'पास प्रिंट करें',
+    mr: 'पास प्रिंट करा'
+  },
+  {
+    en: 'Go to Dashboard 🏠',
+    te: 'డ్యాష్‌బోర్డ్‌కు వెళ్లండి 🏠',
+    hi: 'डैशबोर्ड पर जाएं 🏠',
+    mr: 'डॅशबोर्डवर जा 🏠'
+  },
+  {
+    en: 'Back to Farmer Dashboard',
+    te: 'రైతు డ్యాష్‌బోర్డ్‌కు తిరిగి వెళ్లండి',
+    hi: 'किसान डैशबोर्ड पर वापस जाएं',
+    mr: 'शेतकरी डॅशबोर्डवर परत जा'
+  },
+  {
+    en: 'At Bay #3',
+    te: 'బే #3 వద్ద',
+    hi: 'बे #3 पर',
+    mr: 'बे #3 वर'
+  },
+  {
+    en: 'Finished',
+    te: 'ముగిసింది',
+    hi: 'समाप्त',
+    mr: 'समाप्त'
   }
+];
+
+// Month name translation map
+const monthNameMap = [
+  { en: 'January', te: 'జనవరి', hi: 'जनवरी', mr: 'जानेवारी' },
+  { en: 'February', te: 'ఫిబ్రవరి', hi: 'फ़रवरी', mr: 'फेब्रुवारी' },
+  { en: 'March', te: 'మార్చి', hi: 'मार्च', mr: 'मार्च' },
+  { en: 'April', te: 'ఏప్రిల్', hi: 'अप्रैल', mr: 'एप्रिल' },
+  { en: 'May', te: 'మే', hi: 'మई', mr: 'मे' },
+  { en: 'June', te: 'జూన్', hi: 'जून', mr: 'जून' },
+  { en: 'July', te: 'జూలై', hi: 'जुलाई', mr: 'जुलै' },
+  { en: 'August', te: 'ఆగస్టు', hi: 'अगस्त', mr: 'ऑगस्ट' },
+  { en: 'September', te: 'సెప్టెంబర్', hi: 'सितंबर', mr: 'सप्टेंबर' },
+  { en: 'October', te: 'అక్టోబర్', hi: 'अक्टूबर', mr: 'ऑक्टोबर' },
+  { en: 'November', te: 'నవంబర్', hi: 'नवंबर', mr: 'नोव्हेंबर' },
+  { en: 'December', te: 'డిసెంబర్', hi: 'दिसंबर', mr: 'डिसेंबर' },
+  { en: 'Jan', te: 'జన', hi: 'जन', mr: 'जाने' },
+  { en: 'Feb', te: 'ఫిబ్ర', hi: 'फ़र', mr: 'फेब्रु' },
+  { en: 'Mar', te: 'మార్చి', hi: 'मार्च', mr: 'मार्च' },
+  { en: 'Apr', te: 'ఏప్రిల్', hi: 'अप्रैल', mr: 'एप्रिल' },
+  { en: 'Jun', te: 'జూన్', hi: 'जून', mr: 'जून' },
+  { en: 'Jul', te: 'జూలై', hi: 'जुलाई', mr: 'जुलै' },
+  { en: 'Aug', te: 'ఆగ', hi: 'अग', mr: 'ऑग' },
+  { en: 'Sep', te: 'సెప్టెం', hi: 'सितं', mr: 'सप्टें' },
+  { en: 'Oct', te: 'అక్టో', hi: 'अक्टू', mr: 'ऑक्टो' },
+  { en: 'Nov', te: 'నవం', hi: 'नवं', mr: 'नोव्हెం' },
+  { en: 'Dec', te: 'డిసెం', hi: 'दिसं', mr: 'डिसें' }
 ];
 
 // Build multi-directional lookup index (lowercased trimmed -> phrase object)
 const lookupIndex = new Map();
+
+// 1. Index all phraseMap items
 phraseMap.forEach(item => {
   ['en', 'te', 'hi', 'mr'].forEach(lang => {
     if (item[lang]) {
@@ -1408,17 +2503,39 @@ phraseMap.forEach(item => {
   });
 });
 
+// 2. Index all translations dictionary keys across all 4 languages
+if (translations && translations.en) {
+  Object.keys(translations.en).forEach(k => {
+    const enVal = translations.en[k];
+    if (typeof enVal === 'string' && enVal.trim()) {
+      const item = {
+        en: enVal,
+        te: (translations.te && translations.te[k]) || enVal,
+        hi: (translations.hi && translations.hi[k]) || enVal,
+        mr: (translations.mr && translations.mr[k]) || enVal
+      };
+      ['en', 'te', 'hi', 'mr'].forEach(lang => {
+        if (item[lang]) {
+          lookupIndex.set(item[lang].trim().toLowerCase(), item);
+        }
+      });
+    }
+  });
+}
+
 const I18N = {
   getLang() {
+    const stored = localStorage.getItem('procurex_lang');
+    if (stored && translations[stored]) return stored;
     const user = typeof Session !== 'undefined' ? Session.getUser() : null;
-    return localStorage.getItem('procurex_lang') || (user && user.language) || 'en';
+    return (user && user.language && translations[user.language]) ? user.language : 'en';
   },
 
   async setLang(lang) {
     if (!translations[lang]) return;
     localStorage.setItem('procurex_lang', lang);
 
-    // If logged in as farmer, persist to backend
+    // If logged in as farmer, persist to user session & backend
     if (typeof Session !== 'undefined') {
       const user = Session.getUser();
       if (user) {
@@ -1439,6 +2556,7 @@ const I18N = {
     }
 
     this.apply();
+    window.dispatchEvent(new CustomEvent('procurex-language-changed', { detail: { lang } }));
   },
 
   t(key) {
@@ -1449,43 +2567,210 @@ const I18N = {
     return null;
   },
 
+  translateStatus(status) {
+    if (!status || typeof status !== 'string') return status;
+    const lang = this.getLang();
+    const s = status.trim().toLowerCase();
+    const map = {
+      'confirmed': { en: 'Confirmed', te: 'ధృవీకరించబడింది', hi: 'पुष्ट', mr: 'निश्चित' },
+      'initiated': { en: 'Initiated', te: 'ప్రారంభించబడింది', hi: 'प्रारंभिक', mr: 'सुरू झाले' },
+      'in progress': { en: 'In Progress', te: 'పురోగతిలో ఉంది', hi: 'प्रगति पर', mr: 'प्रगतीपथावर' },
+      'in-progress': { en: 'In Progress', te: 'పురోగతిలో ఉంది', hi: 'प्रगति पर', mr: 'प्रगतीपथावर' },
+      'processing': { en: 'Processing', te: 'ప్రాసెసింగ్‌లో ఉంది', hi: 'प्रक्रियाधीन', mr: 'प्रक्रियेत' },
+      'completed': { en: 'Completed', te: 'పూర్తయింది', hi: 'पूर्ण हुआ', mr: 'पूर्ण झाले' },
+      'pending': { en: 'Pending', te: 'పెండింగ్‌లో ఉంది', hi: 'लंबित', mr: 'प्रलंबित' },
+      'cancelled': { en: 'Cancelled', te: 'రద్దు చేయబడింది', hi: 'रद्द', mr: 'रद्द' },
+      'arrived': { en: 'Arrived', te: 'చేరుకున్నారు', hi: 'पहुंच गए', mr: 'पोहोचले' },
+      'called': { en: 'Called', te: 'పిలువబడింది', hi: 'बुलाया गया', mr: 'बोलावले' },
+      'waiting': { en: 'Waiting', te: 'నిరీక్షణలో ఉంది', hi: 'प्रतीक्षारत', mr: 'प्रतीक्षेत' },
+      'paid': { en: 'Paid', te: 'చెల్లించబడింది', hi: 'भुगतान हुआ', mr: 'देय झाले' },
+      'pending booking': { en: 'Pending Booking', te: 'బుకింగ్ పెండింగ్‌లో ఉంది', hi: 'बुकिंग लंबित', mr: 'बुकिंग प्रलंबित' },
+      'not scheduled': { en: 'Not Scheduled', te: 'షెడ్యూల్ చేయబడలేదు', hi: 'शेड्यूल नहीं', mr: 'शेड्यूल नाही' },
+      'no active slot': { en: 'No Active Slot', te: 'క్రియాశీల స్లాట్ లేదు', hi: 'कोई सक्रिय स्लॉट नहीं', mr: 'कोणताही सक्रिय स्लॉट नाही' },
+      'no booking yet': { en: 'No Booking Yet', te: 'ఇంకా బుకింగ్ లేదు', hi: 'कोई बुकिंग नहीं', mr: 'अद्याप बुकिंग नाही' },
+      'few slots left': { en: 'Few Slots Left', te: 'కొన్ని స్లాట్లు మాత్రమే మిగిలి ఉన్నాయి', hi: 'कुछ ही स्लॉट शेष', mr: 'काहीच जागा शिल्लक' },
+      'slot full': { en: 'Slot Full', te: 'స్లాట్ పూర్తయింది', hi: 'स्लॉट भर चुका है', mr: 'स्लॉट भरला आहे' },
+      'operational': { en: 'Operational', te: 'కార్యాచరణలో ఉంది', hi: 'संचालित', mr: 'कार्यरत' },
+      'your turn': { en: 'YOUR TURN', te: 'మీ వంతు వచ్చింది', hi: 'आपकी बारी', mr: 'तुमची पाळी' }
+    };
+    if (map[s] && map[s][lang]) return map[s][lang];
+    return this.translateText(status);
+  },
+
+  translateStage(stageStr) {
+    if (!stageStr || typeof stageStr !== 'string') return stageStr;
+    const lang = this.getLang();
+    const stagePrefixMap = {
+      en: 'Stage',
+      te: 'దశ',
+      hi: 'चरण',
+      mr: 'टप्पा'
+    };
+    const match = stageStr.match(/^Stage\s*(\d+):?\s*(.*)$/i);
+    if (match) {
+      const num = match[1];
+      const title = match[2].trim();
+      const translatedTitle = this.translateText(title);
+      return `${stagePrefixMap[lang] || 'Stage'} ${num}: ${translatedTitle}`;
+    }
+    return this.translateText(stageStr);
+  },
+
+  translateDate(dateStr) {
+    if (!dateStr || typeof dateStr !== 'string') return dateStr;
+    const lang = this.getLang();
+    if (lang === 'en') return dateStr;
+    let result = dateStr;
+    monthNameMap.forEach(m => {
+      const names = [m.en, m.hi, m.mr, m.te].filter(Boolean);
+      names.forEach(name => {
+        const regex = new RegExp(`\\b${name}\\b`, 'gi');
+        if (regex.test(result)) {
+          result = result.replace(regex, m[lang] || m.en);
+        }
+      });
+    });
+    if (lang === 'te') {
+      result = result.replace(/Estimated/gi, 'అంచనా').replace(/Within 24-48 hrs/gi, '24-48 గంటల్లో');
+    } else if (lang === 'hi') {
+      result = result.replace(/Estimated/gi, 'अनुमानित').replace(/Within 24-48 hrs/gi, '24-48 घंटों में');
+    } else if (lang === 'mr') {
+      result = result.replace(/Estimated/gi, 'अंदाजे').replace(/Within 24-48 hrs/gi, '24-48 तासांत');
+    }
+    return result;
+  },
+
+  translateDuration(durStr) {
+    if (!durStr || typeof durStr !== 'string') return durStr;
+    const lang = this.getLang();
+    if (lang === 'en') return durStr;
+    let res = durStr;
+    if (lang === 'te') {
+      res = res.replace(/minutes|minute|mins|min/gi, 'నిమిషాలు').replace(/hours|hour|hrs|hr/gi, 'గంటలు').replace(/wait/gi, 'నిరీక్షణ');
+    } else if (lang === 'hi') {
+      res = res.replace(/minutes|minute|mins|min/gi, 'मिनट').replace(/hours|hour|hrs|hr/gi, 'घंटे').replace(/wait/gi, 'प्रतीक्षा');
+    } else if (lang === 'mr') {
+      res = res.replace(/minutes|minute|mins|min/gi, 'मिनिटे').replace(/hours|hour|hrs|hr/gi, 'तास').replace(/wait/gi, 'प्रतीक्षा');
+    }
+    return res;
+  },
+
+  translatePaymentMode(modeStr) {
+    if (!modeStr || typeof modeStr !== 'string') return modeStr;
+    return this.translateText(modeStr);
+  },
+
+  translateCommodity(commStr) {
+    if (!commStr || typeof commStr !== 'string') return commStr;
+    return this.translateText(commStr);
+  },
+
+  translateText(text) {
+    if (!text || typeof text !== 'string') return text;
+    const lang = this.getLang();
+    return this.translateString(text, lang) || text;
+  },
+
   translateString(str, targetLang) {
     if (!str || typeof str !== 'string') return str;
     const trimmed = str.trim();
     if (!trimmed) return str;
 
-    // Direct lookup
+    // 1. Direct hit in lookupIndex
     const directHit = lookupIndex.get(trimmed.toLowerCase());
     if (directHit && directHit[targetLang]) {
       return directHit[targetLang];
     }
 
-    // Split leading/trailing emojis/punctuation
-    const match = str.match(/^([\s\p{Extended_Pictographic}\u2600-\u27BF\uFE0F⚡📢⚖️✅💰🔍🚜🔄📅🔢🟢🟡🔴⚙️⏱️📊🌾🌿🌽☁️🌱🥣👤🏢✓•]+)?(.*?)([\s\p{Extended_Pictographic}\u2600-\u27BF\uFE0F⚡📢⚖️✅💰🔍🚜🔄📅🔢🟢🟡🔴⚙️⏱️📊🌾🌿🌽☁️🌱🥣👤🏢✓•]+)?$/u);
-    if (match) {
-      const prefix = match[1] || '';
-      const core = (match[2] || '').trim();
-      const suffix = match[3] || '';
+    // 2. Split leading/trailing emojis/punctuation
+    const emojiMatch = str.match(/^([\s\p{Extended_Pictographic}\u2600-\u27BF\uFE0F⚡📢⚖️✅💰🔍🚜🔄📅🔢🟢🟡🔴⚙️⏱️📊🌾🌿🌽☁️🌱🥣👤🏢✓•⏳🚨⚪]+)?(.*?)([\s\p{Extended_Pictographic}\u2600-\u27BF\uFE0F⚡📢⚖️✅💰🔍🚜🔄📅🔢🟢🟡🔴⚙️⏱️📊🌾🌿🌽☁️🌱🥣👤🏢✓•⏳🚨⚪]+)?$/u);
+    if (emojiMatch) {
+      const prefix = emojiMatch[1] || '';
+      const core = (emojiMatch[2] || '').trim();
+      const suffix = emojiMatch[3] || '';
 
       if (core) {
         const coreHit = lookupIndex.get(core.toLowerCase());
         if (coreHit && coreHit[targetLang]) {
-          return prefix + coreHit[targetLang] + suffix;
+          return prefix + (prefix && !prefix.endsWith(' ') ? ' ' : '') + coreHit[targetLang] + (suffix && !suffix.startsWith(' ') ? ' ' : '') + suffix;
         }
       }
+    }
+
+    // 3. Bullet-separated strings (e.g. "11:00 AM • Allocated Window" or "₹98,600 • Direct DBT PFMS")
+    if (str.includes('•')) {
+      const parts = str.split('•');
+      let anyChanged = false;
+      const translatedParts = parts.map(part => {
+        const t = this.translateString(part.trim(), targetLang);
+        if (t && t !== part.trim()) {
+          anyChanged = true;
+          return t;
+        }
+        return part.trim();
+      });
+      if (anyChanged) {
+        return translatedParts.join(' • ');
+      }
+    }
+
+    // 4. Key-Value pairs (e.g. "Farmer ID: FARM1024" or "Village: hyderabad")
+    const kvMatch = str.match(/^([A-Za-z0-9\s()]+):\s*(.+)$/);
+    if (kvMatch) {
+      const key = kvMatch[1].trim();
+      const val = kvMatch[2].trim();
+      const keyHit = lookupIndex.get(key.toLowerCase());
+      if (keyHit && keyHit[targetLang]) {
+        const translatedVal = this.translateString(val, targetLang) || val;
+        return `${keyHit[targetLang]}: ${translatedVal}`;
+      }
+    }
+
+    // 5. Number + Phrase (e.g. "0 Farmers Ahead" or "42.5 Quintals")
+    const numMatch = str.match(/^([~#₹]?\s*\d+(?:\.\d+)?)\s+([A-Za-z\s()]+)$/);
+    if (numMatch) {
+      const num = numMatch[1].trim();
+      const phrase = numMatch[2].trim();
+      const phraseHit = lookupIndex.get(phrase.toLowerCase());
+      if (phraseHit && phraseHit[targetLang]) {
+        return `${num} ${phraseHit[targetLang]}`;
+      }
+    }
+
+    // 6. Duration strings (e.g. "~5 minutes" or "~35 min wait")
+    const durMatch = str.match(/^([~]?\s*\d+)\s*(minutes|minute|mins|min|hours|hour|hrs|hr)(\s+wait)?$/i);
+    if (durMatch) {
+      const num = durMatch[1].trim();
+      const unit = durMatch[2].toLowerCase();
+      const hasWait = !!durMatch[3];
+      let translatedUnit = unit;
+      if (unit.startsWith('min')) {
+        translatedUnit = targetLang === 'te' ? 'నిమిషాలు' : (targetLang === 'hi' ? 'मिनट' : (targetLang === 'mr' ? 'मिनिटे' : 'min'));
+      } else if (unit.startsWith('hour') || unit.startsWith('hr')) {
+        translatedUnit = targetLang === 'te' ? 'గంటలు' : (targetLang === 'hi' ? 'घंटे' : (targetLang === 'mr' ? 'तास' : 'hours'));
+      }
+      const waitStr = hasWait ? (targetLang === 'te' ? ' నిరీక్షణ' : (targetLang === 'hi' ? ' प्रतीक्षा' : (targetLang === 'mr' ? ' प्रतीक्षा' : ' wait'))) : '';
+      return `${num} ${translatedUnit}${waitStr}`;
+    }
+
+    // 7. Check date month translations (e.g. "19 September 2026")
+    const dateCheck = this.translateDate(str);
+    if (dateCheck !== str) {
+      return dateCheck;
     }
 
     return null;
   },
 
   autoTranslateDOM(targetLang) {
-    const selectors = 'h1, h2, h3, h4, h5, p, span, a, button, label, th, td, .stat-label, .stat-subtext, .section-tag, .badge, strong, b, em';
+    const selectors = 'h1, h2, h3, h4, h5, p, span, a, button, label, th, td, .stat-label, .stat-subtext, .section-tag, .badge, strong, b, em, div.booking-meta-item';
     document.querySelectorAll(selectors).forEach(el => {
       if (el.hasAttribute('data-i18n')) return;
 
       el.childNodes.forEach(node => {
         if (node.nodeType === Node.TEXT_NODE) {
           const original = node.textContent;
+          if (!original || !original.trim()) return;
           const translated = this.translateString(original, targetLang);
           if (translated !== null && translated !== original) {
             node.textContent = translated;
@@ -1524,9 +2809,6 @@ const I18N = {
     document.querySelectorAll('.lang-select-input').forEach(select => {
       select.value = lang;
     });
-
-    // 5. Dispatch language change event for dynamic script listeners
-    window.dispatchEvent(new CustomEvent('procurex-language-changed', { detail: { lang } }));
   }
 };
 

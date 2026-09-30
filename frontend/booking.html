@@ -46,15 +46,22 @@
       box-shadow: var(--shadow-sm);
       flex-wrap: wrap;
       gap: 1rem;
+      min-width: 0;
+      max-width: 100%;
+    }
+    .booking-title-group {
+      min-width: 0;
+      max-width: 100%;
     }
     .booking-title-group h2 {
-      font-size: 1.45rem;
+      font-size: clamp(1.15rem, 4vw, 1.45rem);
       font-weight: 800;
       color: var(--secondary);
       margin: 0 0 0.15rem 0;
       display: flex;
       align-items: center;
       gap: 0.6rem;
+      flex-wrap: wrap;
     }
     .booking-title-group p {
       color: var(--text-muted);
@@ -71,6 +78,10 @@
       padding: 0.35rem 0.6rem;
       border-radius: 9999px;
       border: 1px solid var(--border);
+      max-width: 100%;
+      min-width: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
     }
     .step-pill {
       display: flex;
@@ -91,6 +102,9 @@
       color: #FFFFFF;
       box-shadow: 0 2px 6px rgba(21, 128, 61, 0.3);
       font-weight: 700;
+    }
+    .step-pill.active .step-name {
+      color: #FFFFFF !important;
     }
     .step-pill.done {
       background: var(--primary-subtle);
@@ -123,6 +137,14 @@
       .booking-layout {
         grid-template-columns: 1fr;
         gap: 1rem;
+      }
+    }
+    @media (max-width: 576px) {
+      .selection-grid-compact {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      .booking-hero-header {
+        padding: 0.85rem 1rem;
       }
     }
 
@@ -453,26 +475,18 @@
               Choose procurement delivery appointment date:
             </p>
 
-            <div class="date-grid-compact">
-              <div class="select-card selected" onclick="selectDate('19 September 2026', 'Tomorrow', this)">
-                <div class="icon">📅</div>
-                <div class="title">19 Sep 2026</div>
-                <div class="sub"><span class="badge badge-green" style="font-size:0.7rem; padding:0.12rem 0.35rem;">Recommended</span></div>
+            <div class="date-grid-compact" id="dynamicDateGrid">
+              <!-- Dynamically populated with upcoming dates by booking.js -->
+            </div>
+
+            <!-- Custom Date Selector -->
+            <div class="custom-date-box" style="margin-top: 0.85rem; padding: 0.85rem 1rem; background: var(--bg-main); border: 1.5px dashed var(--border); border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; transition: all 0.2s ease;">
+              <div>
+                <div style="font-weight: 700; font-size: 0.88rem; color: var(--secondary);" data-i18n="custom_date_title">Or Choose Another Date</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);" data-i18n="custom_date_sub">Pick any upcoming procurement date within next 30 days</div>
               </div>
-              <div class="select-card" onclick="selectDate('20 September 2026', 'Sunday', this)">
-                <div class="icon">📅</div>
-                <div class="title">20 Sep 2026</div>
-                <div class="sub">Weekend Window</div>
-              </div>
-              <div class="select-card" onclick="selectDate('21 September 2026', 'Monday', this)">
-                <div class="icon">📅</div>
-                <div class="title">21 Sep 2026</div>
-                <div class="sub">Open Schedule</div>
-              </div>
-              <div class="select-card" onclick="selectDate('22 September 2026', 'Tuesday', this)">
-                <div class="icon">📅</div>
-                <div class="title">22 Sep 2026</div>
-                <div class="sub">Open Schedule</div>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <input type="date" id="customDateInput" class="form-control" style="padding: 0.4rem 0.65rem; font-size: 0.85rem; border-radius: 6px; border: 1.5px solid var(--border); background: #FFFFFF; font-weight: 600; color: var(--secondary); cursor: pointer;" onchange="handleCustomDateChange(this.value)">
               </div>
             </div>
           </div>

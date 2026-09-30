@@ -20,8 +20,8 @@
       <a href="index.html" class="brand-logo">
         <div class="brand-icon">🌾</div>
         <div class="brand-text">
-          <h1>ProcureX</h1>
-          <span>Smart Agricultural Procurement</span>
+          <h1 data-i18n="brand_title">ProcureX</h1>
+          <span data-i18n="brand_sub">Smart Agricultural Procurement</span>
         </div>
       </a>
       <div class="nav-actions" id="navAuthContainer"></div>
@@ -36,24 +36,24 @@
         <div class="pass-brand-left">
           <div class="pass-brand-icon">🌾</div>
           <div>
-            <div class="pass-brand-title">ProcureX Mandi Token System</div>
-            <div class="pass-brand-subtitle">Govt. Agricultural Procurement & Queue Management</div>
+            <div class="pass-brand-title" data-i18n="pass_brand_title">ProcureX Mandi Token System</div>
+            <div class="pass-brand-subtitle" data-i18n="pass_brand_subtitle">Govt. Agricultural Procurement & Queue Management</div>
           </div>
         </div>
         <div class="pass-brand-right">
-          <span class="pass-gate-pill">GATE ENTRY PASS</span>
+          <span class="pass-gate-pill" data-i18n="pass_gate_pill">GATE ENTRY PASS</span>
         </div>
       </div>
 
       <!-- Confirmation Status Row -->
       <div class="pass-status-row">
-        <span class="badge badge-green pass-status-badge">
+        <span class="badge badge-green pass-status-badge" data-i18n="pass_status_confirmed">
           ✓ SLOT CONFIRMED
         </span>
-        <h2 class="pass-title">
+        <h2 class="pass-title" data-i18n="pass_title">
           Procurement Appointment Pass
         </h2>
-        <p class="pass-subtitle">
+        <p class="pass-subtitle" data-i18n="pass_subtitle">
           Please carry this digital pass or printed copy when arriving at the mandi.
         </p>
       </div>
@@ -61,47 +61,47 @@
       <!-- Pass Key Grid -->
       <div class="pass-details-grid">
         <div class="pass-cell pass-cell-highlight">
-          <span class="pass-label">Booking ID</span>
+          <span class="pass-label" data-i18n="booking_id">Booking ID</span>
           <span class="pass-val pass-val-booking" id="confBookingId">PX10245</span>
         </div>
 
         <div class="pass-cell pass-cell-highlight">
-          <span class="pass-label">Queue Token Number</span>
+          <span class="pass-label" data-i18n="pass_queue_token">Queue Token Number</span>
           <span class="pass-val pass-val-token" id="confQueueNumber">#18</span>
         </div>
 
         <div class="pass-cell">
-          <span class="pass-label">Farmer Name</span>
+          <span class="pass-label" data-i18n="pass_farmer_name">Farmer Name</span>
           <span class="pass-val" id="confFarmerName">Ramesh Kumar</span>
         </div>
 
         <div class="pass-cell">
-          <span class="pass-label">Commodity</span>
+          <span class="pass-label" data-i18n="commodity">Commodity</span>
           <span class="pass-val" id="confCommodity">Rice</span>
         </div>
 
         <div class="pass-cell pass-cell-wide">
-          <span class="pass-label">Procurement Centre</span>
+          <span class="pass-label" data-i18n="centre">Procurement Centre</span>
           <span class="pass-val" id="confCentre">Central Procurement Centre</span>
         </div>
 
         <div class="pass-cell">
-          <span class="pass-label">Scheduled Date</span>
+          <span class="pass-label" data-i18n="pass_scheduled_date">Scheduled Date</span>
           <span class="pass-val" id="confDate">19 September 2026</span>
         </div>
 
         <div class="pass-cell">
-          <span class="pass-label">Allocated Time Slot</span>
+          <span class="pass-label" data-i18n="pass_allocated_slot">Allocated Time Slot</span>
           <span class="pass-val" id="confTime">10:00 AM</span>
         </div>
 
         <div class="pass-cell">
-          <span class="pass-label">Booking Status</span>
+          <span class="pass-label" data-i18n="pass_booking_status">Booking Status</span>
           <span class="pass-val"><span class="badge badge-green" id="confStatus">Confirmed</span></span>
         </div>
 
         <div class="pass-cell">
-          <span class="pass-label">Estimated Quantity</span>
+          <span class="pass-label" data-i18n="pass_estimated_qty">Estimated Quantity</span>
           <span class="pass-val" id="confQuantity">42.5 Quintals</span>
         </div>
       </div>
@@ -116,15 +116,15 @@
             </svg>
           </div>
           <div class="pass-qr-info">
-            <strong style="color: var(--secondary); display: block; font-size: 0.95rem; margin-bottom: 2px;">Automated Gate & Weighbridge Token</strong>
-            <p style="margin: 0; color: var(--text-muted); font-size: 0.85rem; line-height: 1.35;">
+            <strong style="color: var(--secondary); display: block; font-size: 0.95rem; margin-bottom: 2px;" data-i18n="pass_qr_title">Automated Gate & Weighbridge Token</strong>
+            <p style="margin: 0; color: var(--text-muted); font-size: 0.85rem; line-height: 1.35;" data-i18n="pass_qr_desc">
               Official Mandi QR Code: Scan at Security Gate 2 for automated barrier entry & token validation.
             </p>
           </div>
         </div>
 
         <div class="pass-print-btn-holder no-print">
-          <button onclick="window.print()" class="btn btn-outline btn-sm">
+          <button onclick="window.print()" class="btn btn-outline btn-sm" data-i18n="print_pass">
             🖨️ Print Pass
           </button>
         </div>
@@ -132,29 +132,29 @@
 
       <!-- Mandatory Arrival Guidelines Block -->
       <div class="pass-instructions-block">
-        <div class="instructions-title">📋 Important Instructions for Mandi Arrival:</div>
+        <div class="instructions-title" data-i18n="pass_instructions_title">📋 Important Instructions for Mandi Arrival:</div>
         <ol class="instructions-list">
-          <li><strong>Reporting Time:</strong> Please arrive 15 minutes prior to your allocated slot at Mandi Gate 2.</li>
-          <li><strong>Verification Documents:</strong> Carry Aadhaar Card/Farmer ID and land/crop registration records.</li>
-          <li><strong>Procurement Entry:</strong> Show this digital or printed pass for weighbridge entry clearance.</li>
+          <li data-i18n="pass_instr_1"><strong>Reporting Time:</strong> Please arrive 15 minutes prior to your allocated slot at Mandi Gate 2.</li>
+          <li data-i18n="pass_instr_2"><strong>Verification Documents:</strong> Carry Aadhaar Card/Farmer ID and land/crop registration records.</li>
+          <li data-i18n="pass_instr_3"><strong>Procurement Entry:</strong> Show this digital or printed pass for weighbridge entry clearance.</li>
         </ol>
       </div>
 
       <!-- Security / System Footer on Pass -->
       <div class="pass-security-footer">
         <div class="security-meta">
-          <span>Official E-Token • ProcureX APMC Network</span> •
-          <span>No Physical Signature Required</span>
+          <span data-i18n="pass_footer_etoken">Official E-Token • ProcureX APMC Network</span> •
+          <span data-i18n="pass_footer_nosig">No Physical Signature Required</span>
         </div>
         <div class="security-barcode" aria-hidden="true">||| | |||| | ||||| || ||| |||| | ||| |||||</div>
       </div>
 
       <!-- Action Buttons (Screen Only) -->
       <div class="pass-actions no-print">
-        <a href="queue.html" class="btn btn-primary btn-lg" style="text-align: center;">
+        <a href="queue.html" class="btn btn-primary btn-lg" style="text-align: center;" data-i18n="watch_live_queue">
           View Live Queue ⚡
         </a>
-        <a href="dashboard.html" class="btn btn-outline btn-lg" style="text-align: center;">
+        <a href="dashboard.html" class="btn btn-outline btn-lg" style="text-align: center;" data-i18n="go_to_dashboard">
           Go to Dashboard 🏠
         </a>
       </div>
@@ -165,7 +165,7 @@
     <div class="container">
       <div class="footer-bottom">
         <div>© 2026 ProcureX – Smart Agricultural Procurement Platform. SIH 2026.</div>
-        <div><a href="dashboard.html" style="color:#94A3B8;">Back to Farmer Dashboard</a></div>
+        <div><a href="dashboard.html" style="color:#94A3B8;" data-i18n="back_to_dashboard">Back to Farmer Dashboard</a></div>
       </div>
     </div>
   </footer>
@@ -212,20 +212,25 @@
           document.getElementById('confBookingId').textContent = b.bookingId;
           document.getElementById('confQueueNumber').textContent = `#${b.queueNumber}`;
           document.getElementById('confFarmerName').textContent = b.farmerName;
-          document.getElementById('confCommodity').textContent = b.commodity;
-          document.getElementById('confCentre').textContent = b.centre;
-          document.getElementById('confDate').textContent = b.date;
+          document.getElementById('confCommodity').textContent = I18N.translateCommodity(b.commodity);
+          document.getElementById('confCentre').textContent = I18N.translateText(b.centre);
+          document.getElementById('confDate').textContent = I18N.translateDate(b.date);
           document.getElementById('confTime').textContent = b.slot;
-          document.getElementById('confStatus').textContent = b.status;
-          document.getElementById('confQuantity').textContent = `${b.estimatedQuantity || 42.5} Quintals`;
+          document.getElementById('confStatus').textContent = I18N.translateStatus(b.status);
+          document.getElementById('confQuantity').textContent = `${b.estimatedQuantity || 42.5} ${I18N.translateText('Quintals')}`;
           renderPassQRCode(b.bookingId);
         }
       } catch (err) {
         console.error(err);
       }
+
+      I18N.apply();
     }
 
     document.addEventListener('DOMContentLoaded', loadConfirmation);
+    window.addEventListener('procurex-language-changed', () => {
+      loadConfirmation();
+    });
   </script>
 </body>
 </html>

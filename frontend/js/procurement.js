@@ -47,9 +47,9 @@ async function loadProcurementTimeline() {
     if (data.success && data.procurement) {
       const p = data.procurement;
 
-      document.getElementById('procCommodity').textContent = p.commodity;
-      document.getElementById('procWeight').textContent = `${p.weightQuintals || 42.5} Quintals`;
-      document.getElementById('procGrade').textContent = p.qualityGrade || 'FAQ Grade-A';
+      document.getElementById('procCommodity').textContent = I18N.translateCommodity(p.commodity);
+      document.getElementById('procWeight').textContent = `${p.weightQuintals || 42.5} ${I18N.translateText('Quintals')}`;
+      document.getElementById('procGrade').textContent = I18N.translateText(p.qualityGrade || 'FAQ Grade-A');
       document.getElementById('procMoisture').textContent = p.moistureContent || '13.2%';
 
       const container = document.getElementById('timelineContainer');
@@ -57,27 +57,31 @@ async function loadProcurementTimeline() {
         container.innerHTML = p.stages.map((stage, index) => {
           let stateClass = stage.status; // 'completed', 'in-progress', 'pending'
           let iconChar = '○';
-          let badgeHtml = '<span class="badge" style="background:#F1F5F9; color:#64748B;">Pending</span>';
+          let badgeHtml = `<span class="badge" style="background:#F1F5F9; color:#64748B;">${I18N.translateStatus('Pending')}</span>`;
 
           if (stateClass === 'completed') {
             iconChar = '✓';
-            badgeHtml = '<span class="badge badge-green">✓ Completed</span>';
+            badgeHtml = `<span class="badge badge-green">✓ ${I18N.translateStatus('Completed')}</span>`;
           } else if (stateClass === 'in-progress') {
             iconChar = '●';
-            badgeHtml = '<span class="badge badge-yellow"><span class="pulse-dot"></span> In Progress</span>';
+            badgeHtml = `<span class="badge badge-yellow"><span class="pulse-dot"></span> ${I18N.translateStatus('In Progress')}</span>`;
           }
+
+          const stageTitle = I18N.translateStage(stage.title);
+          const stageDesc = I18N.translateText(stage.description);
+          const stageTime = I18N.translateDate(stage.timestamp);
 
           return `
             <div class="timeline-item ${stateClass}">
               <div class="timeline-icon">${iconChar}</div>
               <div class="timeline-card">
                 <div class="timeline-card-header">
-                  <div class="timeline-title">${stage.title}</div>
+                  <div class="timeline-title">${stageTitle}</div>
                   <div>${badgeHtml}</div>
                 </div>
-                <div class="timeline-desc">${stage.description}</div>
+                <div class="timeline-desc">${stageDesc}</div>
                 <div style="display: flex; justify-content: space-between; margin-top: 0.75rem; font-size: 0.82rem; color: var(--text-light); border-top: 1px dashed var(--border); padding-top: 0.5rem;">
-                  <span>Timestamp: <strong style="color:var(--text-muted);">${stage.timestamp}</strong></span>
+                  <span>Timestamp: <strong style="color:var(--text-muted);">${stageTime}</strong></span>
                   <span>${stage.officer ? `Officer: <strong>${stage.officer}</strong>` : ''}</span>
                 </div>
               </div>
@@ -89,6 +93,11 @@ async function loadProcurementTimeline() {
   } catch (err) {
     console.error('Procurement status error:', err);
   }
+
+  I18N.apply();
 }
 
 document.addEventListener('DOMContentLoaded', loadProcurementTimeline);
+window.addEventListener('procurex-language-changed', () => {
+  loadProcurementTimeline();
+});

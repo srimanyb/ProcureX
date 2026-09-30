@@ -51,42 +51,66 @@ async function loadPaymentDetails() {
       const p = data.payment;
 
       document.getElementById('payTxnId').textContent = p.transactionId;
-      document.getElementById('payCommodity').textContent = p.commodity;
-      document.getElementById('payQuantity').textContent = `${p.quantityQuintals} Quintals`;
+      document.getElementById('payCommodity').textContent = I18N.translateCommodity(p.commodity);
+      document.getElementById('payQuantity').textContent = `${p.quantityQuintals} ${I18N.translateText('Quintals')}`;
       document.getElementById('payRate').textContent = `₹${p.mspRatePerQuintal.toLocaleString('en-IN')} / Qtl`;
       document.getElementById('payTotalAmount').textContent = `₹${p.totalAmount.toLocaleString('en-IN')}`;
-      document.getElementById('payAccountInfo').textContent = `Aadhaar Linked: ${p.bankAccountMasked} • Mode: ${p.paymentMode}`;
-      document.getElementById('payExpectedDate').textContent = p.processedDate || 'Within 24-48 Hours';
+      document.getElementById('payAccountInfo').textContent = `${I18N.translateText('Aadhaar Linked')}: ${p.bankAccountMasked} • ${I18N.translateText('Mode')}: ${I18N.translatePaymentMode(p.paymentMode)}`;
+      document.getElementById('payExpectedDate').textContent = I18N.translateDate(p.processedDate || 'Within 24-48 Hours');
 
       const badge = document.getElementById('payStatusBadge');
       if (p.status === 'Completed') {
         badge.className = 'badge badge-green';
-        badge.textContent = '🟢 Payment Credited (Completed)';
+        badge.textContent = `🟢 ${I18N.translateText('Payment Credited (Completed)')}`;
       } else {
         badge.className = 'badge badge-yellow';
-        badge.textContent = '🟡 Settlement Processing';
+        badge.textContent = `🟡 ${I18N.translateText('Settlement Processing')}`;
       }
 
       // Populate history table
       const tbody = document.getElementById('paymentHistoryTableBody');
-      if (tbody && p.history) {
-        tbody.innerHTML = p.history.map(item => `
-          <tr>
-            <td style="font-weight: 700; color: var(--secondary);">${item.date}</td>
-            <td><span class="badge badge-blue">${item.bookingId}</span></td>
-            <td>${item.commodity}</td>
-            <td>${item.quantity} Qtl</td>
-            <td style="font-weight: 800; color: var(--primary);">₹${item.amount.toLocaleString('en-IN')}</td>
-            <td><span class="badge badge-green">✓ ${item.status}</span></td>
-            <td style="text-align: right; font-family: monospace; font-size: 0.85rem; color: var(--text-muted);">${item.reference}</td>
-          </tr>
-        `).join('');
+      const histBadge = document.getElementById('payHistoryBadge');
+      if (tbody) {
+        if (p.history && p.history.length > 0) {
+          if (histBadge) {
+            histBadge.textContent = `${p.history.length} Past Payouts Recorded`;
+            histBadge.className = 'badge badge-green';
+          }
+          tbody.innerHTML = p.history.map(item => `
+            <tr>
+              <td style="font-weight: 700; color: var(--secondary);">${I18N.translateDate(item.date)}</td>
+              <td><span class="badge badge-blue">${item.bookingId}</span></td>
+              <td>${I18N.translateCommodity(item.commodity)}</td>
+              <td>${item.quantity} Qtl</td>
+              <td style="font-weight: 800; color: var(--primary);">₹${item.amount.toLocaleString('en-IN')}</td>
+              <td><span class="badge badge-green">✓ ${I18N.translateStatus(item.status)}</span></td>
+              <td style="text-align: right; font-family: monospace; font-size: 0.85rem; color: var(--text-muted);">${item.reference}</td>
+            </tr>
+          `).join('');
+        } else {
+          if (histBadge) {
+            histBadge.textContent = '0 Past Payouts Recorded';
+            histBadge.className = 'badge badge-yellow';
+          }
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                📋 No past payment settlements on record yet. Payout advice for active booking will be credited within 24-48 hours after weighbridge verification.
+              </td>
+            </tr>
+          `;
+        }
       }
     }
   } catch (err) {
     console.error('Payment error:', err);
   }
+
+  I18N.apply();
 }
 
 document.addEventListener('DOMContentLoaded', loadPaymentDetails);
+window.addEventListener('procurex-language-changed', () => {
+  loadPaymentDetails();
+});
 

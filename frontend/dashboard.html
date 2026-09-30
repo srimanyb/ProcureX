@@ -15,8 +15,8 @@
       <a href="index.html" class="brand-logo">
         <div class="brand-icon">🌾</div>
         <div class="brand-text">
-          <h1>ProcureX</h1>
-          <span>Smart Agricultural Procurement</span>
+          <h1 data-i18n="brand_title">ProcureX</h1>
+          <span data-i18n="brand_sub">Smart Agricultural Procurement</span>
         </div>
       </a>
 
@@ -41,7 +41,7 @@
     <div class="dashboard-welcome">
       <div class="welcome-text">
         <div class="badge badge-green" style="margin-bottom: 0.5rem;" data-i18n="dash_profile_tag">Verified Farmer Profile</div>
-        <h2 id="farmerWelcomeTitle" data-i18n="dash_welcome">Welcome, Farmer</h2>
+        <h2 id="farmerWelcomeTitle">Welcome</h2>
         <p id="farmerProfileSubtitle">Farmer ID: <strong>FARM1024</strong> • Village: Chandur Railway • District: Amravati</p>
       </div>
       
@@ -140,7 +140,7 @@
     <div class="current-booking-card">
       <div class="booking-header">
         <div>
-          <span class="badge badge-green" style="margin-bottom: 0.35rem;">Active Mandi Appointment</span>
+          <span class="badge badge-green" style="margin-bottom: 0.35rem;" data-i18n="active_mandi_appointment">Active Mandi Appointment</span>
           <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--secondary);" data-i18n="dash_current_booking">Your Current Booking</h3>
         </div>
         <div>
@@ -150,22 +150,22 @@
 
       <div class="booking-grid">
         <div class="booking-meta-item">
-          <label>Booking ID</label>
+          <label data-i18n="booking_id">Booking ID</label>
           <span id="cardBookingId">PX10245</span>
         </div>
 
         <div class="booking-meta-item">
-          <label>Centre</label>
+          <label data-i18n="centre">Centre</label>
           <span id="cardCentreName">Central Procurement Centre</span>
         </div>
 
         <div class="booking-meta-item">
-          <label>Commodity</label>
+          <label data-i18n="commodity">Commodity</label>
           <span id="cardCommodity">Rice (Paddy)</span>
         </div>
 
         <div class="booking-meta-item">
-          <label>Date & Time Slot</label>
+          <label data-i18n="date_time_slot">Date & Time Slot</label>
           <span id="cardSlotTime">19 September 2026, 10:00 AM</span>
         </div>
       </div>
@@ -173,15 +173,15 @@
       <div style="background: var(--bg-main); border-radius: var(--radius-md); padding: 1.25rem; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
         <div>
           <div style="font-weight: 700; color: var(--secondary); margin-bottom: 2px;">
-            Token Number: <span style="color: var(--primary); font-size: 1.2rem;">#18</span>
+            <span data-i18n="token_number_label">Token Number</span>: <span style="color: var(--primary); font-size: 1.2rem;" id="cardTokenDisplay">#18</span>
           </div>
-          <div style="font-size: 0.88rem; color: var(--text-muted);">
+          <div style="font-size: 0.88rem; color: var(--text-muted);" data-i18n="present_gate_ref">
             Please present this booking reference at Gate 2 along with your 7/12 crop land record.
           </div>
         </div>
         <div style="display: flex; gap: 0.75rem;">
-          <a href="queue.html" class="btn btn-primary btn-sm">Watch Live Queue ⚡</a>
-          <a href="confirmation.html" class="btn btn-outline btn-sm">View Digital Pass 🎫</a>
+          <a href="queue.html" class="btn btn-primary btn-sm" data-i18n="watch_live_queue">Watch Live Queue ⚡</a>
+          <a href="confirmation.html" class="btn btn-outline btn-sm" data-i18n="view_digital_pass">View Digital Pass 🎫</a>
         </div>
       </div>
     </div>
@@ -208,22 +208,28 @@
       if (activeUser) {
         activeUser.language = newLang;
         Session.setUser(activeUser);
-        document.getElementById('farmerWelcomeTitle').textContent = `${I18N.t('dash_welcome')}, ${activeUser.name}`;
       }
-      showToast('Language Updated', `Website display updated to ${newLang.toUpperCase()}`, 'success');
+      await loadDashboardData();
+      showToast(I18N.t('dash_welcome') || 'Language Updated', `${newLang.toUpperCase()}`, 'success');
     }
 
     async function loadDashboardData() {
       if (!user) return;
 
-      // Set language dropdown to user's saved preference
-      const activeLang = user.language || I18N.getLang() || 'en';
+      // Set language dropdown to current active language
+      const activeLang = I18N.getLang() || (user && user.language) || 'en';
       const langSelect = document.getElementById('profileLanguageSelect');
       if (langSelect) langSelect.value = activeLang;
 
       // Set user title
-      document.getElementById('farmerWelcomeTitle').textContent = `${I18N.t('dash_welcome')}, ${user.name}`;
-      document.getElementById('farmerProfileSubtitle').innerHTML = `Farmer ID: <strong>${user.farmerId}</strong> • Village: ${user.village || 'Registered Mandi Region'} • District: ${user.district || 'APMC Jurisdiction'}`;
+      const welcomePrefix = I18N.t('dash_welcome') || 'Welcome';
+      let cleanName = (user.name || '').replace(/^farmer\s*,?\s*/i, '').trim();
+      document.getElementById('farmerWelcomeTitle').textContent = cleanName ? `${welcomePrefix}, ${cleanName}` : welcomePrefix;
+      
+      const fidLabel = I18N.t('label_farmer_id') || 'Farmer ID';
+      const vilLabel = I18N.t('label_village') || 'Village';
+      const distLabel = I18N.t('label_district') || 'District';
+      document.getElementById('farmerProfileSubtitle').innerHTML = `${fidLabel}: <strong>${user.farmerId}</strong> • ${vilLabel}: ${user.village || 'Registered Mandi Region'} • ${distLabel}: ${user.district || 'APMC Jurisdiction'}`;
 
       let bookingId = Session.getActiveBookingId();
 
@@ -243,18 +249,19 @@
 
       if (!bookingId) {
         // Farmer has no bookings yet
-        document.getElementById('cardBookingId').textContent = 'No Active Slot';
-        document.getElementById('activeBookingBadge').textContent = 'No Booking Yet';
-        document.getElementById('cardCentreName').textContent = user.preferredCentre || 'Select a centre';
-        document.getElementById('cardCommodity').textContent = user.commodity || 'Select produce';
-        document.getElementById('cardSlotTime').textContent = 'Click Book New Slot to schedule';
-        document.getElementById('summarySlotTime').textContent = 'Not Scheduled';
-        document.getElementById('summarySlotHour').textContent = 'Book your harvest slot';
+        document.getElementById('cardBookingId').textContent = I18N.t('status_no_active_slot') || 'No Active Slot';
+        document.getElementById('activeBookingBadge').textContent = I18N.t('status_no_booking_yet') || 'No Booking Yet';
+        document.getElementById('cardCentreName').textContent = I18N.translateText(user.preferredCentre || 'Select a centre');
+        document.getElementById('cardCommodity').textContent = I18N.translateCommodity(user.commodity || 'Select produce');
+        document.getElementById('cardSlotTime').textContent = I18N.t('dash_btn_book') || 'Click Book New Slot to schedule';
+        document.getElementById('summarySlotTime').textContent = I18N.t('status_not_scheduled') || 'Not Scheduled';
+        document.getElementById('summarySlotHour').textContent = I18N.t('book_harvest_slot') || 'Book your harvest slot';
         document.getElementById('summaryQueuePos').textContent = '--';
-        document.getElementById('summaryQueueAhead').textContent = 'No queue assigned yet';
-        document.getElementById('summaryProcStatus').textContent = 'Pending Booking';
-        document.getElementById('summaryPayStatus').textContent = 'Pending';
-        document.getElementById('summaryPayAmt').textContent = '₹0.00 • Post Procurement';
+        document.getElementById('summaryQueueAhead').textContent = I18N.t('no_queue_yet') || 'No queue assigned yet';
+        document.getElementById('summaryProcStatus').textContent = I18N.t('status_pending_booking') || 'Pending Booking';
+        document.getElementById('summaryPayStatus').textContent = I18N.t('status_pending') || 'Pending';
+        document.getElementById('summaryPayAmt').textContent = `₹0.00 • ${I18N.t('post_procurement') || 'Post Procurement'}`;
+        I18N.apply();
         return;
       }
 
@@ -265,12 +272,14 @@
         if (bookData.success && bookData.booking) {
           const b = bookData.booking;
           document.getElementById('cardBookingId').textContent = b.bookingId;
-          document.getElementById('activeBookingBadge').textContent = `Booking ID: ${b.bookingId}`;
-          document.getElementById('cardCentreName').textContent = b.centre;
-          document.getElementById('cardCommodity').textContent = b.commodity;
-          document.getElementById('cardSlotTime').textContent = `${b.date}, ${b.slot}`;
-          document.getElementById('summarySlotTime').textContent = b.date;
-          document.getElementById('summarySlotHour').textContent = `${b.slot} • Allocated Window`;
+          document.getElementById('activeBookingBadge').textContent = `${I18N.t('booking_id') || 'Booking ID'}: ${b.bookingId}`;
+          document.getElementById('cardCentreName').textContent = I18N.translateText(b.centre);
+          document.getElementById('cardCommodity').textContent = I18N.translateCommodity(b.commodity);
+          document.getElementById('cardSlotTime').textContent = `${I18N.translateDate(b.date)}, ${b.slot}`;
+          document.getElementById('summarySlotTime').textContent = I18N.translateDate(b.date);
+          document.getElementById('summarySlotHour').textContent = `${b.slot} • ${I18N.t('allocated_window') || 'Allocated Window'}`;
+          const tokenDisplay = document.getElementById('cardTokenDisplay');
+          if (tokenDisplay) tokenDisplay.textContent = `#${b.queueNumber || 18}`;
         }
 
         // 2. Fetch live queue
@@ -278,29 +287,41 @@
         const queueData = await queueRes.json();
         if (queueData.success) {
           document.getElementById('summaryQueuePos').textContent = `#${queueData.yourQueueNumber}`;
-          document.getElementById('summaryQueueAhead').textContent = `${queueData.farmersAhead} Farmers Ahead • ${queueData.estimatedWaiting}`;
+          document.getElementById('summaryQueueAhead').textContent = `${queueData.farmersAhead} ${I18N.t('farmers_ahead') || 'Farmers Ahead'} • ${I18N.translateDuration(queueData.estimatedWaiting)}`;
         }
 
         // 3. Fetch procurement
         const procRes = await fetch(`${API_BASE}/procurement/${bookingId}`);
         const procData = await procRes.json();
         if (procData.success && procData.procurement) {
-          document.getElementById('summaryProcStatus').textContent = procData.procurement.overallStatus;
+          document.getElementById('summaryProcStatus').textContent = I18N.translateStatus(procData.procurement.overallStatus);
+          if (procData.procurement.stages) {
+            const activeStage = procData.procurement.stages.find(s => s.status === 'in-progress') || procData.procurement.stages[3] || procData.procurement.stages[0];
+            if (activeStage) {
+              document.getElementById('summaryProcStage').textContent = I18N.translateStage(activeStage.title);
+            }
+          }
         }
 
         // 4. Fetch payment
         const payRes = await fetch(`${API_BASE}/payment/${bookingId}`);
         const payData = await payRes.json();
         if (payData.success && payData.payment) {
-          document.getElementById('summaryPayStatus').textContent = payData.payment.status;
-          document.getElementById('summaryPayAmt').textContent = `₹${payData.payment.totalAmount.toLocaleString('en-IN')} • ${payData.payment.paymentMode}`;
+          document.getElementById('summaryPayStatus').textContent = I18N.translateStatus(payData.payment.status);
+          document.getElementById('summaryPayAmt').textContent = `₹${payData.payment.totalAmount.toLocaleString('en-IN')} • ${I18N.translatePaymentMode(payData.payment.paymentMode)}`;
         }
       } catch (err) {
         console.warn('Backend fetch notice:', err);
       }
+
+      // Re-apply I18N translations to ensure dynamic strings are auto-translated
+      I18N.apply();
     }
 
     document.addEventListener('DOMContentLoaded', loadDashboardData);
+    window.addEventListener('procurex-language-changed', () => {
+      loadDashboardData();
+    });
   </script>
 </body>
 </html>

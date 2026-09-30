@@ -176,8 +176,16 @@ function setupNavbar() {
   const toggleBtn = document.getElementById('mobileNavToggle');
   const navLinks = document.getElementById('navLinks');
   if (toggleBtn && navLinks) {
-    toggleBtn.addEventListener('click', () => {
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       navLinks.classList.toggle('active');
+    });
+
+    // Auto-close drawer when any link inside is tapped
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
     });
   }
 
@@ -192,15 +200,14 @@ function setupNavbar() {
         <li><a href="dashboard.html" data-i18n="nav_dashboard">Dashboard</a></li>
         <li><a href="booking.html" data-i18n="nav_book_slot">Book Slot</a></li>
         <li><a href="queue.html" data-i18n="nav_live_queue">Live Queue</a></li>
-        <li><a href="procurement.html" data-i18n="nav_procurement">Procurement Status</a></li>
-        <li><a href="payment.html" data-i18n="nav_payment">Payment Status</a></li>
+        <li><a href="procurement.html" data-i18n="nav_procurement">Procurement</a></li>
+        <li><a href="payment.html" data-i18n="nav_payment">Payment</a></li>
       `;
     } else if (user && role === 'centre') {
       navLinks.innerHTML = `
         <li><a href="centre-dashboard.html" data-i18n="nav_centre_dash">Centre Dashboard</a></li>
         <li><a href="centre-dashboard.html#queue-table-section" data-i18n="nav_curr_queue">Current Queue</a></li>
         <li><a href="centre-dashboard.html#analytics-section" data-i18n="nav_cap_analytics">Capacity Analytics</a></li>
-        <li><a href="dashboard.html" data-i18n="nav_farmer_view">Farmer View</a></li>
       `;
     } else {
       // Unauthenticated / Guest: Only show public information links
@@ -225,7 +232,7 @@ function setupNavbar() {
   const currentLang = typeof I18N !== 'undefined' ? I18N.getLang() : (localStorage.getItem('procurex_lang') || 'en');
 
   const langSelectorHtml = `
-    <select class="lang-select-input" onchange="if(typeof I18N !== 'undefined') I18N.setLang(this.value)" style="padding: 0.35rem 0.6rem; border-radius: var(--radius-sm); border: 1.5px solid var(--border); font-size: 0.88rem; font-weight: 600; color: var(--secondary); background: #FFFFFF; cursor: pointer; margin-right: 0.4rem;">
+    <select class="lang-select-input" onchange="if(typeof I18N !== 'undefined') I18N.setLang(this.value)">
       <option value="en" ${currentLang === 'en' ? 'selected' : ''}>🌐 English</option>
       <option value="hi" ${currentLang === 'hi' ? 'selected' : ''}>🌐 हिन्दी</option>
       <option value="te" ${currentLang === 'te' ? 'selected' : ''}>🌐 తెలుగు</option>
@@ -241,9 +248,9 @@ function setupNavbar() {
           🔔
           <span id="notifBadge" class="notif-badge-count" style="display:none;">0</span>
         </button>
-        <div style="display: flex; align-items: center; gap: 0.5rem; margin-left: 0.4rem;">
-          <span style="font-weight: 700; color: var(--secondary); font-size: 0.95rem;">👤 ${user.name.split(' ')[0]}</span>
-          <button onclick="logout()" class="btn btn-outline btn-sm" data-i18n="nav_logout">Logout</button>
+        <div class="nav-user-block">
+          <span class="nav-user-name">👤 ${user.name.split(' ')[0]}</span>
+          <button id="farmerLogoutBtn" onclick="logout()" class="btn btn-outline btn-sm nav-logout-btn" data-i18n="nav_logout">Logout</button>
         </div>
       `;
       fetchUnreadNotifications(user.farmerId || 'FARM1024');
@@ -254,14 +261,14 @@ function setupNavbar() {
           🔔
           <span id="notifBadge" class="notif-badge-count" style="display:none;">0</span>
         </button>
-        <span class="badge badge-blue" style="margin-left:0.4rem;">🏢 Centre Staff</span>
-        <button onclick="logout()" class="btn btn-outline btn-sm" style="margin-left: 0.5rem;" data-i18n="nav_logout">Logout</button>
+        <span class="badge badge-blue nav-user-name" data-i18n="centre_staff_badge">🏢 Centre Staff</span>
+        <button id="centreLogoutBtn" onclick="logout()" class="btn btn-outline btn-sm nav-logout-btn" data-i18n="nav_logout">Logout</button>
       `;
     } else {
       navAuthContainer.innerHTML = `
         ${langSelectorHtml}
-        <a href="login.html" class="btn btn-outline-primary btn-sm" data-i18n="nav_farmer_login">Farmer Login</a>
-        <a href="login.html?tab=centre" class="btn btn-secondary btn-sm" data-i18n="nav_centre_login">Centre Login</a>
+        <a href="login.html" id="farmerLoginBtn" class="btn btn-outline-primary btn-sm" data-i18n="nav_farmer_login">Farmer Login</a>
+        <a href="login.html?tab=centre" id="centreLoginBtn" class="btn btn-secondary btn-sm" data-i18n="nav_centre_login">Centre Login</a>
       `;
     }
   }
@@ -278,12 +285,13 @@ async function toggleNotificationDrawer() {
   if (!drawer) {
     drawer = document.createElement('div');
     drawer.id = 'notifDrawer';
+    drawer.className = 'notification-drawer';
     drawer.style.cssText = `
       position: fixed;
       top: 72px;
-      right: 20px;
-      width: 360px;
-      max-height: 480px;
+      right: 10px;
+      width: min(360px, calc(100vw - 20px));
+      max-height: 80vh;
       background: white;
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
@@ -364,6 +372,26 @@ async function fetchUnreadNotifications(farmerId) {
     // Silent fail
   }
 }
+
+// Global click listener to close mobile drawer or notifications when tapping outside
+document.addEventListener('click', (e) => {
+  const navLinks = document.getElementById('navLinks');
+  const toggleBtn = document.getElementById('mobileNavToggle');
+  if (navLinks && navLinks.classList.contains('active')) {
+    if (!navLinks.contains(e.target) && (!toggleBtn || !toggleBtn.contains(e.target))) {
+      navLinks.classList.remove('active');
+    }
+  }
+
+  const drawer = document.getElementById('notifDrawer');
+  const bell = document.getElementById('notifBellBtn');
+  if (drawer && notifDrawerOpen) {
+    if (!drawer.contains(e.target) && (!bell || !bell.contains(e.target))) {
+      drawer.style.display = 'none';
+      notifDrawerOpen = false;
+    }
+  }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   setupNavbar();
